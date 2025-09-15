@@ -1,0 +1,6 @@
+./obj
+*.o
+*.a
+.DS_Store
+.vscode
+.vscode/*
