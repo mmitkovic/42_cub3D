@@ -1,0 +1,1 @@
+// walls closed, spawn valid, colors ok
