@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/19 12:03:07 by mmitkovi         ###   ########.fr       */
+/*   Created: 2024/12/28 08:54:31 by mmitkovi          #+#    #+#             */
+/*   Updated: 2024/12/29 15:40:09 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "libft.h"
 
-int main(int ac, char **av)
+void	ft_putnbr_fd(int n, int fd)
 {
-	char	*map;
-	int		fd;
-	
-	if (ac != 2)
-		printf("Wrong input!\n");
-	if (av[1] == NULL)
-		return (1);
-	map = av[1];
-	//check_map(map)
+	char	num;
 
-	// init data and node
-	fd = open(av[1], O_RDONLY);
-	if (fd < 0)
-		return (write(1, "Error: cannot open the file\n", 24), 1);
-	// read_map(fd, &data)
-	close(fd);
-	
-	return (0);
+	if (n == -2147483648)
+	{
+		write(fd, "-2147483648", 11);
+		return ;
+	}
+	if (n < 0)
+	{
+		write(fd, "-", 1);
+		n = -n;
+	}
+	if (n >= 0 && n <= 9)
+	{
+		num = n + '0';
+		write(fd, &num, 1);
+	}
+	else
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
 }

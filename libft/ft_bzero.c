@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/19 12:18:25 by mmitkovi         ###   ########.fr       */
+/*   Created: 2024/12/27 17:47:01 by mmitkovi          #+#    #+#             */
+/*   Updated: 2024/12/27 17:51:36 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-#define CUB3D_H
+#include "libft.h"
 
-#include "../minilibx-linux/mlx.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <math.h>
+void	ft_bzero(void *s, size_t n)
+{
+	char	*t_ptr;
 
-#define WIN_W 800
-#define WIN_H 600
-
-#endif
+	t_ptr = (char *)s;
+	while (n > 0)
+	{
+		*(t_ptr++) = 0;
+		n--;
+	}
+}
