@@ -1,10 +1,10 @@
-	NO    ./textures/test_north.ppm
-SO  ./textures/test_south.ppm
-WE  ./textures/test_west.ppm
-EA  ./textures/test_east.ppm
+NO	./textures/test_north.ppm
+SO	./textures/test_south.ppm
+WE	./textures/test_west.ppm
+EA	./textures/test_east.ppm
 
-F 220,100,0 
-C 225,30,0                                                                                         
+F 220, 100 , 0 
+C 225,a 30, 120                                                                                         
                                                                                                    
                                                                                                    
                                                                                                    

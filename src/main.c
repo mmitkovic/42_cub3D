@@ -24,7 +24,6 @@ int main(int ac, char **av)
 	map = av[1];
 	if (check_ext(map))
 		return (printf("Wrong extension"), 1);
-	
 	// init data and node
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
