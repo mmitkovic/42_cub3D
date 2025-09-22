@@ -4,6 +4,7 @@ CFLAGS	= -Wall -Wextra -Werror
 INC		= -Iinclude -Imlx
 
 SRCS	= src/main.c \
+			src/core/init.c
 
 OBJSDIR	= obj
 OBJS	= $(SRCS:%.c=$(OBJSDIR)/%.o)

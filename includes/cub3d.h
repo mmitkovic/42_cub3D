@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/19 12:57:05 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/22 11:22:32 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@
 
 typedef struct s_map
 {
+	int		player_x;
+	int		player_y;
+	
 	/* map data */
 }			t_map;
 
@@ -60,3 +63,5 @@ typedef struct s_data
 }			t_data;
 
 #endif
+
+int 	check_ext(char *str);
