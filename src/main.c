@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/19 12:03:07 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/22 11:06:39 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int main(int ac, char **av)
 	if (av[1] == NULL)
 		return (1);
 	map = av[1];
-	//check_map(map)
 
 	// init data and node
 	fd = open(av[1], O_RDONLY);
