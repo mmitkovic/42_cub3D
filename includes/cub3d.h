@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/23 11:14:32 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/23 11:36:43 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@
 # define MASK_KEYPRESS (1L << 0)
 # define MASK_KEYRELEASE (1L >> 1)
 
+typedef struct s_vector
+{
+	int	x;
+	int y;
+} t_vector; // the position of the player is always vector
+
 
 typedef struct s_parser
 {
@@ -63,6 +69,8 @@ typedef struct s_img
 	int		bpp;
 	int		line_len;
 	int		endian;
+	int		w;
+	int		h;
 }			t_img;
 
 typedef struct s_data
@@ -70,7 +78,11 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
+	t_img	textures[4];
 }			t_data;
+
+
+
 
 #endif
 
