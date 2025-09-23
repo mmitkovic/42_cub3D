@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/23 11:07:01 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/23 11:24:23 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct s_data
 	t_img	textures[4];
 }			t_data;
 
-#endif
 
-int 	check_ext(char *str);
+
+
+#endif
