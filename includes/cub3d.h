@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/23 11:24:23 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/23 11:36:43 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
+# include "../get_next_line/get_next_line.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
@@ -45,6 +46,14 @@ typedef struct s_vector
 	int y;
 } t_vector; // the position of the player is always vector
 
+
+typedef struct s_parser
+{
+	char	*n_path;
+	char	*s_path;
+	char	*w_path;
+	char	*e_path;	
+}			t_parser;
 typedef struct s_map
 {
 	int		player_x;
@@ -76,3 +85,18 @@ typedef struct s_data
 
 
 #endif
+
+// init.c
+void		init_parser(t_parser *parser);
+int			read_map(t_parser *parser, int fd);
+
+//parse_file.c
+int 		check_ext(char *str);
+
+//parse_header.c
+int			check_textures(t_parser *parser, int fd);
+int			parse_textures(t_parser *parser, char *trim);
+
+//utils.c
+char		*skip_whitespaces(char *line);
+int			is_it_whitespace(t_parser *parser);
