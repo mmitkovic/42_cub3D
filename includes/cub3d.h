@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/22 11:57:14 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/23 11:14:32 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
+# include "../get_next_line/get_next_line.h"
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
@@ -39,6 +40,14 @@
 # define MASK_KEYPRESS (1L << 0)
 # define MASK_KEYRELEASE (1L >> 1)
 
+
+typedef struct s_parser
+{
+	char	*n_path;
+	char	*s_path;
+	char	*w_path;
+	char	*e_path;	
+}			t_parser;
 typedef struct s_map
 {
 	int		player_x;
@@ -65,4 +74,17 @@ typedef struct s_data
 
 #endif
 
-int 	check_ext(char *str);
+// init.c
+void		init_parser(t_parser *parser);
+int			read_map(t_parser *parser, int fd);
+
+//parse_file.c
+int 		check_ext(char *str);
+
+//parse_header.c
+int			check_textures(t_parser *parser, int fd);
+int			parse_textures(t_parser *parser, char *trim);
+
+//utils.c
+char		*skip_whitespaces(char *line);
+int			is_it_whitespace(t_parser *parser);
