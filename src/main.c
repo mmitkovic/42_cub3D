@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/22 11:17:17 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/23 10:15:15 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int ac, char **av)
 	// init data and node
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
-		return (write(1, "Error: cannot open the file\n", 24), 1);
+		return (printf("Cannot open the file\n"), 1);
 	// read_map(fd, &data)
 	close(fd);
 	
