@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/23 11:36:43 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/24 11:52:39 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ typedef struct s_vector
 	int y;
 } t_vector; // the position of the player is always vector
 
-
 typedef struct s_parser
 {
 	char	*n_path;
 	char	*s_path;
 	char	*w_path;
-	char	*e_path;	
+	char	*e_path;
 }			t_parser;
+
 typedef struct s_map
 {
 	int		player_x;
@@ -67,7 +67,7 @@ typedef struct s_img
 	void	*mlx_img;
 	char	*addr;
 	int		bpp;
-	int		line_len;
+	int		line_len; // length of a line in bytes
 	int		endian;
 	int		w;
 	int		h;
@@ -80,11 +80,6 @@ typedef struct s_data
 	t_img	img;
 	t_img	textures[4];
 }			t_data;
-
-
-
-
-#endif
 
 // init.c
 void		init_parser(t_parser *parser);
@@ -100,3 +95,10 @@ int			parse_textures(t_parser *parser, char *trim);
 //utils.c
 char		*skip_whitespaces(char *line);
 int			is_it_whitespace(t_parser *parser);
+
+// render
+int	render_frame(t_parser *pars, t_data *data, t_img *img);
+void put_pixel(t_data *data, int x, int y, unsigned int color);
+int	start_window(t_data *data);
+
+#endif

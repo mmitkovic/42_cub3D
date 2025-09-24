@@ -8,8 +8,10 @@ SRCS	= src/main.c \
 			src/core/utils.c \
 			src/parsing/parse_header.c \
 			src/parsing/parse_file.c \
+			src/render/draw.c \
 			get_next_line/get_next_line.c \
-			get_next_line/get_next_line_utils.c
+			get_next_line/get_next_line_utils.c \
+			
 
 OBJSDIR	= obj
 OBJS	= $(SRCS:%.c=$(OBJSDIR)/%.o)
