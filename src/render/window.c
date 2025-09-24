@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:10:46 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/24 09:56:18 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:11:59 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,20 +27,23 @@ static int	handle_close_win(int keysym, t_data *data)
 
 static int	handle_keyrelease(int keysym, void *data)
 {
+	(void)data;
     printf("Keyrelease: %d\n", keysym);
     return (0);
 }
 
 static int handle_keypress(int keysym, t_data *data)
 {
+	(void)data;
 	printf("Keypress: %d\n", keysym);
 	return (0);
 }
 
-static int handle_no_event(void *data)
-{
-	return (0);
-}
+// static int handle_no_event(void *data)
+// {
+// 	(void)data;
+// 	return (0);
+// }
 
 int	start_window(t_data *data)
 {
@@ -56,7 +59,7 @@ int	start_window(t_data *data)
 	data->img.mlx_img = mlx_new_image(data->mlx_ptr, WIN_W, WIN_H);
 	if (!data->img.mlx_img)
 	{
-		clean_exit(&data);
+		clean_exit(data);
 		return (0);
 	}
 	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,

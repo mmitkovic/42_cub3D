@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:17:49 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/23 15:27:13 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:29:24 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,21 +24,21 @@ void put_pixel(t_data *data, int x, int y, unsigned int color)
 	*(unsigned int *)pixel = color;
 }
 
-static void	bckgrd_pix_put(t_data *data, int y, int color)
-{
-	unsigned int	*row;
-	int				x;
+// static void	bckgrd_pix_put(t_data *data, int y, int color)
+// {
+// 	unsigned int	*row;
+// 	int				x;
 
-	row = (unsigned int *)(data->img.addr + y * data->img.line_len);
-	x = 0;
-	while (x < WIN_W)
-	{
-		row[x] = color;
-		x++;
-	}
-}
+// 	row = (unsigned int *)(data->img.addr + y * data->img.line_len);
+// 	x = 0;
+// 	while (x < WIN_W)
+// 	{
+// 		row[x] = color;
+// 		x++;
+// 	}
+// }
 
-int	render_frame(t_parser *pars, t_data *data, t_img *img)
+int	render_frame(t_parser *pars, t_data *data)
 {
 	int	y;
 	int	color;
@@ -49,11 +49,12 @@ int	render_frame(t_parser *pars, t_data *data, t_img *img)
 	while (y < WIN_H)
 	{
 		if (y < WIN_H / 2)
-			color = 0xFFFFFF; // Add color from struct
+			color = pars->ceiling;
 		else
-			color = 0x000000; // Add color from struct
-		bckgrd_pix_put(data, y, color);
+			color = pars->floor;
+		//bckgrd_pix_put(data, y, color);
 		y++;
 	}
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
+	return (0);
 }

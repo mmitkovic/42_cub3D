@@ -11,7 +11,9 @@ SRCS	= src/main.c \
 			src/render/draw.c \
 			src/parsing/parser_help.c \
 			get_next_line/get_next_line.c \
-			get_next_line/get_next_line_utils.c 
+			get_next_line/get_next_line_utils.c \
+			src/render/window.c \
+			src/core/cleanup.c
 
 OBJSDIR	= obj
 OBJS	= $(SRCS:%.c=$(OBJSDIR)/%.o)

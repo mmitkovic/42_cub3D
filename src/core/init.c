@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/24 13:34:26 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:31:27 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,27 @@ int read_map(t_parser *parser, int fd)
 	return (0);
 }
 
+void init_img(t_img *img)
+{
+	img->mlx_img = NULL;
+	img->addr = NULL;
+	img->bpp = 0;
+	img->line_len = 0;
+	img->endian = -1;
+	img->w = 0;
+	img->h = 0;
+}
+
+void init_data(t_data *data)
+{
+	// t_img img;
+	
+	// img = malloc(sizeof(t_img));
+	data->mlx_ptr = NULL;
+	data->win_ptr = NULL;
+	//data->textures
+}
+
 void init_parser(t_parser *parser)
 {
 	parser->n_path = NULL;
@@ -27,7 +48,12 @@ void init_parser(t_parser *parser)
 	parser->e_path = NULL;
 	parser->floor = 0;
 	parser->ceiling = 0;
-	parser->map = NULL;
+	//parser->map = NULL;
 }
-
+void init(t_parser *parser, t_data *data)
+{
+	init_parser(parser);
+	init_data(data);
+	//init_img(img);
+}
 // init ctx, load cfg, window, images

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/24 14:12:35 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/24 15:30:41 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@
 # define MASK_KEYPRESS (1L << 0)
 # define MASK_KEYRELEASE (1L >> 1)
 
-typedef struct s_vector
-{
-	int	x;
-	int y;
-} t_vector; // the position of the player is always vector
+// typedef struct s_vector
+// {
+// 	int	x;
+// 	int y;
+// } t_vector; // the position of the player is always vector
 
 typedef struct s_parser
 {
@@ -54,16 +54,16 @@ typedef struct s_parser
 	char	*e_path;
 	int		floor;
 	int		ceiling;
-	char	**map;
+	//char	**map;
 }			t_parser;
 
-typedef struct s_map
-{
-	int		player_x;
-	int		player_y;
+// typedef struct s_map
+// {
+// 	int		player_x;
+// 	int		player_y;
 	
-	/* map data */
-}			t_map;
+// 	/* map data */
+// }			t_map;
 
 typedef struct s_img
 {
@@ -75,16 +75,19 @@ typedef struct s_img
 	int		w;
 	int		h;
 }			t_img;
+
 typedef struct s_data
 {
 	void	*mlx_ptr;
 	void	*win_ptr;
 	t_img	img;
-	t_img	textures[4];
+	//t_img	textures[4];
 }			t_data;
 
 // init.c
+void		init(t_parser *parser, t_data *data); //t_img *img);
 void		init_parser(t_parser *parser);
+void		init_data(t_data *data);
 int			read_map(t_parser *parser, int fd);
 
 //parse_file.c
@@ -101,12 +104,16 @@ int			convert_to_int(t_parser *pars, char **array, char lett);
 //utils.c
 char		*skip_whitespaces(char *line);
 int			is_it_whitespace(t_parser *parser);
-
-// render
-int	render_frame(t_parser *pars, t_data *data, t_img *img);
-void put_pixel(t_data *data, int x, int y, unsigned int color);
-int	start_window(t_data *data);
 void 		free_split(char **array);
 void		free_parser(t_parser *parser);
+
+//render
+int			render_frame(t_parser *pars, t_data *data);
+void 		put_pixel(t_data *data, int x, int y, unsigned int color);
+int			start_window(t_data *data);
+
+
+//cleanup.c
+void		clean_exit(t_data *data);
 
 #endif
