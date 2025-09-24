@@ -6,9 +6,11 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/23 15:31:27 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/24 14:15:22 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+//little leaks in parsing.
 
 #include "../includes/cub3d.h"
 
@@ -33,12 +35,8 @@ int main(int ac, char **av)
 	if (fd < 0)
 		return (write(1, "Error: cannot open the file\n", 24), 1);
 	if (read_map(parser, fd))
-	{
-		close(fd);
-		//free parser
-		return (1);
-	}
-	// free parser and strings within parser.
+		return (free_parser(parser), close(fd), 1);
+	free_parser(parser);
 	close(fd);
 	return (0);
 }
