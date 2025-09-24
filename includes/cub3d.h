@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/23 11:36:43 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/24 13:34:11 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,17 @@ typedef struct s_vector
 	int y;
 } t_vector; // the position of the player is always vector
 
-
 typedef struct s_parser
 {
 	char	*n_path;
 	char	*s_path;
 	char	*w_path;
-	char	*e_path;	
+	char	*e_path;
+	int		floor;
+	int		ceiling;
+	char	**map;
 }			t_parser;
+
 typedef struct s_map
 {
 	int		player_x;
@@ -72,7 +75,6 @@ typedef struct s_img
 	int		w;
 	int		h;
 }			t_img;
-
 typedef struct s_data
 {
 	void	*mlx_ptr;
@@ -80,11 +82,6 @@ typedef struct s_data
 	t_img	img;
 	t_img	textures[4];
 }			t_data;
-
-
-
-
-#endif
 
 // init.c
 void		init_parser(t_parser *parser);
@@ -94,9 +91,17 @@ int			read_map(t_parser *parser, int fd);
 int 		check_ext(char *str);
 
 //parse_header.c
-int			check_textures(t_parser *parser, int fd);
+int			check_textures_color(t_parser *pars, int fd);
 int			parse_textures(t_parser *parser, char *trim);
+int			parse_colours(t_parser *pars, char *trim);
+
+//parse_helper.c
+int			convert_to_int(t_parser *pars, char **array, char lett);
 
 //utils.c
 char		*skip_whitespaces(char *line);
 int			is_it_whitespace(t_parser *parser);
+void 		free_split(char **array);
+void		free_parser(t_parser *parser);
+
+#endif
