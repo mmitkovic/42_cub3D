@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/24 15:30:10 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/24 17:44:08 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int main(int ac, char **av)
 	int			fd;
 	t_parser	*parser;
 	t_data		*data;
-	//t_img		*img;
 	
 	if (ac != 2)
 		printf("Wrong input!\n");
@@ -35,10 +34,8 @@ int main(int ac, char **av)
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return (free_parser(parser), 1);
-	// img = malloc(sizeof(t_img));
-	// if (!img)
-	// 	return (free_parser(parser), /*free_data(data),*/ 1);
-	init(parser, data/*, img*/);
+	init(parser, data);
+	data->parser = parser;
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
 		return (write(1, "Error: cannot open the file\n", 24), 1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:14:31 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/24 09:53:58 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/24 16:58:00 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ void	clean_exit(t_data *data)
 		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
 	}
+	//Here you would also free any texture paths, map arrays, etc
 	exit (0);
 }

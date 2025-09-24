@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/24 15:30:41 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/24 17:41:10 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,15 @@ typedef struct s_img
 
 typedef struct s_data
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img		img;
+	t_parser	*parser;
 	//t_img	textures[4];
 }			t_data;
 
 // init.c
-void		init(t_parser *parser, t_data *data); //t_img *img);
+void		init(t_parser *parser, t_data *data);
 void		init_parser(t_parser *parser);
 void		init_data(t_data *data);
 int			read_map(t_parser *parser, int fd);
@@ -108,7 +109,7 @@ void 		free_split(char **array);
 void		free_parser(t_parser *parser);
 
 //render
-int			render_frame(t_parser *pars, t_data *data);
+int			render_frame(void *parm);
 void 		put_pixel(t_data *data, int x, int y, unsigned int color);
 int			start_window(t_data *data);
 

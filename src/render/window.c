@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:10:46 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/24 15:11:59 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/24 17:00:23 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,18 @@ static int	handle_keyrelease(int keysym, void *data)
     return (0);
 }
 
-static int handle_keypress(int keysym, t_data *data)
+static int handle_keypress(int keycode, void *param)
 {
-	(void)data;
-	printf("Keypress: %d\n", keysym);
+	t_data	*data;
+
+	// The cast now works correctly because param IS a t_data*
+	data = (t_data *)param;
+
+	if (keycode == KEY_ESC)
+		clean_exit(data); // This will now work
+	// ...
 	return (0);
 }
-
-// static int handle_no_event(void *data)
-// {
-// 	(void)data;
-// 	return (0);
-// }
 
 int	start_window(t_data *data)
 {
@@ -53,6 +53,7 @@ int	start_window(t_data *data)
 	data->win_ptr = mlx_new_window(data->mlx_ptr, WIN_W, WIN_H, "Cub3D by H&M");
 	if (!data->win_ptr)
 	{
+		mlx_destroy_display(data->mlx_ptr);
 		free(data->mlx_ptr);
 		return (0);
 	}
@@ -64,10 +65,10 @@ int	start_window(t_data *data)
 	}
 	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
 		&data->img.line_len, &data->img.endian); // get image data address
-	mlx_loop_hook(data->mlx_ptr, render_frame, &data);
-	mlx_hook(data->win_ptr, EVT_KEYPRESS, MASK_KEYPRESS, &handle_keypress, &data);
-	mlx_hook(data->win_ptr, EVT_KEYRELEASE, MASK_KEYRELEASE, &handle_keyrelease, &data);
-	mlx_hook(data->win_ptr, EVT_DESTROY, 0, &handle_close_win, &data);
+	mlx_loop_hook(data->mlx_ptr, render_frame, data);
+	mlx_hook(data->win_ptr, EVT_KEYPRESS, MASK_KEYPRESS, &handle_keypress, data);
+	mlx_hook(data->win_ptr, EVT_KEYRELEASE, MASK_KEYRELEASE, &handle_keyrelease, data);
+	mlx_hook(data->win_ptr, EVT_DESTROY, 0, &handle_close_win, data);
 	mlx_loop(data->mlx_ptr);
 	return (1);
 }
