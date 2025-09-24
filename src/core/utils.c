@@ -6,11 +6,36 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 08:38:03 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/23 11:13:42 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/24 13:15:46 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void free_parser(t_parser *parser)
+{
+	if (parser->n_path)
+		free(parser->n_path);
+	if (parser->s_path)
+		free(parser->s_path);
+	if (parser->w_path)
+		free(parser->w_path);
+	if (parser->e_path)
+		free(parser->e_path);
+	free(parser);
+}
+void free_split(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
 
 int is_it_whitespace(t_parser *parser)
 {
