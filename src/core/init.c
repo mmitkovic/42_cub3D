@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/24 16:52:18 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/25 14:19:37 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int read_map(t_parser *parser, int fd)
+int	read_map(t_parser *parser, int fd)
 {
 	if (check_textures_color(parser, fd))
 		return (1);
 	return (0);
 }
 
-void init_img(t_img *img)
+void	init_img(t_img *img)
 {
 	img->mlx_img = NULL;
 	img->addr = NULL;
@@ -30,15 +30,15 @@ void init_img(t_img *img)
 	img->h = 0;
 }
 
-void init_data(t_data *data)
+void	init_data(t_data *data)
 {
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
 	init_img(&data->img);
-	//data->textures
+	// data->textures
 }
 
-void init_parser(t_parser *parser)
+void	init_parser(t_parser *parser)
 {
 	parser->n_path = NULL;
 	parser->s_path = NULL;
@@ -46,9 +46,9 @@ void init_parser(t_parser *parser)
 	parser->e_path = NULL;
 	parser->floor = 0;
 	parser->ceiling = 0;
-	//parser->map = NULL;
+	// parser->map = NULL;
 }
-void init(t_parser *parser, t_data *data)
+void	init(t_parser *parser, t_data *data)
 {
 	init_parser(parser);
 	init_data(data);

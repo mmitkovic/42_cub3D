@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:17:49 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/24 17:23:57 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/25 14:19:03 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,22 @@
 
 #include "../../includes/cub3d.h"
 
-void put_pixel(t_data *data, int x, int y, unsigned int color)
+void	put_pixel(t_data *data, int x, int y, unsigned int color)
 {
 	char	*pixel;
-	
+
 	if (x < 0 || x >= WIN_W || y < 0 || y >= WIN_H)
 		return ;
 	pixel = data->img.addr + (y * data->img.line_len + x * (data->img.bpp / 8));
 	*(unsigned int *)pixel = color;
 }
 
-
-int	render_frame(void *param)
+static void	draw_floor_ceiling(t_data *data)
 {
-	t_data *data;
-	int		y;
-	int		x;
-	int		color;
+	int	x;
+	int	y;
+	int	color;
 
-	data = (t_data *)param;
-	if (!data->mlx_ptr)
-		return (1);
 	y = 0;
 	while (y < WIN_H)
 	{
@@ -50,6 +45,19 @@ int	render_frame(void *param)
 		}
 		y++;
 	}
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0, 0);
+}
+
+int	render_frame(void *param)
+{
+	t_data	*data;
+
+	data = (t_data *)param;
+	if (!data->mlx_ptr)
+		return (1);
+	draw_floor_ceiling(data);
+	// TODO:
+	// Render map objects
+	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,
+		0);
 	return (0);
 }
