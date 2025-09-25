@@ -6,8 +6,12 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:20:51 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/16 13:21:02 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/25 14:26:39 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// key press/release, close
+#include "../../includes/cub3d.h"
+
+
+
+

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 08:38:03 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/24 17:42:22 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/25 11:15:21 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void free_parser(t_parser *parser)
+void	free_parser(t_parser *parser)
 {
 	if (parser->n_path)
 		free(parser->n_path);
@@ -24,7 +24,8 @@ void free_parser(t_parser *parser)
 		free(parser->e_path);
 	free(parser);
 }
-void free_split(char **array)
+
+void	free_split(char **array)
 {
 	int	i;
 
@@ -37,7 +38,7 @@ void free_split(char **array)
 	free(array);
 }
 
-int is_it_whitespace(t_parser *parser)
+int	is_it_whitespace(t_parser *parser)
 {
 	if (*(parser->n_path) == '\n' || *(parser->n_path) == ' '
 		|| *(parser->n_path) == '\0')
