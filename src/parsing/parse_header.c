@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_header.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:32:29 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/24 13:32:15 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/25 16:49:59 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,18 @@ int are_only_digits(char **array)
 	return (1);
 }
 
-void	trim_newline(char *str)
+char	*trim_newline(char *str)
 {
 	size_t	len;
 	size_t	i;
 
 	i = 1;
 	if (!str)
-		return;
+		return (NULL);
 	len = ft_strlen(str);
 	while (len > 0 && str[len - 1] == '\n')
 		str[len - i] = '\0';
+	return (str);
 }
 
 int parse_colours(t_parser *pars, char *trim)
@@ -106,22 +107,22 @@ int parse_textures(t_parser *pars, char *trim)
 {	
 	if (*trim == 'N')
 	{
-		if (!(pars->n_path = ft_strdup(skip_whitespaces(trim + 2))))
+		if (!(pars->n_path = trim_newline(ft_strdup(skip_whitespaces(trim + 2)))))
 			return (free_parser(pars), 1);
 	}
 	else if (*trim == 'S')
 	{
-		if (!(pars->s_path = ft_strdup(skip_whitespaces(trim + 2))))
+		if (!(pars->s_path = trim_newline(ft_strdup(skip_whitespaces(trim + 2)))))
 			return (free_parser(pars), 1);
 	}
 	else if (*trim == 'W')
 	{
-		if (!(pars->w_path = ft_strdup(skip_whitespaces(trim + 2))))
+		if (!(pars->w_path = trim_newline(ft_strdup(skip_whitespaces(trim + 2)))))
 			return (free_parser(pars), 1);
 	}
 	else if (*trim == 'E')
 	{
-		if (!(pars->e_path = ft_strdup(skip_whitespaces(trim + 2))))
+		if (!(pars->e_path = trim_newline(ft_strdup(skip_whitespaces(trim + 2)))))
 			return (free_parser(pars), 1);
 	}
 	return (0);

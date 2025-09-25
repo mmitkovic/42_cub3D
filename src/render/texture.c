@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:17:18 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/22 17:27:39 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:17:04 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,15 @@ int	load_texture(t_data *data, t_img *tex_img, char *path)
 			&tex_img->line_len, &tex_img->endian);
 	return (0);
 }
-int	load_textures()
+int	load_textures(t_data *data)
 {
-	// load texture at the [0]
-	// load texture at the [1]
-	// load texture at the [2]
-	// load texture at the [3]
+	if (load_texture(data, &data->texture[0], data->parser->n_path))
+		return (1);
+	if (load_texture(data, &data->texture[1], data->parser->s_path))
+		return (1);
+	if (load_texture(data, &data->texture[2], data->parser->w_path))
+		return (1);
+	if (load_texture(data, &data->texture[3], data->parser->e_path))
+		return (1);
+	return (0);
 }

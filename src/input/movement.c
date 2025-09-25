@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:21:20 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/25 14:37:23 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:29:10 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,3 +52,8 @@ int handle_keypress(int keycode, void *param)
 		printf("Keypress: %d\n", keycode);
 	return (0);
 }
+
+
+#include "../../includes/cub3d.h"
+
+

@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/25 14:30:55 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:29:32 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,19 @@ typedef struct s_data
 	void		*win_ptr;
 	t_img		img;
 	t_parser	*parser;
-	//t_img	textures[4];
+	t_img	texture[4];
 }			t_data;
 
+// src/input/hooks.c
+int handle_keypress(int keycode, void *param);
+int	handle_keyrelease(int keycode, void *param);
+int	handle_close_win(int keycode, t_data *data);
+int	handle_mouse_move(int x, int y, void *param);
+int handle_mouse_press(int keycode, int x, int y, void *param);
+
+// src/render/textures.c
+int	load_texture(t_data *data, t_img *tex_img, char *path);
+int	load_textures(t_data *data);
 // src/input/movement.c
 int handle_keypress(int keycode, void *param);
 int	handle_keyrelease(int keycode, void *param);
