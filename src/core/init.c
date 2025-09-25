@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/25 14:19:37 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/25 15:22:38 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	init_data(t_data *data)
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
 	init_img(&data->img);
-	// data->textures
 }
 
 void	init_parser(t_parser *parser)
