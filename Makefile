@@ -11,6 +11,7 @@ SRCS	= src/main.c \
 			src/parsing/parse_header.c \
 			src/parsing/parse_file.c \
 			src/render/draw.c \
+			src/render/texture.c \
 			src/parsing/parser_help.c \
 			get_next_line/get_next_line.c \
 			get_next_line/get_next_line_utils.c \

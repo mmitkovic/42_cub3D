@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:32:29 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/25 19:54:06 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/25 20:02:47 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int are_only_digits(char **array)
 	return (1);
 }
 
-char *trim_newline(char *str)
+char	*trim_newline(char *str)
 {
 	size_t	len;
 	size_t	i;
@@ -48,8 +48,8 @@ char *trim_newline(char *str)
 	if (!str)
 		return (NULL);
 	len = ft_strlen(str);
-	if (len > 0 && str[len - 1] == '\n')
-		str[len - 1] = '\0';
+	while (len > 0 && str[len - 1] == '\n')
+		str[len - i] = '\0';
 	return (str);
 }
 
@@ -114,21 +114,21 @@ int parse_textures(t_parser *pars, char *trim)
 	}
 	else if (*trim == 'S')
 	{
-		if (!(pars->s_path = trim_newline(ft_strdup(skip_whitespaces(trim + 2)))))
+		if (!(pars->s_path = ft_strdup(skip_whitespaces(trim + 2))))
 			return (free_parser(pars), 1);
 		else
 			pars->n_path = trim_newline(pars->s_path);
 	}
 	else if (*trim == 'W')
 	{
-		if (!(pars->w_path = trim_newline(ft_strdup(skip_whitespaces(trim + 2)))))
+		if (!(pars->w_path = ft_strdup(skip_whitespaces(trim + 2))))
 			return (free_parser(pars), 1);
 		else
 			pars->n_path = trim_newline(pars->w_path);
 	}
 	else if (*trim == 'E')
 	{
-		if (!(pars->e_path = trim_newline(ft_strdup(skip_whitespaces(trim + 2)))))
+		if (!(pars->e_path = ft_strdup(skip_whitespaces(trim + 2))))
 			return (free_parser(pars), 1);
 		else
 			pars->n_path = trim_newline(pars->e_path);
