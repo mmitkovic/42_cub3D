@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 08:38:03 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/25 11:15:21 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/25 19:40:38 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	free_parser(t_parser *parser)
 {
+	if (!parser)
+		return ;
 	if (parser->n_path)
 		free(parser->n_path);
 	if (parser->s_path)

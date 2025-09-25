@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:21:20 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/25 14:37:23 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/25 14:57:28 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ int	handle_keyrelease(int keycode, void *param)
 {
 	t_data	*data;
 	
+	(void)keycode;
 	data = (t_data *)param;
-	
+	return (0);
 }
 
 int handle_keypress(int keycode, void *param)

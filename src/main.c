@@ -3,25 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/25 11:00:15 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/25 19:40:49 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // little leaks in parsing.
+// fix when textures get extra letter, for example NOs, SOg
 
 #include "../includes/cub3d.h"
 
 static int	malloc_structs(t_parser **parser, t_data **data)
 {
 	*parser = malloc(sizeof(t_parser));
-	if (!parser)
-		return (1);
+	if (!*parser)
+		return (free(parser), 1);
 	*data = malloc(sizeof(t_data));
 	if (!*data)
-		return (free_parser(*parser), 1);
+		return (free(parser), free(data), 1);
 	return (0);
 }
 
@@ -56,11 +57,12 @@ int	main(int ac, char **av)
 	data->parser = parser;
 	fd = open(av[1], O_RDONLY);
 	if (fd < 0)
-		return (write(1, "Error: cannot open the file\n", 24), 1);
+		return (write(1, "Error: cannot open the file\n", 24), free(parser), free(data), 1);
 	if (read_map(parser, fd))
-		return (free_parser(parser), close(fd), 1);
+		return (close(fd), 1);
 	start_window(data);
 	free_parser(parser);
+	free(data);
 	close(fd);
 	return (0);
 }

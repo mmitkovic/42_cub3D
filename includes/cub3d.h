@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/25 14:30:55 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/25 16:46:40 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ int	handle_close_win(int keycode, t_data *data);
 void		init(t_parser *parser, t_data *data);
 void		init_parser(t_parser *parser);
 void		init_data(t_data *data);
+void		init_img(t_img *img);
 int			read_map(t_parser *parser, int fd);
 
 //parse_file.c
@@ -104,6 +105,7 @@ int 		check_ext(char *str);
 int			check_textures_color(t_parser *pars, int fd);
 int			parse_textures(t_parser *parser, char *trim);
 int			parse_colours(t_parser *pars, char *trim);
+char		*trim_newline(char *str);
 
 //parse_helper.c
 int			convert_to_int(t_parser *pars, char **array, char lett);
