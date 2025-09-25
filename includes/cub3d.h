@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/25 17:20:17 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:29:32 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,10 @@ int handle_mouse_press(int keycode, int x, int y, void *param);
 // src/render/textures.c
 int	load_texture(t_data *data, t_img *tex_img, char *path);
 int	load_textures(t_data *data);
+// src/input/movement.c
+int handle_keypress(int keycode, void *param);
+int	handle_keyrelease(int keycode, void *param);
+int	handle_close_win(int keycode, t_data *data);
 
 // init.c
 void		init(t_parser *parser, t_data *data);

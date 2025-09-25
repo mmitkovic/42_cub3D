@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:20:51 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/25 17:08:25 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/25 17:28:21 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,3 +72,6 @@ int handle_keypress(int keycode, void *param)
 		printf("Keypress: %d\n", keycode);
 	return (0);
 }
+
+
+
