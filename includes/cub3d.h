@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/26 09:39:19 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/26 11:11:53 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ int	load_texture(t_data *data, t_img *tex_img, char *path);
 int	load_textures(t_data *data);
 
 // src/input/movement.c
-
 
 // init.c
 void		init(t_parser *parser, t_data *data);
