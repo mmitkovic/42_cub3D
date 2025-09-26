@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/25 19:40:49 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/26 11:06:51 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static int	input_check(int ac, char **av)
 
 int	main(int ac, char **av)
 {
-	int			fd;
 	t_parser	*parser;
 	t_data		*data;
 
@@ -55,14 +54,14 @@ int	main(int ac, char **av)
 		return (1);
 	init(parser, data);
 	data->parser = parser;
-	fd = open(av[1], O_RDONLY);
-	if (fd < 0)
+	data->fd = open(av[1], O_RDONLY);
+	if (data->fd < 0)
 		return (write(1, "Error: cannot open the file\n", 24), free(parser), free(data), 1);
-	if (read_map(parser, fd))
-		return (close(fd), 1);
+	if (read_map(parser, data->fd))
+		return (close(data->fd), 1);
 	start_window(data);
 	free_parser(parser);
 	free(data);
-	close(fd);
+	close(data->fd);
 	return (0);
 }
