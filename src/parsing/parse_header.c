@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:32:29 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/26 11:22:08 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/26 12:43:11 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ int check_textures_color(t_parser *parser, int fd)
 		else if (!ft_strncmp(trim, "F", 1) || !ft_strncmp(trim, "C", 1))
 		{
 			if (parse_colours(parser, trim))
-				return (free(line), 1);
+				return (free(line),(drain_out_gnl(fd)), 1);
 			elements++;
 		}
 		free(line);
@@ -154,6 +154,7 @@ int check_textures_color(t_parser *parser, int fd)
 	if (line)
 	{
 		free(line);
+		printf("gnl\n");
 		drain_out_gnl(fd);
 	}
 	if (elements != 6 || is_it_whitespace(parser))

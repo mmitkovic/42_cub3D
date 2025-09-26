@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/26 11:06:51 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/26 12:26:51 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	main(int ac, char **av)
 	if (data->fd < 0)
 		return (write(1, "Error: cannot open the file\n", 24), free(parser), free(data), 1);
 	if (read_map(parser, data->fd))
-		return (close(data->fd), 1);
+		return (close(data->fd), free(data), 1);
 	start_window(data);
 	free_parser(parser);
 	free(data);
