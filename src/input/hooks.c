@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:20:51 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/25 17:28:21 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/26 09:26:14 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int	handle_close_win(int keycode, t_data *data)
 	clean_exit(data);
 	return (0);
 }
+
 int	handle_keyrelease(int keycode, void *param)
 {
 	t_data	*data;
@@ -48,7 +49,6 @@ int	handle_keyrelease(int keycode, void *param)
 	// }
 	printf("Keypress: %d\n", keycode);
 	return (0);
-	
 }
 
 int handle_keypress(int keycode, void *param)

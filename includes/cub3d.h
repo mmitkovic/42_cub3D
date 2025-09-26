@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/26 10:08:31 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/26 11:11:53 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,10 @@ typedef struct s_data
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
+	int			fd;
 	t_img		img;
 	t_parser	*parser;
-	t_img	texture[4];
+	t_img		texture[4];
 }			t_data;
 
 // src/input/hooks.c
@@ -113,7 +114,6 @@ int 		check_ext(char *str);
 int			check_textures_color(t_parser *pars, int fd);
 int			parse_textures(t_parser *parser, char *trim);
 int			parse_colours(t_parser *pars, char *trim);
-char		*trim_newline(char *str);
 
 //parse_helper.c
 int			convert_to_int(t_parser *pars, char **array, char lett);
@@ -123,6 +123,7 @@ char		*skip_whitespaces(char *line);
 int			is_it_whitespace(t_parser *parser);
 void 		free_split(char **array);
 void		free_parser(t_parser *parser);
+char		*trim_newline(char *str);
 
 //render
 int			render_frame(void *parm);
