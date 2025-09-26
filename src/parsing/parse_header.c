@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:32:29 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/25 20:02:47 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/26 09:32:22 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int are_only_digits(char **array)
 	while (array[i])
 		i++;
 	if (i != 3)
-		return (printf("Wrong color format"), 1);
+		return (printf("Wrong color format"), 0);
 	i = 0;
 	while (i < 3)
 	{
@@ -37,20 +37,6 @@ int are_only_digits(char **array)
 		i++;
 	}
 	return (1);
-}
-
-char	*trim_newline(char *str)
-{
-	size_t	len;
-	size_t	i;
-
-	i = 1;
-	if (!str)
-		return (NULL);
-	len = ft_strlen(str);
-	while (len > 0 && str[len - 1] == '\n')
-		str[len - i] = '\0';
-	return (str);
 }
 
 int parse_colours(t_parser *pars, char *trim)
@@ -95,7 +81,7 @@ int parse_colours(t_parser *pars, char *trim)
 	else if (array_floor)
 	{
 		if (!are_only_digits(array_floor))
-			return (free_split(array_floor), free_parser(pars), printf("Wrong color format"), 1);
+			return (free_split(array_floor), free_parser(pars), printf("Wrong color formatttt"), 1);
 		if (convert_to_int(pars, array_floor, 'F'))
 			return (free_split(array_floor), free_parser(pars), 1);
 		free_split(array_floor);
@@ -107,35 +93,26 @@ int parse_textures(t_parser *pars, char *trim)
 {	
 	if (*trim == 'N')
 	{
-		if (!(pars->n_path = ft_strdup(skip_whitespaces(trim + 2))))
+		if (!(pars->n_path = trim_newline(ft_strdup(skip_whitespaces(trim + 2)))))
 			return (free_parser(pars), 1);
-		else
-			pars->n_path = trim_newline(pars->n_path);
 	}
 	else if (*trim == 'S')
 	{
-		if (!(pars->s_path = ft_strdup(skip_whitespaces(trim + 2))))
+		if (!(pars->s_path = trim_newline(ft_strdup(skip_whitespaces(trim + 2)))))
 			return (free_parser(pars), 1);
-		else
-			pars->n_path = trim_newline(pars->s_path);
 	}
 	else if (*trim == 'W')
 	{
-		if (!(pars->w_path = ft_strdup(skip_whitespaces(trim + 2))))
+		if (!(pars->w_path = trim_newline(ft_strdup(skip_whitespaces(trim + 2)))))
 			return (free_parser(pars), 1);
-		else
-			pars->n_path = trim_newline(pars->w_path);
 	}
 	else if (*trim == 'E')
 	{
-		if (!(pars->e_path = ft_strdup(skip_whitespaces(trim + 2))))
+		if (!(pars->e_path = trim_newline(ft_strdup(skip_whitespaces(trim + 2)))))
 			return (free_parser(pars), 1);
-		else
-			pars->n_path = trim_newline(pars->e_path);
 	}
 	return (0);
 }
-
 
 int check_textures_color(t_parser *parser, int fd)
 {
@@ -150,7 +127,7 @@ int check_textures_color(t_parser *parser, int fd)
 	line = get_next_line(fd);
 	while (elements < 6 && line != NULL)
 	{
-		if (line == NULL) // End of file or error
+		if (line == NULL)
 			break;
 		trim = skip_whitespaces(line);
 		if (*trim == '\0' || *trim == '\n')

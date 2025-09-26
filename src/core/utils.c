@@ -6,11 +6,25 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 08:38:03 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/25 19:40:38 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/26 09:16:38 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+char	*trim_newline(char *str)
+{
+	size_t	len;
+	size_t	i;
+
+	i = 1;
+	if (!str)
+		return (NULL);
+	len = ft_strlen(str);
+	while (len > 0 && str[len - 1] == '\n')
+		str[len - i] = '\0';
+	return (str);
+}
 
 void	free_parser(t_parser *parser)
 {
