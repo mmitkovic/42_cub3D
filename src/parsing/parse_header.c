@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_header.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:32:29 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/25 20:02:47 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/26 10:52:39 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,7 +175,10 @@ int check_textures_color(t_parser *parser, int fd)
 		line = get_next_line(fd);
 	}
 	if (line)
+	{
 		free(line);
+		drain_out_gnl(fd);
+	}
 	if (elements != 6 || is_it_whitespace(parser))
 			return (printf("Missing texture or typo"), free_parser(parser), 1);
 	return (0);
