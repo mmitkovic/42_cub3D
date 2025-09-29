@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:32:29 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/26 15:37:45 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/29 17:41:26 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,50 +41,29 @@ int are_only_digits(char **array)
 
 int parse_colours(t_parser *pars, char *trim)
 {
-	char	*floor;
-	char	*ceiling;
 	char	**array_floor;
 	char	**array_ceiling;
+	char	**array;
 	
 	array_floor = NULL;
 	array_ceiling = NULL;
-	floor = NULL;
-	ceiling = NULL;
 	if (*trim == 'F')
 	{
-		if (!(floor = trim_newline(ft_strdup(skip_whitespaces(trim + 1)))))
-			return (free_parser(pars), free(ceiling), 1);
-		trim_newline(floor);
-		array_floor = ft_split(floor, ',');
-		if (!array_floor)
-			return (free_parser(pars), free(ceiling), free(floor), 1);
-		free(floor);
+		array = split_by_colour(pars, trim, 'F');
+		if (!are_only_digits(array))
+			return (free_split(array), free_parser(pars), printf("Wrong color formatttt"), 1);
+		if (convert_to_int(pars, array, 'F'))
+			return (free_split(array), free_parser(pars), 1);
+		free_split(array);
 	}
 	else if (*trim == 'C')
 	{
-		if (!(ceiling = trim_newline(ft_strdup(skip_whitespaces(trim + 1)))))
-			return (free_parser(pars), free(floor), 1);
-		trim_newline(ceiling);
-		array_ceiling = ft_split(ceiling, ',');
-		if (!array_ceiling)
-			return (free_parser(pars), free(ceiling), free(floor), 1);
-		free(ceiling);
-	}
-	if (array_ceiling)
-	{
-		if (!are_only_digits(array_ceiling))
-			return (free_split(array_ceiling), free_parser(pars), printf("Wrong color format"), 1);
-		if (convert_to_int(pars, array_ceiling, 'C'))
-			return (free_split(array_ceiling), free_parser(pars), 1);
-		free_split(array_ceiling);
-	}
-	else if (array_floor)
-	{
-		if (!are_only_digits(array_floor))
-			return (free_split(array_floor), free_parser(pars), printf("Wrong color formatttt"), 1);
-		if (convert_to_int(pars, array_floor, 'F'))
-			return (free_split(array_floor), free_parser(pars), 1);
-		free_split(array_floor);
+		array = split_by_colour(pars, trim, 'C');
+		if (!are_only_digits(array))
+			return (free_split(array), free_parser(pars), printf("Wrong color format"), 1);
+		if (convert_to_int(pars, array, 'C'))
+			return (free_split(array), free_parser(pars), 1);
+		free_split(array);
 	}
 	return (0);
 }
