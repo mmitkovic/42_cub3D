@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/29 17:27:35 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/29 18:22:53 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,9 @@ int				handle_keyrelease(int keycode, void *param);
 int				handle_close_win(int keycode, t_data *data);
 int				handle_mouse_move(int x, int y, void *param);
 int				handle_mouse_press(int keycode, int x, int y, void *param);
+
+// src/parsing/validate.c
+int	map_check(t_data *data, char **map);
 
 // src/render/textures.c
 int				load_texture(t_data *data, t_img *tex_img, char *path);
