@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 08:38:03 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/26 09:16:38 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/29 13:32:40 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	free_parser(t_parser *parser)
 		free(parser->w_path);
 	if (parser->e_path)
 		free(parser->e_path);
+	if (parser->map)
+		free_split(parser->map);
 	free(parser);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/26 11:21:18 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/29 15:30:03 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_parser
 	char		*e_path;
 	int			floor;
 	int			ceiling;
-	// char	**map;
+	char		**map;
 }				t_parser;
 
 // typedef struct s_map
@@ -71,7 +71,7 @@ typedef struct s_img
 	void		*mlx_img;
 	char		*addr;
 	int			bpp;
-	int line_len; // length of a line in bytes
+	int 		line_len; // length of a line in bytes
 	int			endian;
 	int			w;
 	int			h;
@@ -109,19 +109,24 @@ void			init(t_parser *parser, t_data *data);
 void			init_parser(t_parser *parser);
 void			init_data(t_data *data);
 void			init_img(t_img *img);
-int				read_map(t_parser *parser, int fd);
+int				read_map(t_parser *parser, t_data *data);
 
 // parse_file.c
 int				check_ext(char *str);
 
 // parse_header.c
-int				check_textures_color(t_parser *pars, int fd);
+int				check_textures_color(t_parser *pars, t_data *data);
 int				parse_textures(t_parser *parser, char *trim);
 int				parse_colours(t_parser *pars, char *trim);
 char			*trim_newline(char *str);
 
 // parse_helper.c
 int				convert_to_int(t_parser *pars, char **array, char lett);
+
+//parse_map.c
+char			**extend_the_map(char **old_map, char *line);
+int				add_another_line(t_parser *parser, char *line);
+int				parse_map(t_parser *parser, t_data *data);
 
 // utils.c
 char			*skip_whitespaces(char *line);

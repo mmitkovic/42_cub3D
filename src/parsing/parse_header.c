@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_header.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:32:29 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/26 12:43:11 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/26 15:37:45 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int parse_colours(t_parser *pars, char *trim)
 	ceiling = NULL;
 	if (*trim == 'F')
 	{
-		if ((floor = ft_strdup(skip_whitespaces(trim + 1))) == NULL)
+		if (!(floor = trim_newline(ft_strdup(skip_whitespaces(trim + 1)))))
 			return (free_parser(pars), free(ceiling), 1);
 		trim_newline(floor);
 		array_floor = ft_split(floor, ',');
@@ -62,7 +62,7 @@ int parse_colours(t_parser *pars, char *trim)
 	}
 	else if (*trim == 'C')
 	{
-		if ((ceiling = ft_strdup(skip_whitespaces(trim + 1))) == NULL)
+		if (!(ceiling = trim_newline(ft_strdup(skip_whitespaces(trim + 1)))))
 			return (free_parser(pars), free(floor), 1);
 		trim_newline(ceiling);
 		array_ceiling = ft_split(ceiling, ',');
@@ -114,7 +114,7 @@ int parse_textures(t_parser *pars, char *trim)
 	return (0);
 }
 
-int check_textures_color(t_parser *parser, int fd)
+int check_textures_color(t_parser *parser, t_data *data)
 {
 	char	*line;
 	char	*trim;
@@ -124,8 +124,8 @@ int check_textures_color(t_parser *parser, int fd)
 	elements = 0;
 	i = 0;
 	line = NULL;
-	line = get_next_line(fd);
-	while (elements < 6 && line != NULL)
+	line = get_next_line(data->fd);
+	while (elements < 6) //|| line != NULL)
 	{
 		if (line == NULL)
 			break;
@@ -145,18 +145,14 @@ int check_textures_color(t_parser *parser, int fd)
 		else if (!ft_strncmp(trim, "F", 1) || !ft_strncmp(trim, "C", 1))
 		{
 			if (parse_colours(parser, trim))
-				return (free(line),(drain_out_gnl(fd)), 1);
+				return (free(line), drain_out_gnl(data->fd), 1);
 			elements++;
 		}
 		free(line);
-		line = get_next_line(fd);
+		line = get_next_line(data->fd);
 	}
 	if (line)
-	{
 		free(line);
-		printf("gnl\n");
-		drain_out_gnl(fd);
-	}
 	if (elements != 6 || is_it_whitespace(parser))
 			return (printf("Missing texture or typo"), free_parser(parser), 1);
 	return (0);

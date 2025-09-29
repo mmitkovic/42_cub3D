@@ -6,18 +6,24 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/26 10:54:54 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/29 15:26:00 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	read_map(t_parser *parser, int fd)
+int	read_map(t_parser *parser, t_data *data)
 {
-	if (check_textures_color(parser, fd))
+	if (check_textures_color(parser, data))
 		return (1);
-	// if (!parse_map(parser, fd))
-	// 	return (1);
+	if (parse_map(parser, data))
+		return (1);
+	// int i = 0;       //------------------ to print and test 2d map
+	// while (parser->map[i])
+	// {
+	// 	printf("%s", parser->map[i]);
+	// 	i++;
+	// }
 	return (0);
 }
 
@@ -48,7 +54,7 @@ void	init_parser(t_parser *parser)
 	parser->e_path = NULL;
 	parser->floor = 0;
 	parser->ceiling = 0;
-	// parser->map = NULL;
+	parser->map = NULL;
 }
 void	init(t_parser *parser, t_data *data)
 {
