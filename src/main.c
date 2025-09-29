@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/29 15:43:03 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/29 17:07:36 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,13 @@ int	main(int ac, char **av)
 	data->parser = parser;
 	data->fd = open(av[1], O_RDONLY);
 	if (data->fd < 0)
-		return (write(1, "Error: cannot open the file\n", 24), free(parser), free(data), 1);
+		return (write(1, "Error: cannot open the file\n", 24), free(parser),
+			free(data), 1);
 	if (read_map(parser, data))
 		return (close(data->fd), free(data), 1);
+	// check if map is valid before window starts running
+	if (map_check(data, parser->map))
+		return (printf("Error\nMap is not valid!\n"), 1);
 	start_window(data);
 	free_parser(parser);
 	free(data);
