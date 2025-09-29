@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/29 16:17:55 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/29 18:22:53 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,7 @@ int				parse_colours(t_parser *pars, char *trim);
 char			*trim_newline(char *str);
 
 // parse_helper.c
+char			**split_by_colour(t_parser *parser, char *trim, char letter);
 int				convert_to_int(t_parser *pars, char **array, char lett);
 
 //parse_map.c
