@@ -6,11 +6,43 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:33:06 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/24 13:04:00 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/29 17:31:24 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+char **split_by_colour(t_parser *parser, char *trim, char letter)
+{
+	char **array;
+	char *floor;
+	char *ceiling;
+
+	array = NULL;
+	floor = NULL;
+	ceiling = NULL;
+	if (letter == 'F')
+	{
+		if (!(floor = trim_newline(ft_strdup(skip_whitespaces(trim + 1)))))
+			return (free_parser(parser), free(ceiling), NULL);
+		trim_newline(floor);
+		array = ft_split(floor, ',');
+		if (!array)
+			return (free_parser(parser), free(ceiling), free(floor), NULL);
+		free(floor);
+	}
+	else if (letter == 'C')
+	{
+		if (!(ceiling = trim_newline(ft_strdup(skip_whitespaces(trim + 1)))))
+			return (free_parser(parser), free(floor), NULL);
+		trim_newline(ceiling);
+		array = ft_split(ceiling, ',');
+		if (!array)
+			return (free_parser(parser), free(ceiling), free(floor), NULL);
+		free(ceiling);
+	}
+	return (array);
+}
 
 int convert_to_int(t_parser *pars, char **array, char lett)
 {
