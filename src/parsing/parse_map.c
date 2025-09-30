@@ -6,11 +6,26 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 09:36:47 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/29 15:33:27 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/30 16:18:46 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+int parse_w_e(t_parser *parser, char *trim)
+{
+	if (*trim == 'W')
+	{
+		if (!(parser->w_path = trim_newline(ft_strdup(skip_white(trim + 2)))))
+			return (free_parser(parser), printf("Missing texture or color\n"), 1);
+	}
+	else if (*trim == 'E')
+	{
+		if (!(parser->e_path = trim_newline(ft_strdup(skip_white(trim + 2)))))
+			return (free_parser(parser), printf("Missing texture or color\n"), 1);
+	}
+	return (0);
+}
 
 char **extend_the_map(char **old_map, char *line)
 {

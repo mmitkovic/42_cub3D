@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/29 18:25:56 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/30 12:30:30 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	main(int ac, char **av)
 		return (write(1, "Error: cannot open the file\n", 24), free(parser),
 			free(data), 1);
 	if (read_map(parser, data))
-		return (close(data->fd), free(data), 1);
+		return (close(data->fd), free_parser(parser), free(data), 1);
 	// check if map is valid before window starts running
 	if (map_check(data, parser->map))
 		return (printf("Error\nMap is not valid!\n"), 1);
