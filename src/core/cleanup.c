@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:14:31 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/26 11:20:28 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/30 14:37:58 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,7 @@ void	clean_exit(t_data *data)
 		free(data->mlx_ptr);
 	}
 	if (data->parser)
-	{
 		free_parser(data->parser);
-		//free(data->parser);
-	}
 	free(data);
 	exit (0);
 }

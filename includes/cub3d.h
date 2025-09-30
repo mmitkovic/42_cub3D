@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/29 18:22:53 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/09/30 16:19:25 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int				handle_mouse_move(int x, int y, void *param);
 int				handle_mouse_press(int keycode, int x, int y, void *param);
 
 // src/parsing/validate.c
-int	map_check(t_data *data, char **map);
+int				map_check(t_data *data, char **map);
 
 // src/render/textures.c
 int				load_texture(t_data *data, t_img *tex_img, char *path);
@@ -118,22 +118,29 @@ int				read_map(t_parser *parser, t_data *data);
 int				check_ext(char *str);
 
 // parse_header.c
+int				dispatch_colour_parser(t_data *data, char *trim);
 int				check_textures_color(t_parser *pars, t_data *data);
+void			init_for_parse(int *elements, int *i, char **line);
 int				parse_textures(t_parser *parser, char *trim);
 int				parse_colours(t_parser *pars, char *trim);
-char			*trim_newline(char *str);
 
-// parse_helper.c
+// parser_help.c
+int				are_only_digits(char **array);
 char			**split_by_colour(t_parser *parser, char *trim, char letter);
 int				convert_to_int(t_parser *pars, char **array, char lett);
+int				is_line_nul(char *trim, char **line, t_data *data);
+char 			**split_c(char *ceil, char *trim, t_parser *pars, char **array);
 
 //parse_map.c
 char			**extend_the_map(char **old_map, char *line);
 int				add_another_line(t_parser *parser, char *line);
 int				parse_map(t_parser *parser, t_data *data);
+int				parse_w_e(t_parser *parser, char *trim);
+
 
 // utils.c
-char			*skip_whitespaces(char *line);
+char			*trim_newline(char *str);
+char			*skip_white(char *line);
 int				is_it_whitespace(t_parser *parser);
 void			free_split(char **array);
 void			free_parser(t_parser *parser);

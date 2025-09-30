@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 08:38:03 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/29 13:32:40 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/09/30 14:35:21 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	is_it_whitespace(t_parser *parser)
 	return (0);
 }
 
-char	*skip_whitespaces(char *line)
+char	*skip_white(char *line)
 {
 	while (*line == ' ' || *line == '\t')
 		line++;
