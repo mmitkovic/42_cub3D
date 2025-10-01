@@ -100,6 +100,9 @@ int				handle_close_win(int keycode, t_data *data);
 int				handle_mouse_move(int x, int y, void *param);
 int				handle_mouse_press(int keycode, int x, int y, void *param);
 
+// src/parsing/validate_walls.c
+int	check_walls(char **map);
+
 // src/parsing/validate.c
 int				map_check(t_data *data, char **map);
 

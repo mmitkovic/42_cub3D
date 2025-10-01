@@ -10,6 +10,7 @@ SRCS	= src/main.c \
 			src/input/movement.c \
 			src/parsing/parse_header.c \
 			src/parsing/parse_file.c \
+			src/parsing/validate_walls.c \
 			src/parsing/validate.c \
 			src/render/draw.c \
 			src/render/texture.c \
