@@ -6,12 +6,16 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/30 12:30:30 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/01 15:06:49 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// little leaks in parsing.
-// fix when textures get extra letter, for example NOs, SOg
+//TO_DO
+//		check for duplicates!!!!
+
+//		map validation
+//		norminette 
+//		conditional jump in clean_exit when the texture is bad !!
 
 #include "../includes/cub3d.h"
 

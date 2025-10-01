@@ -6,12 +6,9 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:32:29 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/30 16:18:31 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/01 15:09:40 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//LEAKS WHEN THE COLOUR IS MOVED UNDER THE MAP - to add free when elements
-// is not 6 or one of it its nor colour
 
 #include "../../includes/cub3d.h"
 
@@ -46,15 +43,13 @@ int parse_colours(t_parser *pars, char *trim)
 
 int parse_textures(t_parser *pars, char *trim)
 {	
-	if (*trim == 'N')
+	char *skipped;
+
+	skipped = NULL;
+	if (*trim == 'N' || *trim == 'S')
 	{
-		if (!(pars->n_path = trim_newline(ft_strdup(skip_white(trim + 2)))))
-			return (free_parser(pars), printf("Missing texture or color\n"), 1);
-	}
-	else if (*trim == 'S')
-	{
-		if (!(pars->s_path = trim_newline(ft_strdup(skip_white(trim + 2)))))
-			return (free_parser(pars), printf("Missing texture or color\n"), 1);
+		if (parse_n_s(pars, trim))
+			return (1);
 	}
 	else if (*trim == 'W' || *trim == 'E')
 	{
@@ -66,13 +61,16 @@ int parse_textures(t_parser *pars, char *trim)
 
 int dispatch_colour_parser(t_data *data, char *trim)
 {
-	if (!ft_strncmp(trim, "NO", 2) || !ft_strncmp(trim, "SO", 2) 
-				|| !ft_strncmp(trim, "WE", 2) || !ft_strncmp(trim, "EA", 2))
+	if ((!ft_strncmp(trim, "NO", 2) && trim[2] == ' ') 
+		|| (!ft_strncmp(trim, "SO", 2) && trim[2] == ' ') 
+		|| (!ft_strncmp(trim, "WE", 2) && trim[2] == ' ')
+		|| (!ft_strncmp(trim, "EA", 2) && trim[2] == ' '))
 		{
 			if (parse_textures(data->parser, trim))
 				return (drain_out_gnl(data->fd), 1);
 		}
-	else if (!ft_strncmp(trim, "F", 1) || !ft_strncmp(trim, "C", 1))
+	else if ((!ft_strncmp(trim, "F", 1) && trim[1] == ' ')
+			|| (!ft_strncmp(trim, "C", 1) && trim[1] == ' '))
 		{
 			if (parse_colours(data->parser, trim))
 				return (drain_out_gnl(data->fd), 1);
@@ -100,14 +98,14 @@ int check_textures_color(t_parser *parser, t_data *data)
 	line = get_next_line(data->fd);
 	while (elements < 6 && line != NULL)
 	{
-		if (line == NULL)
-			break;
 		trim = skip_white(line);
 		if (is_line_nul(trim, &line, data))
 			continue ;
 		else if (!dispatch_colour_parser(data, trim))
 			elements++;
 		free(line);
+		if (elements == 6)
+			return (0);
 		line = get_next_line(data->fd);
 	}
 	if (line)

@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/30 11:28:44 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/01 14:37:34 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ int	read_map(t_parser *parser, t_data *data)
 		return (1);
 	if (parse_map(parser, data))
 		return (1);
-	// int i = 0;       //------------------ to print and test 2d map
-	// while (parser->map[i])
-	// {
-	// 	printf("%s", parser->map[i]);
-	// 	i++;
-	// }
+	int i = 0;       //------------------ to print and test 2d map
+	while (parser->map[i])
+	{
+		printf("%s", parser->map[i]);
+		i++;
+	}
 	return (0);
 }
 

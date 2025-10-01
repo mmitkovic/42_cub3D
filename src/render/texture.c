@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:17:18 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/26 10:22:08 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/01 14:15:17 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,14 @@ int	load_textures(t_data *data)
 		load_texture(data, &data->texture[i++], data->parser->w_path) ||
 		load_texture(data, &data->texture[i], data->parser->e_path))
 	{
-		// Cleanup already loaded textures
-		while (--i >= 0)
-			mlx_destroy_image(data->mlx_ptr, data->texture[i].mlx_img);
-		return (1);
+		printf("Texture loading failure");
+		clean_exit(data);
 	}
+	// {
+	// 	// Cleanup already loaded textures
+	// 	while (--i >= 0)
+	// 		mlx_destroy_image(data->mlx_ptr, data->texture[i].mlx_img);
+	// 	return (1);
+	// }
 	return (0);
 }
