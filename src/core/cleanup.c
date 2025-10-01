@@ -3,14 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:14:31 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/26 11:20:28 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/01 13:43:47 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	free_parser(t_parser *parser)
+{
+	if (!parser)
+		return ;
+	if (parser->n_path)
+		free(parser->n_path);
+	if (parser->s_path)
+		free(parser->s_path);
+	if (parser->w_path)
+		free(parser->w_path);
+	if (parser->e_path)
+		free(parser->e_path);
+	if (parser->map)
+		free_split(parser->map);
+	free(parser);
+}
+
+void	free_split(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
 
 void	drain_out_gnl(int fd)
 {
@@ -49,10 +79,7 @@ void	clean_exit(t_data *data)
 		free(data->mlx_ptr);
 	}
 	if (data->parser)
-	{
 		free_parser(data->parser);
-		//free(data->parser);
-	}
 	free(data);
 	exit (0);
 }

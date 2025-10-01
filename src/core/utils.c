@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 08:38:03 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/29 13:32:40 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/01 14:30:26 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,6 @@ char	*trim_newline(char *str)
 	return (str);
 }
 
-void	free_parser(t_parser *parser)
-{
-	if (!parser)
-		return ;
-	if (parser->n_path)
-		free(parser->n_path);
-	if (parser->s_path)
-		free(parser->s_path);
-	if (parser->w_path)
-		free(parser->w_path);
-	if (parser->e_path)
-		free(parser->e_path);
-	if (parser->map)
-		free_split(parser->map);
-	free(parser);
-}
-
-void	free_split(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-	{
-		free(array[i]);
-		i++;
-	}
-	free(array);
-}
-
 int	is_it_whitespace(t_parser *parser)
 {
 	if (*(parser->n_path) == '\n' || *(parser->n_path) == ' '
@@ -73,7 +43,16 @@ int	is_it_whitespace(t_parser *parser)
 	return (0);
 }
 
-char	*skip_whitespaces(char *line)
+char	*skip_white_after(char *line)
+{
+	while (*line == ' ' || *line == '\t')
+		line++;
+	if (*line != '.' && *line != ' ')
+		return (NULL);
+	return (line);
+}
+
+char	*skip_white(char *line)
 {
 	while (*line == ' ' || *line == '\t')
 		line++;
