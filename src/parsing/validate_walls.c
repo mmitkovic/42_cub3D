@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 11:07:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/01 15:28:25 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/01 17:30:00 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,11 @@ static int check_hole_ver(char **map, int i, int j)
 			|| (map[i][j] == ' ' && map[i + 1][j] == '0')
 			|| (map[i][j] == '0' && map[i + 1][j] == '\n')
 			|| (map[i][j] == '0' && !map[i + 1][j]))
+		{
+			printf("Break at ver: %s at %d x %d\n", map[i], i+1, j+1);
+			printf("Break at ver: %c\n", map[i][j]);
 			return (1);
+		}
 		j++;
 	}
 	return (0);
@@ -40,13 +44,16 @@ static int check_hole_hor(char *line)
 		if ((line[i] == '0' && line[i + 1] == ' ')
 			|| (line[i] == ' ' && line[i + 1] == '0')
 			|| (line[i] == '0' && line[i + 1] == '\n'))
+		{
+			printf("Break at hor: %c\n", line[i]);
 			return (1);
+		}
 		i++;
 	}
 	return (0);
 }
 
-static int	validate_row(char **map)
+static int	validate_hor(char **map)
 {
 	int	i;
 	int	j;
@@ -58,6 +65,8 @@ static int	validate_row(char **map)
 		j = 0;
 		while (map[i][j] == ' ' || map[i][j] == '\t')
 			j++;
+		if (map[i][j] != '1' && map[i][j] != '\n')
+			return (1);
 		if (map[i][j] == '\n')
 		{
 			i++;
@@ -73,7 +82,7 @@ static int	validate_row(char **map)
 	return (0);
 }
 
-static int validate_column(char **map)
+static int validate_ver(char **map)
 {
 	int i;
 	int j;
@@ -85,6 +94,7 @@ static int validate_column(char **map)
 		j = 0;
 		while (map[i][j] == ' ' || map[i][j] == '\t')
 			j++;
+		printf("Exit at: %d ", j);
 		if (map[i][j] == '\n')
 		{
 			i++;
@@ -92,6 +102,7 @@ static int validate_column(char **map)
 		}
 		else
 		{
+			printf("Check hole ver at: %d ", j);
 			if (check_hole_ver(map, i, j))
 				return (1);
 		}
@@ -102,9 +113,9 @@ static int validate_column(char **map)
 
 int	check_walls(char **map)
 {
-	if (validate_row(map))
+	if (validate_hor(map))
 		return (1);
-	if (validate_column(map))
+	if (validate_ver(map))
 		return (1);
 	return (0);
 }
