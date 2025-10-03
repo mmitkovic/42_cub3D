@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:11:02 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/30 11:18:52 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/03 10:47:30 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	map_check(t_data *data, char **map)
 
 	(void)data;
 	i = 0;
-	// int j = 0;
 	if (check_num_player(map))
 		return (1);
 	if (check_walls(map))
