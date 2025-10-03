@@ -6,11 +6,24 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:33:06 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/09/30 14:49:32 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/03 16:02:00 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+// char	*skip_white_for_colours(char *line)
+// {
+// 	while (*line && (*line == ' ' || *line == '\t'))
+// 		line++;
+// 	if (*line != '\0' && *line != ' ')
+// 	{
+// 		printf("Wjebal sie jakis znak po spacjach");
+// 		return (NULL);
+// 	}
+// 	printf("Nie bylo zadnego innego znaku po spacjach");
+// 	return (line);
+// }
 
 int are_only_digits(char **array)
 {
@@ -18,17 +31,21 @@ int are_only_digits(char **array)
 	size_t		j;
 
 	i = 0;
-	while (array[i])
+	while (array[i] != NULL)
 		i++;
 	if (i != 3)
-		return (printf("Wrong color format"), 0);
+		return (0);
 	i = 0;
 	while (i < 3)
 	{
+		printf("%s", array[i]);
 		j = 0;
-		while (j < ft_strlen(array[i]))
+		printf("%zu", ft_strlen(array[i]));
+
+		while (array[i][j])
 		{
-			if ((array[i][j] < '0' || array[i][j] > '9'))
+			if (((array[i][j] < '0' || array[i][j] > '9')
+					&& array[i][j] != ' '))
 				return (0);
 			j++;
 		}
@@ -53,11 +70,11 @@ char **split_c(char *ceil, char *trim, t_parser *pars, char **array)
 {
 	ceil = trim_newline(ft_strdup(skip_white(trim + 1)));
 	if (!ceil)
-			return (free_parser(pars), free(floor), NULL);
+			return (free_parser(pars), NULL);
 	trim_newline(ceil);
 	array = ft_split(ceil, ',');
 	if (!array)
-		return (free_parser(pars), free(ceil), free(floor), NULL);
+		return (free_parser(pars), NULL);
 	free(ceil);
 	return (array);
 }
@@ -83,7 +100,11 @@ char **split_by_colour(t_parser *parser, char *trim, char letter)
 		free(floor);
 	}
 	else if (letter == 'C')
+	{
 		array = split_c(ceiling, trim, parser, array);
+		if (!array)
+			return (free_parser(parser), free(ceiling), free(floor), NULL);
+	}
 	return (array);
 }
 
@@ -107,7 +128,7 @@ int convert_to_int(t_parser *pars, char **array, char lett)
 	if ((t1 < 0 || t1 > 255)
 		|| (t2 < 0 || t2 > 255)
 		|| (t3 < 0 || t3 > 255))
-		return (printf("Color value out of range"), 1);
+		return (printf("Error\nColor value out of range\n"), 1);
 	if (lett == 'F')
 		pars->floor = (t1 * 256 * 256) + (t2 * 256) + t3;
 	if (lett == 'C')

@@ -6,16 +6,22 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/01 15:06:49 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/03 15:14:05 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 //TO_DO
+//PARSEING
 //		check for duplicates!!!!
-
-//		map validation
-//		norminette 
 //		conditional jump in clean_exit when the texture is bad !!
+//		leaks when map is not valid - thre is 0 in a frame!
+//		doubled error message from 2 paths. maybe to fix
+
+//VALIDATION
+//		map validation - 0 in the first and last row is causing either leaks or segfault
+//		conditional jump in clean_exit when the texture is bad !!
+
+//norminette
 
 #include "../includes/cub3d.h"
 
@@ -36,14 +42,14 @@ static int	input_check(int ac, char **av)
 
 	if (ac != 2)
 	{
-		printf("Wrong input!\n");
+		printf("Error\nWrong input!\n");
 		return (1);
 	}
 	if (av[1] == NULL)
 		return (1);
 	map_name = av[1];
 	if (check_ext(map_name))
-		return (printf("Wrong extension!\n"), 1);
+		return (printf("Error\nWrong extension!\n"), 1);
 	return (0);
 }
 
@@ -60,13 +66,12 @@ int	main(int ac, char **av)
 	data->parser = parser;
 	data->fd = open(av[1], O_RDONLY);
 	if (data->fd < 0)
-		return (write(1, "Error: cannot open the file\n", 24), free(parser),
+		return (printf("Error: cannot open the file\n"), free(parser),
 			free(data), 1);
 	if (read_map(parser, data))
 		return (close(data->fd), free_parser(parser), free(data), 1);
-	// check if map is valid before window starts running
 	if (map_check(data, parser->map))
-		return (printf("Error\nMap is not valid!\n"), 1);
+		return (printf("Error\nMap is not valid!\n"), free_parser(parser), free(data), 1);
 	start_window(data);
 	free_parser(parser);
 	free(data);

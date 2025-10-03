@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/23 08:38:03 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/01 14:30:26 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/03 15:04:26 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,4 @@ char	*skip_white(char *line)
 		line++;
 	return (line);
 }
+
