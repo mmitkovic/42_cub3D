@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:33:06 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/03 16:02:00 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/03 16:12:16 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,7 @@ int are_only_digits(char **array)
 	i = 0;
 	while (i < 3)
 	{
-		printf("%s", array[i]);
 		j = 0;
-		printf("%zu", ft_strlen(array[i]));
-
 		while (array[i][j])
 		{
 			if (((array[i][j] < '0' || array[i][j] > '9')
