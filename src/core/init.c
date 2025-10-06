@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/03 14:52:55 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/06 08:36:47 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ void	init_data(t_data *data)
 	data->mlx_ptr = NULL;
 	data->win_ptr = NULL;
 	data->fd = -1;
+	data->elem_no = 0;
+	data->elem_so = 0;
+	data->elem_we = 0;
+	data->elem_ea = 0;
+	data->elem_f = 0;
+	data->elem_c = 0;
 	init_img(&data->img);
 }
 

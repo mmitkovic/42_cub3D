@@ -6,19 +6,20 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 09:36:47 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/01 14:46:29 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/06 08:33:17 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int parse_n_s(t_parser *pars, char *trim)
+int parse_n_s(t_data *data, t_parser *pars, char *trim)
 {
 	char *skipped;
 
 	skipped = NULL;
 	if (*trim == 'N')
 	{
+		data->elem_no = 1;
 		skipped = skip_white_after((trim + 2));
 		if (!skipped)
 			return (1);
@@ -28,6 +29,7 @@ int parse_n_s(t_parser *pars, char *trim)
 	}
 	else if (*trim == 'S')
 	{
+		data->elem_so = 1;
 		skipped = skip_white_after((trim + 2));
 		if (!skipped)
 			return (1);
@@ -38,13 +40,14 @@ int parse_n_s(t_parser *pars, char *trim)
 	return (0);
 }
 
-int parse_w_e(t_parser *parser, char *trim)
+int parse_w_e(t_data *data, t_parser *parser, char *trim)
 {
 	char *skipped;
 
 	skipped = NULL;
 	if (*trim == 'W')
 	{
+		data->elem_we = 1;
 		skipped = skip_white_after((trim + 2));
 		if (!skipped)
 			return (1);
@@ -54,6 +57,7 @@ int parse_w_e(t_parser *parser, char *trim)
 	}
 	else if (*trim == 'E')
 	{
+		data->elem_ea = 1;
 		skipped = skip_white_after((trim + 2));
 		if (!skipped)
 			return (1);

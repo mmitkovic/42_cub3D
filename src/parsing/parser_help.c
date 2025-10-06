@@ -6,24 +6,11 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:33:06 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/03 16:12:16 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/03 17:16:18 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-// char	*skip_white_for_colours(char *line)
-// {
-// 	while (*line && (*line == ' ' || *line == '\t'))
-// 		line++;
-// 	if (*line != '\0' && *line != ' ')
-// 	{
-// 		printf("Wjebal sie jakis znak po spacjach");
-// 		return (NULL);
-// 	}
-// 	printf("Nie bylo zadnego innego znaku po spacjach");
-// 	return (line);
-// }
 
 int are_only_digits(char **array)
 {
@@ -41,8 +28,8 @@ int are_only_digits(char **array)
 		j = 0;
 		while (array[i][j])
 		{
-			if (((array[i][j] < '0' || array[i][j] > '9')
-					&& array[i][j] != ' '))
+			if ((array[i][j] < '0' || array[i][j] > '9')
+					&& array[i][j] != ' ')
 				return (0);
 			j++;
 		}

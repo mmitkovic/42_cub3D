@@ -6,22 +6,20 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/03 15:14:05 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/06 08:42:13 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//TO_DO
 //PARSEING
-//		check for duplicates!!!!
 //		conditional jump in clean_exit when the texture is bad !!
-//		leaks when map is not valid - thre is 0 in a frame!
-//		doubled error message from 2 paths. maybe to fix
 
 //VALIDATION
-//		map validation - 0 in the first and last row is causing either leaks or segfault
 //		conditional jump in clean_exit when the texture is bad !!
 
-//norminette
+//MLX
+//		fix exit-button-click and clean_memory alongside
+
+//!!! NORMINETTE !!!
 
 #include "../includes/cub3d.h"
 
