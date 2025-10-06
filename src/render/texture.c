@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:17:18 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/01 14:15:17 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/06 09:17:02 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	load_textures(t_data *data)
 	if (load_texture(data, &data->texture[i++], data->parser->n_path) ||
 		load_texture(data, &data->texture[i++], data->parser->s_path) ||
 		load_texture(data, &data->texture[i++], data->parser->w_path) ||
-		load_texture(data, &data->texture[i], data->parser->e_path))
+		load_texture(data, &data->texture[i++], data->parser->e_path))
 	{
-		printf("Texture loading failure");
+		printf("Error\nTexture loading failure");
 		clean_exit(data);
 	}
 	// {

@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/01 14:36:04 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/06 08:29:10 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_img
 	int 		line_len; // length of a line in bytes
 	int			endian;
 	int			w;
-	int			h;
+	int			h;    				//maybe the texture array should go here as a NEXT pointer (linked list)?
 }				t_img;
 
 typedef struct s_data
@@ -82,9 +82,15 @@ typedef struct s_data
 	void		*mlx_ptr;
 	void		*win_ptr;
 	int			fd;
+	int			elem_no;
+	int			elem_so;
+	int			elem_we;
+	int			elem_ea;
+	int			elem_f;
+	int			elem_c;
 	t_img		img;
 	t_parser	*parser;
-	t_img		texture[4];
+	t_img		texture[4];  		//<-- doesnt it have to be initialised?
 }				t_data;
 
 // src/core/cleanup.c
@@ -123,11 +129,11 @@ int				read_map(t_parser *parser, t_data *data);
 int				check_ext(char *str);
 
 // parse_header.c
-int				dispatch_colour_parser(t_data *data, char *trim);
+int				dispatch_colour_parser(t_data *data, char *trim, int *elements);
 int				check_textures_color(t_parser *pars, t_data *data);
 void			init_for_parse(int *elements, int *i, char **line);
-int				parse_textures(t_parser *parser, char *trim);
-int				parse_colours(t_parser *pars, char *trim);
+int				parse_textures(t_data *data, t_parser *parser, char *trim);
+int				parse_colours(t_data *data, t_parser *pars, char *trim);
 
 // parser_help.c
 int				are_only_digits(char **array);
@@ -140,8 +146,8 @@ char 			**split_c(char *ceil, char *trim, t_parser *pars, char **array);
 char			**extend_the_map(char **old_map, char *line);
 int				add_another_line(t_parser *parser, char *line);
 int				parse_map(t_parser *parser, t_data *data);
-int				parse_n_s(t_parser *pars, char *trim);
-int				parse_w_e(t_parser *parser, char *trim);
+int				parse_n_s(t_data *data, t_parser *pars, char *trim);
+int				parse_w_e(t_data *data, t_parser *parser, char *trim);
 
 
 // utils.c
