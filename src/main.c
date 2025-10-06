@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/06 08:42:13 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/06 16:46:21 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	main(int ac, char **av)
 	if (map_check(data, parser->map))
 		return (printf("Error\nMap is not valid!\n"), free_parser(parser), free(data), 1);
 	start_window(data);
+	//place to call raycast
 	free_parser(parser);
 	free(data);
 	close(data->fd);

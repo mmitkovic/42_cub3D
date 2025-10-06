@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/06 10:13:38 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/06 16:41:20 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,9 @@ typedef struct s_data
 	int			elem_c;
 	int			pos_x;
 	int			pos_y;
+	int			plane_x;
+	int			plane_y;
+	char		player_letter;
 	t_img		img;
 	t_parser	*parser;
 	t_img		texture[4];  		//<-- doesnt it have to be initialised?

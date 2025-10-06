@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:11:02 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/06 10:12:06 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/06 16:43:35 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,11 @@ static int	check_num_player(t_data *data, char **map)
 		{
 			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
 				|| map[i][j] == 'W')
+			{
+				data->player_letter = map[i][j];
 				assign_positions(data, i, j, &player);
 			j++;
+			}
 		}
 		i++;
 	}
