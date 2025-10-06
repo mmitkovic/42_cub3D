@@ -3,16 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:11:02 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/03 10:47:30 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/06 10:12:06 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static int	check_num_player(char **map)
+static void assign_positions(t_data *data, int i, int j, int *player)
+{
+	data->pos_x = j;
+	data->pos_y = i;
+	(*player)++;
+}
+
+static int	check_num_player(t_data *data, char **map)
 {
 	int	i;
 	int	j;
@@ -28,16 +35,13 @@ static int	check_num_player(char **map)
 		{
 			if (map[i][j] == 'N' || map[i][j] == 'S' || map[i][j] == 'E'
 				|| map[i][j] == 'W')
-				player++;
+				assign_positions(data, i, j, &player);
 			j++;
 		}
 		i++;
 	}
 	if (player < 1 || player > 1)
-	{
-		printf("Num of players: %d\n", player);
-		return (1);
-	}
+		return (printf("Num of players: %d\n", player), 1);
 	return (0);
 }
 
@@ -63,7 +67,7 @@ int	map_check(t_data *data, char **map)
 
 	(void)data;
 	i = 0;
-	if (check_num_player(map))
+	if (check_num_player(data, map))
 		return (1);
 	if (check_walls(map))
 		return (1);
