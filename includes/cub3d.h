@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/06 16:41:20 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/07 17:16:14 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,11 +71,19 @@ typedef struct s_img
 	void		*mlx_img;
 	char		*addr;
 	int			bpp;
-	int 		line_len; // length of a line in bytes
+	int 		line_len; 			//length of a line in bytes
 	int			endian;
 	int			w;
 	int			h;    				//maybe the texture array should go here as a NEXT pointer (linked list)?
 }				t_img;
+
+typedef struct s_ray
+{
+	double		raydir_x;
+	double		raydir_y;
+	double		angle;
+	double		camera_x;
+}				t_ray;
 
 typedef struct s_data
 {
@@ -88,11 +96,14 @@ typedef struct s_data
 	int			elem_ea;
 	int			elem_f;
 	int			elem_c;
-	int			pos_x;
-	int			pos_y;
-	int			plane_x;
-	int			plane_y;
+	int			pos_x;				//i think that will have to be casted to double
+	int			pos_y;				//i think that will have to be casted to double
+	double		plane_x;
+	double		plane_y;
+	double		dir_x;
+	double		dir_y;
 	char		player_letter;
+	t_ray		*raycast;
 	t_img		img;
 	t_parser	*parser;
 	t_img		texture[4];  		//<-- doesnt it have to be initialised?
@@ -112,9 +123,12 @@ int				handle_mouse_move(int x, int y, void *param);
 int				handle_mouse_press(int keycode, int x, int y, void *param);
 
 // src/parsing/validate_walls.c
-int	check_walls(char **map);
+int				check_walls(char **map);
 
 // src/parsing/validate.c
+static void 	assign_position(t_data *data, int i, int j, int *player);
+static int		check_num_player(t_data *data, char **map);
+static int		check_valid_character(char *line);
 int				map_check(t_data *data, char **map);
 
 // src/render/textures.c
@@ -166,4 +180,9 @@ int				render_frame(void *parm);
 void			put_pixel(t_data *data, int x, int y, unsigned int color);
 int				start_window(t_data *data);
 
+// raycast.c
+void			init_direction_vector(t_data *data);
+void			find_ray_position(t_data *data);
+void 			distribute_raycast(t_data *data);
+void			init_raycast(t_ray *raycast);
 #endif
