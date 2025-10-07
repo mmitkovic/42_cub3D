@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/06 16:44:16 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/07 16:35:53 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,13 @@ void	init_data(t_data *data)
 	data->elem_c = 0;
 	data->pos_x = 0;
 	data->pos_y = 0;
-	data->plane_x = 0;
-	data->plane_y = 0,66;
+	data->plane_x = 0,01;
+	data->plane_y = 0,01;
 	data->player_letter = 'x';
+	data->dir_x = 0,01;
+	data->dir_y = 0,01;
 	init_img(&data->img);
+	init_raycast(&data->raycast);
 }
 
 void	init_parser(t_parser *parser)

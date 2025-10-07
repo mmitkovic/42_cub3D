@@ -6,20 +6,17 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/06 16:46:21 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/07 11:13:57 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//PARSEING
-//		conditional jump in clean_exit when the texture is bad !!
+//TO_DO
 
-//VALIDATION
-//		conditional jump in clean_exit when the texture is bad !!
+// Conditional jump in clean_exit when the texture is bad !!
+//	!!! NORMINETTE !!!
+//MLX ----fix exit-button-click and clean_memory alongside
 
-//MLX
-//		fix exit-button-click and clean_memory alongside
-
-//!!! NORMINETTE !!!
+//RAYCAST ---- create separate structure for all data?
 
 #include "../includes/cub3d.h"
 
@@ -71,7 +68,7 @@ int	main(int ac, char **av)
 	if (map_check(data, parser->map))
 		return (printf("Error\nMap is not valid!\n"), free_parser(parser), free(data), 1);
 	start_window(data);
-	//place to call raycast
+	//distribute_raycast(data);
 	free_parser(parser);
 	free(data);
 	close(data->fd);
