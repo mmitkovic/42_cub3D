@@ -5,101 +5,70 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/16 13:16:32 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/07 17:21:05 by hgatarek         ###   ########.fr       */
+/*   Created: 2025/10/08 10:38:10 by hgatarek          #+#    #+#             */
+/*   Updated: 2025/10/08 15:51:00 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-//Should send for example 60 rays in my FOV, and each ray should have its own raycast sruct
-//to hold the information
-//Should update each time in the loop the player position (play vector)
-
-
-//1) Find the direction vector --- OK
-//2) Find the ray position --- OK
-//3) Find the delsta dist --- IN PROGRESS
-
-void find_ray_position(t_data *data, int *x, double *camera_x)
+void apply_dda(t_data *data)
 {
-	*camera_x = 2 * *x / (double)(WIN_W) - 1;  		//do I have to save it to the structure?
-	data->raycast->raydir_x = data->dir_x + data->plane_x * *camera_x;
-	data->raycast->raydir_y = data->dir_y + data->plane_y * *camera_x;
-}
+	int		hit;
+	t_ray	*ray;
 
-void init_camera_plane(t_data *data)
-{
-	if (data->player_letter == 'N')
+	ray = data->raycast;
+	hit = data->raycast->hit;
+	while (hit == 0)
 	{
-		data->plane_x = 0,66;
-		data->plane_y = 0;
-	}
-	else if (data->player_letter == 'S')
-	{
-		data->plane_x = -0,66;
-		data->plane_y = 0;
-	}
-	else if (data->player_letter == 'W')
-	{
-		data->plane_x = 0;
-		data->plane_y = -0,66;
-	}
-	else if (data->player_letter == 'E')
-	{
-		data->plane_x = 0;
-		data->plane_y = 0,66;
+		if (ray->side_distx < ray->side_disty)
+		{
+			ray->side_distx = ray->side_distx + ray->delta_distx;
+			ray->map_x = ray->map_x + ray->step_x;
+			ray->side = 0; //add side to structure
+		}
+		//the same for "else" and y.
 	}
 }
 
-void init_direction_vector(t_data *data)   			//how it gets updates when it already started?
+void set_side_dist(t_data *data)
 {
-	if (data->player_letter == 'N')
-	{
-		data->dir_x = 0;
-		data->dir_y = -1;
-	}
-	else if (data->player_letter == 'S')
-	{
-		data->dir_x = 0;
-		data->dir_y = 1;
-	}
-	else if (data->player_letter == 'W')
-	{
-		data->dir_x = -1;
-		data->dir_y = 0;
-	}
-	else if (data->player_letter == 'E')
-	{
-		data->dir_x = 1;
-		data->dir_y = 0;
-	}
-}
-
-void distribute_raycast(t_data *data)
-{
-	int		x;
+	t_ray *ray;
 	
-	x = 0;
-	//player starting position is pos_x, pos_y in data.
-	init_direction_vector(data);   //i think i dont need to & it?
-	init_camera_plane(data);
-	while (x < WIN_W)
-	{
-		find_ray_position(data, &x, &data->raycast->camera_x);
-		x++;
-	}
-	//delta dist
+	ray = data->raycast;
+	if (ray->step_x < 0)
+		ray->side_distx = (data->pos_x - ray->map_x) * ray->delta_distx; //looking to the left, pos (x,x) its always less than map_x (a whole number) so we can substract and not get negative value.
+	else
+		ray->side_distx = (ray->map_x + 1 - data->pos_x) * ray->delta_distx; //map_x is an integer (whole value), we look for the next the to the right. so we add 1 and substract acutal 0,x position. (with a decimal point) so we get positive value
+	if (ray->step_y < 0)
+		ray->side_disty = (data->pos_y - ray->map_y) * ray->delta_disty; //same
+	else
+		ray->side_disty = (ray->map_y + 1 - data->pos_y) * ray->delta_disty; //same
+	return ;
 }
 
-void init_raycast(t_ray *raycast)
+void set_step(t_data *data)
 {
-	raycast->raydir_x = 0,01;
-	raycast->raydir_y = 0,01;
-	raycast->angle = 0,01;
-	raycast->camera_x = 0,01
+	if (data->raycast->raydir_x < 0)
+		data->raycast->step_x = -1;
+	else
+		data->raycast->step_x = 1;
+	if (data->raycast->raydir_y < 0)
+		data->raycast->step_y = -1;
+	else
+		data->raycast->step_y = 1;
+	return ;
 }
 
-
-
-// DDA, wall hit
+void set_delta_dist(t_data *data)
+{
+	if (data->raycast->raydir_x == 0)
+		data->raycast->delta_distx = INFINITY;
+	else
+		data->raycast->delta_distx = fabs(1 / data->raycast->raydir_x);
+	if (data->raycast->raydir_y == 0)
+		data->raycast->delta_disty = INFINITY;
+	else
+		data->raycast->delta_disty = fabs(1 / data->raycast->raydir_y);
+	return ;
+}
