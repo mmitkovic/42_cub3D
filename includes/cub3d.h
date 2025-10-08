@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/07 17:16:14 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/08 15:31:33 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,19 @@ typedef struct s_img
 
 typedef struct s_ray
 {
-	double		raydir_x;
+	double		raydir_x;   //players viewing direction
 	double		raydir_y;
 	double		angle;
 	double		camera_x;
+	double		delta_distx;
+	double		delta_disty;
+	int			map_x;
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	double		side_disty;
+	double		side_distx;
+	int			hit;
 }				t_ray;
 
 typedef struct s_data
@@ -180,9 +189,16 @@ int				render_frame(void *parm);
 void			put_pixel(t_data *data, int x, int y, unsigned int color);
 int				start_window(t_data *data);
 
-// raycast.c
+// raycast_setup.c
+void			find_ray_position(t_data *data, int *x, double *camera_x);
+void			init_camera_plane(t_data *data);
 void			init_direction_vector(t_data *data);
-void			find_ray_position(t_data *data);
 void 			distribute_raycast(t_data *data);
 void			init_raycast(t_ray *raycast);
+
+// raycast
+void			set_delta_dist(t_data *data);
+void			set_step(t_data *data);
+void			set_side_dist(t_data *data);
+void			apply_dda(t_data *data);
 #endif
