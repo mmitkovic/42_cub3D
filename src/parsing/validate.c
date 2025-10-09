@@ -14,14 +14,14 @@
 
 #include "../../includes/cub3d.h"
 
-static void assign_position(t_data *data, int i, int j, int *player)
+void assign_position(t_data *data, int i, int j, int *player)
 {
 	data->pos_x = j;
 	data->pos_y = i;
 	(*player)++;
 }
 
-static int	check_num_player(t_data *data, char **map)
+int	check_num_player(t_data *data, char **map)
 {
 	int	i;
 	int	j;
@@ -50,7 +50,7 @@ static int	check_num_player(t_data *data, char **map)
 	return (0);
 }
 
-static int	check_valid_character(char *line)
+int	check_valid_character(char *line)
 {
 	int	i;
 

@@ -38,6 +38,28 @@ void	init_img(t_img *img)
 	img->w = 0;
 	img->h = 0;
 }
+void	init_raycast(t_ray *raycast)
+{
+	if (!raycast)
+		return ;
+	raycast->raydir_x = 0.0;
+	raycast->raydir_y = 0.0;
+	raycast->angle = 0.0;
+	raycast->camera_x = 0.0;
+	raycast->delta_distx = 0.0;
+	raycast->delta_disty = 0.0;
+	raycast->map_x = 0;
+	raycast->map_y = 0;
+	raycast->step_x = 0;
+	raycast->step_y = 0;
+	raycast->side_distx = 0.0;
+	raycast->side_disty = 0.0;
+	raycast->hit = 0;
+	raycast->horizontal = 0;
+	raycast->vertical = 0;
+	raycast->perp_dist = 0.0;
+	raycast->line_height = 0.0;
+}
 
 void	init_data(t_data *data)
 {
@@ -52,13 +74,21 @@ void	init_data(t_data *data)
 	data->elem_c = 0;
 	data->pos_x = 0;
 	data->pos_y = 0;
-	data->plane_x = 0,01;
-	data->plane_y = 0,01;
+	data->plane_x = 0;
+	data->plane_y = 0;
 	data->player_letter = 'x';
-	data->dir_x = 0,01;
-	data->dir_y = 0,01;
+	data->dir_x = 0;
+	data->dir_y = 0;
 	init_img(&data->img);
-	init_raycast(&data->raycast);
+	data->parser = NULL;
+	/* allocate raycast struct so init_raycast can safely initialize it */
+	data->raycast = malloc(sizeof(*(data->raycast)));
+	if (!data->raycast)
+		return ;
+	init_raycast(data->raycast);
+	/* initialize textures placeholders */
+	// while (int i = 0; i < 4; ++i)
+	// 	init_img(&data->texture[i]);
 }
 
 void	init_parser(t_parser *parser)
@@ -73,7 +103,15 @@ void	init_parser(t_parser *parser)
 }
 void	init(t_parser *parser, t_data *data)
 {
+	int 	i;
+
+	i = 0;
 	init_parser(parser);
 	init_data(data);
+	while (i < 4)
+	{
+		init_img(&data->texture[i]);
+		i++;
+	}
+	//init_raycast(data->raycast);
 }
-// init ctx, load cfg, window, images

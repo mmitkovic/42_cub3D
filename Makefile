@@ -22,7 +22,8 @@ SRCS	= src/main.c \
 			src/core/cleanup.c \
 			src/parsing/parse_map.c \
 			src/render/raycast_setup.c \
-			src/render/raycast.c
+			src/render/raycast.c \
+			src/render/draw_wall.c 
 
 OBJSDIR	= obj
 OBJS	= $(SRCS:%.c=$(OBJSDIR)/%.o)
