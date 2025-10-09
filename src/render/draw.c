@@ -60,6 +60,8 @@ int	render_frame(void *param)
 	// TODO:
 	// Update player position, and rotation
 	// Render position (data->walk_speed = WALK_SPEED * data->delta_time;)
+	// Render map objects
+	// raycating(data); H
 	// Update player position, and rotation
 	// Render position (data->walk_speed = WALK_SPEED * data->delta_time;)
 	// Render map objects
