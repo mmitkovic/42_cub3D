@@ -6,13 +6,13 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:38:10 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/09 11:47:05 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/09 13:53:24 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void calulcate_perpdist(t_data *data)
+void calculate_perpdist(t_data *data)
 {
 	t_ray *ray;
 
@@ -29,7 +29,7 @@ void apply_dda(t_data *data)
 	t_ray	*ray;
 
 	ray = data->raycast;
-	hit = data->raycast->hit;
+	hit = 0;
 	while (hit == 0)
 	{
 		if (ray->side_distx < ray->side_disty)
@@ -45,7 +45,10 @@ void apply_dda(t_data *data)
 			ray->vertical = 1; //y-axis was hit first, i means that vertical wall was hit (direction W-E)
 		}
 		if (data->parser->map[ray->map_x][ray->map_y] == '1')
+		{
 			hit = 1;
+			data->raycast->hit = 1;
+		}
 	}
 }
 
@@ -54,7 +57,7 @@ void set_side_dist(t_data *data)
 	t_ray *ray;
 	
 	ray = data->raycast;
-	if (ray->step_x < 0)
+	if (ray->step_x < 0) 
 		ray->side_distx = (data->pos_x - ray->map_x) * ray->delta_distx; //looking to the left, pos (x,x) its always less than map_x (a whole number) so we can substract and not get negative value.
 	else
 		ray->side_distx = (ray->map_x + 1 - data->pos_x) * ray->delta_distx; //map_x is an integer (whole value), we look for the next the to the right. so we add 1 and substract acutal 0,x position. (with a decimal point) so we get positive value

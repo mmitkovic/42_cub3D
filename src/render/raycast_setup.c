@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:16:32 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/09 11:56:52 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/09 15:01:30 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,29 +99,34 @@ void distribute_raycast(t_data *data)
 		set_step(data);
 		set_side_dist(data);
 		apply_dda(data);
-		//calculate_perpdist(data);
-		//draw_wall(data);
+		calculate_perpdist(data);
+		draw_wall(data);
+		set_wall_pixel_x(data);
+		draw_textured_slice(data, &data->raycast, x);
 		x++;
 	}
 }
 
-// void init_raycast(t_ray *raycast)
-// {
-// 	raycast->raydir_x = 0.01;
-// 	raycast->raydir_y = 0.01;
-// 	raycast->angle = 0.01;
-// 	raycast->camera_x = 0.01;
-// 	raycast->delta_distx = 0.01;
-// 	raycast->delta_disty = 0.01;
-// 	raycast->map_x = 0;
-// 	raycast->map_x = 0;
-// 	raycast->step_x = 0;
-// 	raycast->step_y = 0;
-// 	raycast->side_distx = 0;
-// 	raycast->side_disty = 0;
-// 	raycast->hit = 0;
-// 	raycast->horizontal = 0;
-// 	raycast->vertical = 0;
-// 	raycast->perp_dist = 0;
-// 	raycast->line_height = 0;
-// }
+void init_raycast(t_ray *raycast)
+{
+	raycast->raydir_x = 0.01;
+	raycast->raydir_y = 0.01;
+	raycast->angle = 0.01;
+	raycast->camera_x = 0.01;
+	raycast->delta_distx = 0.01;
+	raycast->delta_disty = 0.01;
+	raycast->map_x = 0;
+	raycast->map_x = 0;
+	raycast->step_x = 0;
+	raycast->step_y = 0;
+	raycast->side_distx = 0;
+	raycast->side_disty = 0;
+	raycast->hit = 0;
+	raycast->horizontal = 0;
+	raycast->vertical = 0;
+	raycast->perp_dist = 0;
+	raycast->line_height = 0;
+	raycast->draw_start = 0;
+	raycast->draw_end = 0;
+	raycast->wall_x = 0;
+}
