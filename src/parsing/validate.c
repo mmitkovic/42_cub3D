@@ -6,13 +6,13 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:11:02 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/07 12:20:24 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/09 09:59:40 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static void assign_positions(t_data *data, int i, int j, int *player)
+static void assign_position(t_data *data, int i, int j, int *player)
 {
 	data->pos_x = j;
 	data->pos_y = i;
