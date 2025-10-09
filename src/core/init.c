@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/06 16:44:16 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/07 12:18:27 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	init_data(t_data *data)
 	data->pos_x = 0;
 	data->pos_y = 0;
 	data->plane_x = 0;
-	data->plane_y = 0,66;
+	//data->plane_y = 0,66;
 	data->player_letter = 'x';
 	init_img(&data->img);
 }

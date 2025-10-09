@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:11:02 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/06 16:43:35 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/07 12:20:24 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static int	check_num_player(t_data *data, char **map)
 			{
 				data->player_letter = map[i][j];
 				assign_positions(data, i, j, &player);
-			j++;
 			}
+			j++;
 		}
 		i++;
 	}
