@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/08 15:31:33 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/09 11:38:40 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,10 @@ typedef struct s_ray
 	double		side_disty;
 	double		side_distx;
 	int			hit;
+	int			horizontal;
+	int			vertical;
+	double		perp_dist;
+	double		line_height;
 }				t_ray;
 
 typedef struct s_data
@@ -135,9 +139,9 @@ int				handle_mouse_press(int keycode, int x, int y, void *param);
 int				check_walls(char **map);
 
 // src/parsing/validate.c
-static void 	assign_position(t_data *data, int i, int j, int *player);
-static int		check_num_player(t_data *data, char **map);
-static int		check_valid_character(char *line);
+void 			assign_position(t_data *data, int i, int j, int *player);
+int				check_num_player(t_data *data, char **map);
+int				check_valid_character(char *line);
 int				map_check(t_data *data, char **map);
 
 // src/render/textures.c
@@ -196,9 +200,13 @@ void			init_direction_vector(t_data *data);
 void 			distribute_raycast(t_data *data);
 void			init_raycast(t_ray *raycast);
 
-// raycast
+// raycast.c
 void			set_delta_dist(t_data *data);
 void			set_step(t_data *data);
 void			set_side_dist(t_data *data);
 void			apply_dda(t_data *data);
+
+//draw_wall.c
+//void			draw_wall(t_data *data);
+
 #endif

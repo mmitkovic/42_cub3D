@@ -6,11 +6,22 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:38:10 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/08 15:51:00 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/09 11:47:05 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void calulcate_perpdist(t_data *data)
+{
+	t_ray *ray;
+
+	ray = data->raycast;
+	if (ray->horizontal)
+		ray->perp_dist = ray->side_distx - ray->delta_distx;	
+	else if (ray->vertical)
+		ray->perp_dist = ray->side_disty - ray->delta_disty;
+}
 
 void apply_dda(t_data *data)
 {
@@ -25,9 +36,16 @@ void apply_dda(t_data *data)
 		{
 			ray->side_distx = ray->side_distx + ray->delta_distx;
 			ray->map_x = ray->map_x + ray->step_x;
-			ray->side = 0; //add side to structure
+			ray->horizontal = 1; //x-axis was hit first, means that horizontal wall was hit (direction N-S)
 		}
-		//the same for "else" and y.
+		else
+		{
+			ray->side_disty = ray->side_disty + ray->delta_disty;
+			ray->map_y = ray->side_disty + ray->delta_disty;
+			ray->vertical = 1; //y-axis was hit first, i means that vertical wall was hit (direction W-E)
+		}
+		if (data->parser->map[ray->map_x][ray->map_y] == '1')
+			hit = 1;
 	}
 }
 

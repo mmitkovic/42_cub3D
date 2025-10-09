@@ -6,20 +6,20 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:11:02 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/07 10:02:57 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/09 11:36:43 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static void assign_position(t_data *data, int i, int j, int *player)
+void assign_position(t_data *data, int i, int j, int *player)
 {
 	data->pos_x = j;
 	data->pos_y = i;
 	(*player)++;
 }
 
-static int	check_num_player(t_data *data, char **map)
+int	check_num_player(t_data *data, char **map)
 {
 	int	i;
 	int	j;
@@ -38,8 +38,8 @@ static int	check_num_player(t_data *data, char **map)
 			{
 				data->player_letter = map[i][j];
 				assign_position(data, i, j, &player);
-			j++;
 			}
+			j++;
 		}
 		i++;
 	}
@@ -48,7 +48,7 @@ static int	check_num_player(t_data *data, char **map)
 	return (0);
 }
 
-static int	check_valid_character(char *line)
+int	check_valid_character(char *line)
 {
 	int	i;
 
