@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:50:15 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/09 15:14:05 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/09 15:24:32 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	draw_textured_slice(t_data *data, t_ray **ray, int x)
 		if ((*ray)->vertical == 1)
 			color = (color >> 1) & 8355711; // A trick to divide RGB by 2
 
-		// 7. Put the pixel onto your main image buffer
+		// 7. Put the pixel onto your main image bufferc
 		put_pixel(data, x, y, color);
 		y++;
 	}
