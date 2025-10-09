@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 11:07:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/03 16:47:25 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/07 12:04:09 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,15 +25,7 @@ static int	check_hole_ver(char **map, int i, int j)
 		if ((map[i][j] == '0') && (map[i + 1][j] == ' ' || map[i + 1][j] == '\n'
 				|| !map[i + 1][j] || map[i - 1][j] == ' ' || map[i
 				- 1][j] == '\n' || !map[i - 1][j]))
-		{
-			printf("--%c\n", map[i][j]);
-			printf("--%c\n", map[i+1][j]);
-			printf("--%s", map[i]);
-			printf("--%s", map[i+1]);
-			printf("Invalid vertical hole at row %d, column %d\n", i + 1, j
-				+ 1);
-			return (1);
-		}
+				return (1);
 		j++;
 	}
 	return (0);
@@ -52,10 +44,7 @@ static int	check_hole_hor(char *line)
 			break ;
 		if ((line[i] == '0' && line[i + 1] == ' ') || (line[i] == ' ' && line[i
 				+ 1] == '0') || (line[i] == '0' && line[i + 1] == '\n'))
-		{
-			printf("Break at hor: %c\n", line[i]);
 			return (1);
-		}
 		i++;
 	}
 	return (0);
@@ -75,10 +64,7 @@ static int	validate_hor(char **map)
 		while (map[i][j] == ' ' || map[i][j] == '\t')
 			j++;
 		if (map[i][j] != '1' && map[i][j] != '\n')
-		{
-			printf("failing here --- %s\n", map[i]);
 			return (1);
-		}
 		if (check_hole_hor(map[i]))
 			return (1);
 		i++;

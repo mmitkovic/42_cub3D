@@ -6,14 +6,11 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:10:46 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/25 17:27:37 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/07 15:47:41 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-// Make clean_exit function that
-// destroys the window and cleans the memory properly
 
 int	start_window(t_data *data)
 {
@@ -31,10 +28,7 @@ int	start_window(t_data *data)
 	}
 	data->img.mlx_img = mlx_new_image(data->mlx_ptr, WIN_W, WIN_H);
 	if (!data->img.mlx_img)
-	{
-		clean_exit(data);
-		return (0);
-	}
+		return (clean_exit(data), 0);
 	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
 			&data->img.line_len, &data->img.endian); // get image data address
 	mlx_loop_hook(data->mlx_ptr, render_frame, data);
