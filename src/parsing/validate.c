@@ -12,7 +12,7 @@
 
 #include "../../includes/cub3d.h"
 
-static void assign_positions(t_data *data, int i, int j, int *player)
+static void assign_position(t_data *data, int i, int j, int *player)
 {
 	data->pos_x = j;
 	data->pos_y = i;
