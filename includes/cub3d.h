@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/09 10:12:10 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/09 15:38:37 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -27,6 +28,7 @@
 
 # define WIN_W 800
 # define WIN_H 600
+# define TEX_SIZE 128
 // keycodes
 # define KEY_ESC 65307
 # define KEY_W 119
@@ -100,6 +102,10 @@ typedef struct s_ray
 	int			vertical;
 	double		perp_dist;
 	double		line_height;
+	double		wall_x;
+	double		draw_start;
+	double		draw_end;
+	double		tex_x;
 }				t_ray;
 
 typedef struct s_data
@@ -197,7 +203,7 @@ int				is_it_whitespace(t_parser *parser);
 char			*skip_white_after(char *line);
 long			get_time(void);
 
-// render
+// src/render/draw.c
 int				render_frame(void *parm);
 void			put_pixel(t_data *data, int x, int y, unsigned int color);
 int				start_window(t_data *data);
@@ -210,12 +216,16 @@ void 			distribute_raycast(t_data *data);
 void			init_raycast(t_ray *raycast);
 
 // raycast.c
+void			calculate_perpdist(t_data *data);
 void			set_delta_dist(t_data *data);
 void			set_step(t_data *data);
 void			set_side_dist(t_data *data);
 void			apply_dda(t_data *data);
 
 //draw_wall.c
-//void			draw_wall(t_data *data);
+void			draw_textured_slice(t_data *data, t_ray **ray, int x);
+void			set_texture_x(t_data *data);
+void			set_wall_pixel_x(t_data *data);
+void			draw_wall(t_data *data);
 
 #endif
