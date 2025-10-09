@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:17:49 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/09 15:33:46 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/09 15:59:55 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ int	render_frame(void *param)
 	if (!data->mlx_ptr)
 		return (1);
 	draw_floor_ceiling(data);
-	move_player(data);
+	//move_player(data);
+	move_forward(data);
 	distribute_raycast(data); //everything starts here from raycast in a loop
 	// TODO:
 	// Update player position, and rotation

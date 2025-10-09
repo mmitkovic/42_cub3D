@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/09 15:38:37 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/09 18:49:10 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 
 # define WIN_W 800
 # define WIN_H 600
-# define TEX_SIZE 128
+# define TEX_SIZE 16
 // keycodes
 # define KEY_ESC 65307
 # define KEY_W 119
@@ -163,7 +163,10 @@ int				load_texture(t_data *data, t_img *tex_img, char *path);
 int				load_textures(t_data *data);
 
 // src/input/movement.c
-
+void			move_forward(t_data *data);
+void			move_back(t_data *data);
+void			move_right(t_data *data);
+void			move_left(t_data *data);
 // init.c
 void			init(t_parser *parser, t_data *data);
 void			init_parser(t_parser *parser);
@@ -223,7 +226,8 @@ void			set_side_dist(t_data *data);
 void			apply_dda(t_data *data);
 
 //draw_wall.c
-void			draw_textured_slice(t_data *data, t_ray **ray, int x);
+t_img			*get_correct_texture(t_data *data);
+void			draw_texture_slice(t_data *data);
 void			set_texture_x(t_data *data);
 void			set_wall_pixel_x(t_data *data);
 void			draw_wall(t_data *data);

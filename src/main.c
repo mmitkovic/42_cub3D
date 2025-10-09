@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/09 12:13:10 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/09 18:50:00 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 //	!!! NORMINETTE !!!
 //MLX ----fix exit-button-click and clean_memory alongside
 
-//RAYCAST ---- create separate structure for all data?
+//RAYCAST
+//	--fucking sefault in dda
 
 #include "../includes/cub3d.h"
 

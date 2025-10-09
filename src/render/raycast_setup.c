@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:16:32 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/09 15:01:30 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/09 18:34:16 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void distribute_raycast(t_data *data)
 		calculate_perpdist(data);
 		draw_wall(data);
 		set_wall_pixel_x(data);
-		draw_textured_slice(data, &data->raycast, x);
+		draw_texture_slice(data);
 		x++;
 	}
 }
