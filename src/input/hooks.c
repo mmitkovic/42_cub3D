@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:20:51 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/09/26 09:26:14 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/08 08:44:28 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,8 @@ int	handle_keyrelease(int keycode, void *param)
 	t_data	*data;
 	
 	data = (t_data *)param;
-	// if (keycode == 1)
-	// {
-	// 	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	// 	data->win_ptr = NULL;
-	// }
-	printf("Keypress: %d\n", keycode);
+	
+	// reset pos to 0 on release.
 	return (0);
 }
 
@@ -63,7 +59,7 @@ int handle_keypress(int keycode, void *param)
 	if (keycode == KEY_A)
 		printf("Keypress: %d\n", keycode);
 	if (keycode == KEY_S)
-		printf("Keypress: %d\n", keycode);
+		move_back(data);
 	if (keycode == KEY_D)
 		printf("Keypress: %d\n", keycode);
 	if (keycode == R_ARW)
@@ -72,6 +68,3 @@ int handle_keypress(int keycode, void *param)
 		printf("Keypress: %d\n", keycode);
 	return (0);
 }
-
-
-

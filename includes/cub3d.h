@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/08 15:31:33 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/07 15:18:49 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,14 @@
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
+# include "raycast.h"
 # include <fcntl.h>
 # include <inttypes.h>
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/time.h>
 
 # define WIN_W 800
 # define WIN_H 600
@@ -40,6 +42,8 @@
 // Masks
 # define MASK_KEYPRESS (1L << 0)
 # define MASK_KEYRELEASE (1L >> 1)
+// Walk
+# define WALK_SPEED 3
 
 // typedef struct s_vector
 // {
@@ -112,6 +116,10 @@ typedef struct s_data
 	double		dir_x;
 	double		dir_y;
 	char		player_letter;
+	float		delta_time;
+	float		last_time; // init with get_time() in utils
+	float		walk_speed;
+	t_player	player;
 	t_ray		*raycast;
 	t_img		img;
 	t_parser	*parser;
@@ -183,6 +191,7 @@ char			*trim_newline(char *str);
 char			*skip_white(char *line);
 int				is_it_whitespace(t_parser *parser);
 char			*skip_white_after(char *line);
+long			get_time(void);
 
 // render
 int				render_frame(void *parm);
