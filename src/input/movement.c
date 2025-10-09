@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:21:20 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/09 12:37:26 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/09 15:34:47 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	move_back(t_data *data)
 	double	nx;
 	double	ny;
 
-	ny = data->pos_y - data->player.walk_direction * data->player.walk_speed;
-	nx = data->pos_x - data->player.walk_direction * data->player.walk_speed;
+	ny = data->pos_y - data->raycast->raydir_y * data->player.walk_speed;
+	nx = data->pos_x - data->raycast->raydir_x * data->player.walk_speed;
 	if (data->parser->map[(int)data->pos_y][(int)nx] == '0')
 		data->pos_x = nx;
 	if ((data->parser->map[(int)ny][(int)data->pos_x]) == '0')
