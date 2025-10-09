@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/09 12:11:50 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/09 14:29:46 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,30 +34,8 @@ void	init_img(t_img *img)
 	img->bpp = 0;
 	img->line_len = 0;
 	img->endian = -1;
-	img->w = 0;
-	img->h = 0;
-}
-void	init_raycast(t_ray *raycast)
-{
-	if (!raycast)
-		return ;
-	raycast->raydir_x = 0.0;
-	raycast->raydir_y = 0.0;
-	raycast->angle = 0.0;
-	raycast->camera_x = 0.0;
-	raycast->delta_distx = 0.0;
-	raycast->delta_disty = 0.0;
-	raycast->map_x = 0;
-	raycast->map_y = 0;
-	raycast->step_x = 0;
-	raycast->step_y = 0;
-	raycast->side_distx = 0.0;
-	raycast->side_disty = 0.0;
-	raycast->hit = 0;
-	raycast->horizontal = 0;
-	raycast->vertical = 0;
-	raycast->perp_dist = 0.0;
-	raycast->line_height = 0.0;
+	img->w = 128;
+	img->h = 128;
 }
 
 void	init_data(t_data *data)
@@ -78,16 +56,10 @@ void	init_data(t_data *data)
 	data->player_letter = 'x';
 	data->dir_x = 0;
 	data->dir_y = 0;
-	init_img(&data->img);
-	data->parser = NULL;
-	/* allocate raycast struct so init_raycast can safely initialize it */
-	data->raycast = malloc(sizeof(*(data->raycast)));
+	data->raycast = malloc(sizeof(t_ray));
 	if (!data->raycast)
 		return ;
 	init_raycast(data->raycast);
-	/* initialize textures placeholders */
-	// while (int i = 0; i < 4; ++i)
-	// 	init_img(&data->texture[i]);
 }
 
 void	init_parser(t_parser *parser)
@@ -112,5 +84,4 @@ void	init(t_parser *parser, t_data *data)
 		init_img(&data->texture[i]);
 		i++;
 	}
-	//init_raycast(data->raycast);
 }
