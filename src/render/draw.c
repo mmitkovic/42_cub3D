@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:17:49 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/07 17:21:51 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/09 10:11:05 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ int	render_frame(void *param)
 	// Update player position, and rotation
 	// Render position (data->walk_speed = WALK_SPEED * data->delta_time;)
 	// Render map objects
+	// raycating(data); H
+	// Update player position, and rotation
+	// Render position (data->walk_speed = WALK_SPEED * data->delta_time;)
+	// Render map objects
+	// raycating(data); H
 	// raycating(data); H
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,
 		0);
