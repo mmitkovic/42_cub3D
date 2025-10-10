@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:17:49 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/09 15:59:55 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/10 10:30:51 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	render_frame(void *param)
 	draw_floor_ceiling(data);
 	//move_player(data);
 	move_forward(data);
-	distribute_raycast(data); //everything starts here from raycast in a loop
+	// distribute_raycast(data); //everything starts here from raycast in a loop
 	// TODO:
 	// Update player position, and rotation
 	// Render position (data->walk_speed = WALK_SPEED * data->delta_time;)

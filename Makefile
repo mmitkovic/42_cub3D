@@ -8,6 +8,7 @@ SRCS	= src/main.c \
 			src/core/utils.c \
 			src/input/hooks.c \
 			src/input/movement.c \
+			src/parsing/map_info.c \
 			src/parsing/parse_header.c \
 			src/parsing/parse_file.c \
 			src/parsing/validate_walls.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:50:15 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/09 18:48:46 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/10 10:57:11 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	draw_texture_slice(t_data *data)
 	while (y < ray->draw_end)
 	{
 		//UNDONE
-		put_pixel(data, ray->tex_x, y, texture/*[exact coordinates of a pixel in a texture to cast on a wall]*/);
+		// put_pixel(data, ray->tex_x, y, texture/*[exact coordinates of a pixel in a texture to cast on a wall]*/);
 		y++;
 	}
 }

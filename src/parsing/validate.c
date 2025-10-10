@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:11:02 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/09 16:11:01 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/10 11:11:26 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,8 @@ int	map_check(t_data *data, char **map)
 			return (1);
 		i++;
 	}
+	map_size(data->parser);
+	printf("Map height: %d\n", data->parser->h);
+	printf("Map width: %d\n", data->parser->w);
 	return (0);
 }

@@ -1,0 +1,13 @@
+NO  ./assets/textures/wall_N.xpm
+SO  ./assets/textures/wall_S.xpm
+WE  ./assets/textures/wall_W.xpm
+EA  ./assets/textures/wall_E.xpm
+
+C 255,255,255
+F 255,0,0
+
+ 111111
+ 100001
+ 1000S1
+ 100001
+ 111111

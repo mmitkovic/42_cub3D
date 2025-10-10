@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/09 15:38:58 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/10 09:54:59 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ void	init_parser(t_parser *parser)
 	parser->floor = 0;
 	parser->ceiling = 0;
 	parser->map = NULL;
+	parser->h = 0;
+	parser->w = 0;
 }
 void	init(t_parser *parser, t_data *data)
 {
