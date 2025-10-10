@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:38:10 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/09 13:53:24 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/09 17:18:41 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void apply_dda(t_data *data)
 		else
 		{
 			ray->side_disty = ray->side_disty + ray->delta_disty;
-			ray->map_y = ray->side_disty + ray->delta_disty;
+			ray->map_y = ray->map_y + ray->step_y;
 			ray->vertical = 1; //y-axis was hit first, i means that vertical wall was hit (direction W-E)
 		}
 		if (data->parser->map[ray->map_x][ray->map_y] == '1')

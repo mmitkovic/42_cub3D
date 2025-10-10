@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frames.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 13:07:28 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/07 16:33:25 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/09 16:00:33 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ long	get_time(void)
 	return(tv.tv_sec * 1000 + tv.tv_usec / 1000);
 }
 
-static float calc_timeframe(t_data *data)
-{
-	float now;
-	float frame_time;
+// static float calc_timeframe(t_data *data)
+// {
+// 	float now;
+// 	float frame_time;
 	
-	now = get_time();
-	frame_time = (now - data->last_time) / 1000.0;
-	data->last_time = now;
-	data->delta_time = frame_time;
-	return (frame_time); 
-}
+// 	now = get_time();
+// 	frame_time = (now - data->last_time) / 1000.0;
+// 	data->last_time = now;
+// 	data->delta_time = frame_time;
+// 	return (frame_time); 
+// }

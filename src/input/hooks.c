@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:20:51 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/08 08:44:28 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/09 16:25:54 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	handle_keyrelease(int keycode, void *param)
 	t_data	*data;
 	
 	data = (t_data *)param;
+	(void)keycode;
 	
 	// reset pos to 0 on release.
 	return (0);

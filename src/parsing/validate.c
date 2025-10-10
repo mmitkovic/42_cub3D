@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:11:02 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/09 10:12:36 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/09 16:11:01 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../../includes/cub3d.h"
 
@@ -39,7 +37,7 @@ int	check_num_player(t_data *data, char **map)
 				|| map[i][j] == 'W')
 			{
 				data->player_letter = map[i][j];
-				assign_positions(data, i, j, &player);
+				assign_position(data, i, j, &player);
 			}
 			j++;
 		}
