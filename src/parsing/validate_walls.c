@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 11:07:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/10 10:25:36 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/10 20:46:08 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,31 @@ static int	check_hole_ver(char **map, int i, int j)
 		j++;
 	while (map[i][j])
 	{
-		if (!map[i + 1])
-			break ;
-		if ((map[i][j] == '0') && (map[i + 1][j] == ' ' || map[i + 1][j] == '\n'
-				|| !map[i + 1][j] || map[i - 1][j] == ' ' || map[i
-				- 1][j] == '\n' || !map[i - 1][j]))
+		if (map[i][j] == '0')
+		{
+			if (i > 0)
+			{
+				if ((!map[i - 1][j] || map[i - 1][j] == ' ' || map[i
+					- 1][j] == '\n'))
+					return (1);
+			}
+			else
 				return (1);
+			if (map[i + 1])
+			{
+				if (!map[i + 1][j] || !map[i + 1] || map[i + 1][j] == ' ' || map[i + 1][j] == '\n')
+					return (1);
+			}
+			else
+				return (1);
+		}
+		// if (!map[i + 1])
+		// 	break ;
+		// if ((map[i][j] == '0') && (map[i + 1][j] == ' ' || map[i
+		//		+ 1][j] == '\n'
+		// 		|| map[i + 1][j] == '\0' || map[i - 1][j] == ' ' || map[i
+		// 		- 1][j] == '\n' || !map[i - 1][j]))
+		// 	return (1);
 		j++;
 	}
 	return (0);
@@ -83,18 +102,15 @@ static int	validate_ver(char **map)
 	while (map[i])
 	{
 		j = 0;
-		while (map[i][j] == ' ' || map[i][j] == '\t')
+		while (map[i][j] == ' ')
 			j++;
 		if (map[i][j] == '\n')
 		{
 			i++;
 			continue ;
 		}
-		else
-		{
-			if (check_hole_ver(map, i, j))
-				return (1);
-		}
+		else if (check_hole_ver(map, i, j))
+			return (1);
 		i++;
 	}
 	return (0);
@@ -102,7 +118,6 @@ static int	validate_ver(char **map)
 
 int	check_walls(char **map)
 {
-	
 	if (validate_hor(map))
 	{
 		printf("Horizontal wall validation failed.\n");
