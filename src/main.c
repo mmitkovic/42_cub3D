@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/11 11:29:40 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/11 15:34:42 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int ac, char **av)
 	if (read_map(parser, data))
 		return (close(data->fd), free_parser(parser), free(data->raycast), free(data), 1);
 	if (map_check(data, parser->map))
-		return (printf("Error\nMap is not valid!\n"), free_parser(parser), free(data), 1);   //i think closing fd is missing
+		return (printf("Error\nMap is not valid!\n"), free_parser(parser), free(data->raycast), free(data), 1);   //i think closing fd is missing
 	start_window(data);
 	//distribute_raycast(data);
 	clean_exit(data);

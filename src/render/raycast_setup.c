@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:16:32 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/11 13:03:48 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/11 15:00:22 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@
 //to hold the information
 //Should update each time in the loop the player position (play vector)
 
-
-//1) Find the direction vector --- OK
-//2) Find the ray position --- OK
-//3) Find the delsta dist --- OK
-//4) Find the step valure ---- IN PROGRESS
 
 void find_ray_position(t_data *data, int *x, double *camera_x)
 {
@@ -83,9 +78,7 @@ void init_direction_vector(t_data *data)   			//how it gets updates when it alre
 void distribute_raycast(t_data *data)
 {
 	int		x;
-	double	ray_angle;
 	
-	ray_angle = 0;
 	x = 0;
 	//player starting position is pos_x, pos_y in data.	
 	while (x < WIN_W)
@@ -100,6 +93,7 @@ void distribute_raycast(t_data *data)
 		calculate_perpdist(data);
 		draw_wall(data);
 		set_wall_pixel_x(data);
+		set_texture_x(data);
 		draw_texture_slice(data, x);
 		x++;
 	}
@@ -127,4 +121,6 @@ void init_raycast(t_ray *raycast)
 	raycast->draw_start = 0;
 	raycast->draw_end = 0;
 	raycast->wall_x = 0;
+	raycast->tex_x = 0;
+	raycast->tex_y = 0;
 }

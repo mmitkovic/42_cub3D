@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/11 12:22:06 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/11 14:30:06 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ typedef struct s_ray
 	double		wall_x;
 	double		draw_start;
 	double		draw_end;
-	double		tex_x;
+	int			tex_x;
+	int			tex_y;
 }				t_ray;
 
 typedef struct s_data
