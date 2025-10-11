@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:21:20 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/11 14:44:44 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 16:37:41 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	move_back(t_data *data)
 	double	nx;
 	double	ny;
 
-	ny = data->pos_y - data->dir_x * WALK_SPEED;
-	nx = data->pos_x - data->dir_y * WALK_SPEED;
+	ny = data->pos_y - data->dir_y * WALK_SPEED;
+	nx = data->pos_x - data->dir_x * WALK_SPEED;
 	if (data->pl_mv_b)
 	{
 		if (data->parser->map[(int)data->pos_y][(int)nx] == '0')
@@ -50,8 +50,8 @@ void	move_right(t_data *data)
 	double	nx;
 	double	ny;
 
-	nx = data->pos_x + data->dir_x * WALK_SPEED;
-	ny = data->pos_y + data->dir_y * WALK_SPEED;
+	nx = data->pos_x + data->plane_x * WALK_SPEED;
+	ny = data->pos_y + data->plane_y * WALK_SPEED;
 	if (data->pl_mv_r)
 	{
 		if (data->parser->map[(int)data->pos_y][(int)nx] == '0')
@@ -66,8 +66,8 @@ void	move_left(t_data *data)
 	double	nx;
 	double	ny;
 
-	nx = data->pos_x - data->dir_x * WALK_SPEED;
-	ny = data->pos_y - data->dir_y * WALK_SPEED;
+	nx = data->pos_x - data->plane_x * WALK_SPEED;
+	ny = data->pos_y - data->plane_y * WALK_SPEED;
 	if (data->pl_mv_l)
 	{
 		if (data->parser->map[(int)data->pos_y][(int)nx] == '0')

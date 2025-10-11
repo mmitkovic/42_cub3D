@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:17:49 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/11 14:35:36 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 16:27:46 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,10 @@ int	render_frame(void *param)
 	if (!data->mlx_ptr)
 		return (1);
 	draw_floor_ceiling(data);
-	// move_forward(data);
-	// move_back(data);
-	// move_left(data);
-	// move_right(data);
+	move_forward(data);
+	move_back(data);
+	move_left(data);
+	move_right(data);
 	distribute_raycast(data); //everything starts here from raycast in a loop
 	// TODO:
 	// rotation
