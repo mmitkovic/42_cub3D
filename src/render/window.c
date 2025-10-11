@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   window.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:10:46 by mmitkovi          #+#    #+#             */
 /*   Updated: 2025/10/11 15:43:28 by hgatarek         ###   ########.fr       */
@@ -33,8 +33,8 @@ int	start_window(t_data *data)
 		return (clean_exit(data), 0);
 	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
 			&data->img.line_len, &data->img.endian); // get image data address
-	render_frame(data);
-	//mlx_loop_hook(data->mlx_ptr, &render_frame, data);
+	//render_frame(data);
+	mlx_loop_hook(data->mlx_ptr, &render_frame, data);
 	mlx_hook(data->win_ptr, EVT_KEYPRESS, MASK_KEYPRESS, &handle_keypress,
 		data);
 	mlx_hook(data->win_ptr, EVT_KEYRELEASE, MASK_KEYRELEASE, &handle_keyrelease, data);

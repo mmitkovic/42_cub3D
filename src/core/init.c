@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/11 16:10:44 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/11 16:08:25 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,12 @@ void	init_data(t_data *data)
 	data->player_letter = 'x';
 	data->dir_x = 0;
 	data->dir_y = 0;
+	data->pl_mv_f = 0; // init separately
+	data->pl_mv_b = 0;
+	data->pl_mv_l = 0;
+	data->pl_mv_r = 0;
+	data->pl_rot_l = 0;
+	data->pl_rot_r = 0;
 	data->raycast = malloc(sizeof(t_ray));
 	if (!data->raycast)
 		return ;

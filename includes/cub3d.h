@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
 /*   Updated: 2025/10/11 14:30:06 by hgatarek         ###   ########.fr       */
@@ -122,6 +122,12 @@ typedef struct s_data
 	int			elem_ea;
 	int			elem_f;
 	int			elem_c;
+	int			pl_mv_f;
+	int			pl_mv_b;
+	int			pl_mv_l;
+	int			pl_mv_r;
+	int			pl_rot_l;
+	int			pl_rot_r;
 	double		pos_x;				//i think that will have to be casted to double
 	double		pos_y;				//i think that will have to be casted to double
 	double		plane_x;
