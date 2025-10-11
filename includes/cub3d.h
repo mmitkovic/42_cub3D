@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/10 10:27:05 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 09:43:11 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ void			init_img(t_img *img);
 int				read_map(t_parser *parser, t_data *data);
 
 // src/parsing/map_info.c
-void	map_size(t_parser *parser);
+void			map_size(t_parser *parser);
 
 // parse_file.c
 int				check_ext(char *str);
