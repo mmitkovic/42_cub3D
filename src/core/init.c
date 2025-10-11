@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/09 10:11:56 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 16:08:25 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	init_img(t_img *img)
 	img->bpp = 0;
 	img->line_len = 0;
 	img->endian = -1;
-	img->w = 0;
-	img->h = 0;
+	img->w = 128;
+	img->h = 128;
 }
 
 void	init_data(t_data *data)
@@ -50,15 +50,23 @@ void	init_data(t_data *data)
 	data->elem_ea = 0;
 	data->elem_f = 0;
 	data->elem_c = 0;
-	data->pos_x = 0;
-	data->pos_y = 0;
-	data->plane_x = 0,01;
-	data->plane_y = 0,01;
+	data->pos_x = 0.0;
+	data->pos_y = 0.0;
+	data->plane_x = 0;
+	data->plane_y = 0;
 	data->player_letter = 'x';
-	data->dir_x = 0,01;
-	data->dir_y = 0,01;
-	init_img(&data->img);
-	init_raycast(&data->raycast);
+	data->dir_x = 0;
+	data->dir_y = 0;
+	data->pl_mv_f = 0; // init separately
+	data->pl_mv_b = 0;
+	data->pl_mv_l = 0;
+	data->pl_mv_r = 0;
+	data->pl_rot_l = 0;
+	data->pl_rot_r = 0;
+	data->raycast = malloc(sizeof(t_ray));
+	if (!data->raycast)
+		return ;
+	init_raycast(data->raycast);
 }
 
 void	init_parser(t_parser *parser)
@@ -70,10 +78,19 @@ void	init_parser(t_parser *parser)
 	parser->floor = 0;
 	parser->ceiling = 0;
 	parser->map = NULL;
+	parser->h = 0;
+	parser->w = 0;
 }
 void	init(t_parser *parser, t_data *data)
 {
+	int 	i;
+
+	i = 0;
 	init_parser(parser);
 	init_data(data);
+	while (i < 4)
+	{
+		init_img(&data->texture[i]);
+		i++;
+	}
 }
-// init ctx, load cfg, window, images

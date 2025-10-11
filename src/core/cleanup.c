@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:14:31 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/01 13:43:47 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/11 12:51:40 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,13 @@ void	free_split(char **array)
 {
 	int	i;
 
+	if (!array)
+		return;
 	i = 0;
 	while (array[i])
 	{
-		free(array[i]);
+		if (array[i])
+			free(array[i]);
 		i++;
 	}
 	free(array);
@@ -80,6 +83,7 @@ void	clean_exit(t_data *data)
 	}
 	if (data->parser)
 		free_parser(data->parser);
+	free(data->raycast);
 	free(data);
 	exit (0);
 }

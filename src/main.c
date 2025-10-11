@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/07 11:13:57 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/11 11:29:40 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 //	!!! NORMINETTE !!!
 //MLX ----fix exit-button-click and clean_memory alongside
 
-//RAYCAST ---- create separate structure for all data?
+//RAYCAST
+//	--fucking sefault in dda
 
 #include "../includes/cub3d.h"
 
@@ -61,16 +62,15 @@ int	main(int ac, char **av)
 	data->parser = parser;
 	data->fd = open(av[1], O_RDONLY);
 	if (data->fd < 0)
-		return (printf("Error: cannot open the file\n"), free(parser),
+		return (printf("Error: cannot open the file\n"), free_parser(parser), free(data->raycast),
 			free(data), 1);
 	if (read_map(parser, data))
-		return (close(data->fd), free_parser(parser), free(data), 1);
+		return (close(data->fd), free_parser(parser), free(data->raycast), free(data), 1);
 	if (map_check(data, parser->map))
-		return (printf("Error\nMap is not valid!\n"), free_parser(parser), free(data), 1);
+		return (printf("Error\nMap is not valid!\n"), free_parser(parser), free(data), 1);   //i think closing fd is missing
 	start_window(data);
 	//distribute_raycast(data);
-	free_parser(parser);
-	free(data);
+	clean_exit(data);
 	close(data->fd);
 	return (0);
 }

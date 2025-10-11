@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:17:18 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/06 09:17:02 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/11 10:26:46 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,15 @@ int	load_texture(t_data *data, t_img *tex_img, char *path)
 		return (1);
 	tex_img->mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, path, &tex_img->w,
 			&tex_img->h);
+	//printf("w=%d\n h=%d\n", tex_img->w, tex_img->h);
 	if (!tex_img->mlx_img)
 		return (1);
-	// Validate texture dimensions
-	if (tex_img->w <= 0 || tex_img->h <= 0)
-	{
-		mlx_destroy_image(data->mlx_ptr, tex_img->mlx_img);
-		return (1);
-	}
+	//Validate texture dimensions    //this fucking shit AI added and was closing our window
+	// if (tex_img->w <= 0 || tex_img->h <= 0)
+	// {
+	// 	mlx_destroy_image(data->mlx_ptr, tex_img->mlx_img);
+	// 	return (1);
+	// }
 	tex_img->addr = mlx_get_data_addr(tex_img->mlx_img, &tex_img->bpp,
 			&tex_img->line_len, &tex_img->endian);
 	if (!tex_img->addr)

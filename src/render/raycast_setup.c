@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:16:32 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/08 14:16:14 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/11 13:03:48 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,23 @@ void init_camera_plane(t_data *data)
 {
 	if (data->player_letter == 'N')
 	{
-		data->plane_x = 0,66;
+		data->plane_x = 0.66;
 		data->plane_y = 0;
 	}
 	else if (data->player_letter == 'S')
 	{
-		data->plane_x = -0,66;
+		data->plane_x = -0.66;
 		data->plane_y = 0;
 	}
 	else if (data->player_letter == 'W')
 	{
 		data->plane_x = 0;
-		data->plane_y = -0,66;
+		data->plane_y = -0.66;
 	}
 	else if (data->player_letter == 'E')
 	{
 		data->plane_x = 0;
-		data->plane_y = 0,66;
+		data->plane_y = 0.66;
 	}
 	return ;
 }
@@ -87,30 +87,32 @@ void distribute_raycast(t_data *data)
 	
 	ray_angle = 0;
 	x = 0;
-	//player starting position is pos_x, pos_y in data.
-	init_direction_vector(data);   //i think i dont need to &it?
-	init_camera_plane(data);
-	data->raycast->map_x = (int)data->pos_x;				//why they cast int when its already int?
-	data->raycast->map_y = (int)data->pos_y;	
+	//player starting position is pos_x, pos_y in data.	
 	while (x < WIN_W)
 	{
 		find_ray_position(data, &x, &data->raycast->camera_x);
+		data->raycast->map_x = (int)data->pos_x;	//cast to make a whole number from double type (flooring)
+		data->raycast->map_y = (int)data->pos_y;
 		set_delta_dist(data);
 		set_step(data);
 		set_side_dist(data);
 		apply_dda(data);
+		calculate_perpdist(data);
+		draw_wall(data);
+		set_wall_pixel_x(data);
+		draw_texture_slice(data, x);
 		x++;
 	}
 }
 
 void init_raycast(t_ray *raycast)
 {
-	raycast->raydir_x = 0,01;
-	raycast->raydir_y = 0,01;
-	raycast->angle = 0,01;
-	raycast->camera_x = 0,01;
-	raycast->delta_distx = 0,01;
-	raycast->delta_disty = 0,01;
+	raycast->raydir_x = 0.00;
+	raycast->raydir_y = 0.00;
+	raycast->angle = 0.00;
+	raycast->camera_x = 0.00;
+	raycast->delta_distx = 0.00;
+	raycast->delta_disty = 0.00;
 	raycast->map_x = 0;
 	raycast->map_x = 0;
 	raycast->step_x = 0;
@@ -118,4 +120,11 @@ void init_raycast(t_ray *raycast)
 	raycast->side_distx = 0;
 	raycast->side_disty = 0;
 	raycast->hit = 0;
+	raycast->horizontal = 0;
+	raycast->vertical = 0;
+	raycast->perp_dist = 0;
+	raycast->line_height = 0;
+	raycast->draw_start = 0;
+	raycast->draw_end = 0;
+	raycast->wall_x = 0;
 }

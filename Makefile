@@ -8,6 +8,7 @@ SRCS	= src/main.c \
 			src/core/utils.c \
 			src/input/hooks.c \
 			src/input/movement.c \
+			src/parsing/map_info.c \
 			src/parsing/parse_header.c \
 			src/parsing/parse_file.c \
 			src/parsing/validate_walls.c \
@@ -22,7 +23,8 @@ SRCS	= src/main.c \
 			src/core/cleanup.c \
 			src/parsing/parse_map.c \
 			src/render/raycast_setup.c \
-			src/render/raycast.c
+			src/render/raycast.c \
+			src/render/draw_wall.c 
 
 OBJSDIR	= obj
 OBJS	= $(SRCS:%.c=$(OBJSDIR)/%.o)

@@ -6,9 +6,10 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/09 10:12:10 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 13:54:10 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef CUB3D_H
 # define CUB3D_H
@@ -27,6 +28,7 @@
 
 # define WIN_W 800
 # define WIN_H 600
+# define TEX_SIZE 16
 // keycodes
 # define KEY_ESC 65307
 # define KEY_W 119
@@ -59,6 +61,8 @@ typedef struct s_parser
 	char		*e_path;
 	int			floor;
 	int			ceiling;
+	int			w;
+	int			h;
 	char		**map;
 }				t_parser;
 
@@ -96,6 +100,14 @@ typedef struct s_ray
 	double		side_disty;
 	double		side_distx;
 	int			hit;
+	int			horizontal;
+	int			vertical;
+	double		perp_dist;
+	double		line_height;
+	double		wall_x;
+	double		draw_start;
+	double		draw_end;
+	double		tex_x;
 }				t_ray;
 
 typedef struct s_data
@@ -109,8 +121,14 @@ typedef struct s_data
 	int			elem_ea;
 	int			elem_f;
 	int			elem_c;
-	int			pos_x;				//i think that will have to be casted to double
-	int			pos_y;				//i think that will have to be casted to double
+	int			pl_mv_f;
+	int			pl_mv_b;
+	int			pl_mv_l;
+	int			pl_mv_r;
+	int			pl_rot_l;
+	int			pl_rot_r;
+	double		pos_x;				//i think that will have to be casted to double
+	double		pos_y;				//i think that will have to be casted to double
 	double		plane_x;
 	double		plane_y;
 	double		dir_x;
@@ -143,9 +161,9 @@ int				handle_mouse_press(int keycode, int x, int y, void *param);
 int				check_walls(char **map);
 
 // src/parsing/validate.c
-static void 	assign_position(t_data *data, int i, int j, int *player);
-static int		check_num_player(t_data *data, char **map);
-static int		check_valid_character(char *line);
+void 			assign_position(t_data *data, int i, int j, int *player);
+int				check_num_player(t_data *data, char **map);
+int				check_valid_character(char *line);
 int				map_check(t_data *data, char **map);
 
 // src/render/textures.c
@@ -153,13 +171,19 @@ int				load_texture(t_data *data, t_img *tex_img, char *path);
 int				load_textures(t_data *data);
 
 // src/input/movement.c
-
+void			move_forward(t_data *data);
+void			move_back(t_data *data);
+void			move_right(t_data *data);
+void			move_left(t_data *data);
 // init.c
 void			init(t_parser *parser, t_data *data);
 void			init_parser(t_parser *parser);
 void			init_data(t_data *data);
 void			init_img(t_img *img);
 int				read_map(t_parser *parser, t_data *data);
+
+// src/parsing/map_info.c
+void			map_size(t_parser *parser);
 
 // parse_file.c
 int				check_ext(char *str);
@@ -193,7 +217,7 @@ int				is_it_whitespace(t_parser *parser);
 char			*skip_white_after(char *line);
 long			get_time(void);
 
-// render
+// src/render/draw.c
 int				render_frame(void *parm);
 void			put_pixel(t_data *data, int x, int y, unsigned int color);
 int				start_window(t_data *data);
@@ -205,9 +229,18 @@ void			init_direction_vector(t_data *data);
 void 			distribute_raycast(t_data *data);
 void			init_raycast(t_ray *raycast);
 
-// raycast
+// raycast.c
+void			calculate_perpdist(t_data *data);
 void			set_delta_dist(t_data *data);
 void			set_step(t_data *data);
 void			set_side_dist(t_data *data);
 void			apply_dda(t_data *data);
+
+//draw_wall.c
+t_img			*get_correct_texture(t_data *data);
+void			draw_texture_slice(t_data *data, int x);
+void			set_texture_x(t_data *data);
+void			set_wall_pixel_x(t_data *data);
+void			draw_wall(t_data *data);
+
 #endif
