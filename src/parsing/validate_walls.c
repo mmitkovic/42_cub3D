@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 11:07:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/10 20:46:08 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 13:29:15 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,26 +25,20 @@ static int	check_hole_ver(char **map, int i, int j)
 			if (i > 0)
 			{
 				if ((!map[i - 1][j] || map[i - 1][j] == ' ' || map[i
-					- 1][j] == '\n'))
+						- 1][j] == '\n'))
 					return (1);
 			}
 			else
 				return (1);
 			if (map[i + 1])
 			{
-				if (!map[i + 1][j] || !map[i + 1] || map[i + 1][j] == ' ' || map[i + 1][j] == '\n')
+				if (!map[i + 1][j] || !map[i + 1] || map[i + 1][j] == ' '
+					|| map[i + 1][j] == '\n')
 					return (1);
 			}
 			else
 				return (1);
 		}
-		// if (!map[i + 1])
-		// 	break ;
-		// if ((map[i][j] == '0') && (map[i + 1][j] == ' ' || map[i
-		//		+ 1][j] == '\n'
-		// 		|| map[i + 1][j] == '\0' || map[i - 1][j] == ' ' || map[i
-		// 		- 1][j] == '\n' || !map[i - 1][j]))
-		// 	return (1);
 		j++;
 	}
 	return (0);

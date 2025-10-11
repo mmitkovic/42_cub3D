@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 09:36:47 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/11 10:39:17 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/11 15:13:00 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int parse_n_s(t_data *data, t_parser *pars, char *trim)
 {
 	char *skipped;
 
+	if (!data || !pars || !*trim)
+		return (1);
 	skipped = NULL;
 	if (*trim == 'N')
 	{
@@ -25,7 +27,7 @@ int parse_n_s(t_data *data, t_parser *pars, char *trim)
 			return (1);
 		pars->n_path = trim_newline(ft_strdup(skipped));
 		if (!pars->n_path)
-			return (free_parser(pars), printf("Missing texture or color\n"), 1);
+			return (free_parser(pars), printf("Missing North texture or color\n"), 1);
 	}
 	else if (*trim == 'S')
 	{
@@ -35,7 +37,7 @@ int parse_n_s(t_data *data, t_parser *pars, char *trim)
 			return (1);
 		pars->s_path = trim_newline(ft_strdup(skipped));
 		if (!pars->s_path)
-			return (free_parser(pars), printf("Missing texture or color\n"), 1);
+			return (free_parser(pars), printf("Missing South texture or color\n"), 1);
 	}
 	return (0);
 }
