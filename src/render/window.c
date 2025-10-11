@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:10:46 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/11 10:20:32 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/11 11:28:47 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	start_window(t_data *data)
 		free(data->mlx_ptr);
 		return (0);
 	}
+	init_direction_vector(data); //is it a right place to put it? i think so
+	init_camera_plane(data);
 	data->img.mlx_img = mlx_new_image(data->mlx_ptr, WIN_W, WIN_H);
 	if (!data->img.mlx_img)
 		return (clean_exit(data), 0);

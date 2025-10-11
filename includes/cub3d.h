@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/11 09:43:11 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/11 12:22:06 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,8 @@ typedef struct s_data
 	int			elem_ea;
 	int			elem_f;
 	int			elem_c;
-	int			pos_x;				//i think that will have to be casted to double
-	int			pos_y;				//i think that will have to be casted to double
+	double		pos_x;				//i think that will have to be casted to double
+	double		pos_y;				//i think that will have to be casted to double
 	double		plane_x;
 	double		plane_y;
 	double		dir_x;
@@ -232,7 +232,7 @@ void			apply_dda(t_data *data);
 
 //draw_wall.c
 t_img			*get_correct_texture(t_data *data);
-void			draw_texture_slice(t_data *data);
+void			draw_texture_slice(t_data *data, int x);
 void			set_texture_x(t_data *data);
 void			set_wall_pixel_x(t_data *data);
 void			draw_wall(t_data *data);
