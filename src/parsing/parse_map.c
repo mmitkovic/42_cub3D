@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 09:36:47 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/06 08:33:17 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/11 10:39:17 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int parse_w_e(t_data *data, t_parser *parser, char *trim)
 	return (0);
 }
 
-char **extend_the_map(char **old_map, char *line)
+char **extend_the_map(char **old_map, char *line)     //fix the lines
 {
 	char **new_map;
 	int size;
@@ -84,14 +84,31 @@ char **extend_the_map(char **old_map, char *line)
 		return (NULL);
 	while (i < size)
 	{
-		new_map[i] = old_map[i]; 				//copying adrresses to another container
+		new_map[i] = ft_strdup(old_map[i]); // Create new copies of strings
+		if (!new_map[i])
+		{
+			while (--i >= 0)
+				free(new_map[i]);
+			free(new_map);
+			return (NULL);
+		}
 		i++;
 	}
 	new_map[size] = ft_strdup(line);
 	if (!new_map[size])
-		return (free(new_map), NULL);
-	if (old_map)								//freeing only container, If i free_split, new_map will also be freed.
+	{
+		while (--i >= 0)
+			free(new_map[i]);
+		free(new_map);
+		return (NULL);
+	}
+	if (old_map)
+	{
+		i = 0;
+		while (old_map[i])
+			free(old_map[i++]);
 		free(old_map);
+	}
 	return (new_map);
 }
 
@@ -108,6 +125,11 @@ int	add_another_line(t_parser *parser, char *line)
 		if (!new_map)
 			return (1);
 		new_map[0] = ft_strdup(line);
+		if (!new_map[0])
+		{
+			free(new_map);
+			return (1);
+		}
 		parser->map = new_map;
 	}
 	else if (old_map)
@@ -130,10 +152,16 @@ int parse_map(t_parser *parser, t_data *data)
 	line = get_next_line(data->fd);
 	while (line != NULL)
 	{	
-		add_another_line(parser, line); //passing old map saved into the structure and newline-to-add
+		if (add_another_line(parser, line)) // Check return value
+		{
+			free(line);
+			return (1); // Return error if add_another_line fails
+		}
 		free(line);
 		line = get_next_line(data->fd);
 	}
+	if (!parser->map) // Make sure we got some map data
+		return (1);
 	return (0);
 }
 
