@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:11:02 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/11 16:10:20 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 16:10:01 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	map_check(t_data *data, char **map)
 	int	i;
 
 	i = 0;
-	(void)data;
+	//(void)data;
 	if (check_num_player(data, map))
 		return (1);
 	if (check_walls(map))
@@ -84,7 +84,7 @@ int	map_check(t_data *data, char **map)
 		i++;
 	}
 	// map_size(data->parser);
-	//printf("Map height: %d\n", data->parser->h);
-	//printf("Map width: %d\n", data->parser->w);
+	// printf("Map height: %d\n", data->parser->h);
+	// printf("Map width: %d\n", data->parser->w);
 	return (0);
 }
