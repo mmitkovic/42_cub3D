@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:38:10 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/09 17:18:41 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/11 12:11:14 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void calculate_perpdist(t_data *data)
 	t_ray *ray;
 
 	ray = data->raycast;
-	if (ray->horizontal)
+	if (ray->vertical)
 		ray->perp_dist = ray->side_distx - ray->delta_distx;	
-	else if (ray->vertical)
+	else if (ray->horizontal)
 		ray->perp_dist = ray->side_disty - ray->delta_disty;
 }
 
@@ -36,18 +36,30 @@ void apply_dda(t_data *data)
 		{
 			ray->side_distx = ray->side_distx + ray->delta_distx;
 			ray->map_x = ray->map_x + ray->step_x;
-			ray->horizontal = 1; //x-axis was hit first, means that horizontal wall was hit (direction N-S)
+			ray->vertical = 1; //x-axis was hit first, means that horizontal wall was hit (direction N-S). the hit itself is vertical.
+			ray->horizontal = 0;
 		}
 		else
 		{
 			ray->side_disty = ray->side_disty + ray->delta_disty;
 			ray->map_y = ray->map_y + ray->step_y;
-			ray->vertical = 1; //y-axis was hit first, i means that vertical wall was hit (direction W-E)
+			ray->horizontal = 1; //y-axis was hit first, i means that vertical wall was hit (direction W-E). the hit itself is horizontal.
+			ray->vertical = 0;
 		}
-		if (data->parser->map[ray->map_x][ray->map_y] == '1')
+		if (ray->map_y < 0 || data->parser->map[ray->map_y] == NULL)
 		{
 			hit = 1;
-			data->raycast->hit = 1;
+			continue;
+		}
+		if (ray->map_x < 0 || ray->map_x >= (int)(ft_strlen(data->parser->map[ray->map_y])))
+		{
+			hit = 1;
+			continue;
+		}
+		if (data->parser->map[ray->map_y][ray->map_x] == '1')
+		{
+			hit = 1;
+			//data->raycast->hit = 1;
 		}
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/10 09:54:59 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/11 12:22:51 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	init_data(t_data *data)
 	data->elem_ea = 0;
 	data->elem_f = 0;
 	data->elem_c = 0;
-	data->pos_x = 0;
-	data->pos_y = 0;
+	data->pos_x = 0.0;
+	data->pos_y = 0.0;
 	data->plane_x = 0;
 	data->plane_y = 0;
 	data->player_letter = 'x';
