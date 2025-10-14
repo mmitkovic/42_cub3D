@@ -9,5 +9,6 @@ considered the first FPS ever created. Its main goal is to introduce developer t
 
 ## Compile & run
 ```bash
-make	#build
-./cub3d [map/map.cub]
+To build files, type "make" in root directory.
+Next start the executable file with path to particular map as an argument. (examples loaded in assets)
+./cub3d [assets/maps/map.cub]
