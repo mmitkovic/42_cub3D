@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   parser_help.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/24 11:33:06 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/03 17:16:18 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/14 14:33:29 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int are_only_digits(char **array)
+int	are_only_digits(char **array)
 {
 	int		i;
-	size_t		j;
+	size_t	j;
 
 	i = 0;
 	while (array[i] != NULL)
@@ -28,8 +28,7 @@ int are_only_digits(char **array)
 		j = 0;
 		while (array[i][j])
 		{
-			if ((array[i][j] < '0' || array[i][j] > '9')
-					&& array[i][j] != ' ')
+			if ((array[i][j] < '0' || array[i][j] > '9') && array[i][j] != ' ')
 				return (0);
 			j++;
 		}
@@ -38,23 +37,23 @@ int are_only_digits(char **array)
 	return (1);
 }
 
-int is_line_nul(char *trim, char **line, t_data *data)
+int	is_line_nul(char *trim, char **line, t_data *data)
 {
 	if (*trim == '\0' || *trim == '\n')
-		{
-			free(*line);
-			*line = NULL;
-			*line = get_next_line(data->fd);
-			return (1);
-		}
+	{
+		free(*line);
+		*line = NULL;
+		*line = get_next_line(data->fd);
+		return (1);
+	}
 	return (0);
 }
 
-char **split_c(char *ceil, char *trim, t_parser *pars, char **array)
+char	**split_c(char *ceil, char *trim, t_parser *pars, char **array)
 {
 	ceil = trim_newline(ft_strdup(skip_white(trim + 1)));
 	if (!ceil)
-			return (free_parser(pars), NULL);
+		return (free_parser(pars), NULL);
 	trim_newline(ceil);
 	array = ft_split(ceil, ',');
 	if (!array)
@@ -63,11 +62,11 @@ char **split_c(char *ceil, char *trim, t_parser *pars, char **array)
 	return (array);
 }
 
-char **split_by_colour(t_parser *parser, char *trim, char letter)
+char	**split_by_colour(t_parser *parser, char *trim, char letter)
 {
-	char **array;
-	char *floor;
-	char *ceiling;
+	char	**array;
+	char	*floor;
+	char	*ceiling;
 
 	array = NULL;
 	floor = NULL;
@@ -92,11 +91,11 @@ char **split_by_colour(t_parser *parser, char *trim, char letter)
 	return (array);
 }
 
-int convert_to_int(t_parser *pars, char **array, char lett)
+int	convert_to_int(t_parser *pars, char **array, char lett)
 {
-	int t1;
+	int	t1;
 	int	t2;
-	int t3;
+	int	t3;
 
 	t1 = 0;
 	t2 = 0;
@@ -109,9 +108,7 @@ int convert_to_int(t_parser *pars, char **array, char lett)
 		t2 = ft_atoi(array[1]);
 	if (array[2])
 		t3 = ft_atoi(array[2]);
-	if ((t1 < 0 || t1 > 255)
-		|| (t2 < 0 || t2 > 255)
-		|| (t3 < 0 || t3 > 255))
+	if ((t1 < 0 || t1 > 255) || (t2 < 0 || t2 > 255) || (t3 < 0 || t3 > 255))
 		return (printf("Error\nColor value out of range\n"), 1);
 	if (lett == 'F')
 		pars->floor = (t1 * 256 * 256) + (t2 * 256) + t3;

@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 10:17:36 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/10 10:24:58 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/14 14:10:05 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	map_size(t_parser *parser)
 {
-	int y;
-	int x_end;
-	int x_start;
-	int line_w;
+	int	y;
+	int	x_end;
+	int	x_start;
+	int	line_w;
 
 	y = 0;
 	parser->w = 0;

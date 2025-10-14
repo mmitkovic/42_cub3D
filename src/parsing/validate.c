@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:11:02 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/11 16:10:01 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/14 13:29:36 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	assign_position(t_data *data, int i, int j, int *player)
 {
 	if (*player > 0)
 		return ;
-	data->pos_x = j + 0.5; // to go to the grid cell center.
-	data->pos_y = i + 0.5;
+	data->pos_x = (double)j + 0.5;
+	data->pos_y = (double)i + 0.5;
 	data->player_letter = data->parser->map[i][j];
 	*player = 1;
 }
@@ -72,7 +72,6 @@ int	map_check(t_data *data, char **map)
 	int	i;
 
 	i = 0;
-	//(void)data;
 	if (check_num_player(data, map))
 		return (1);
 	if (check_walls(map))
@@ -83,8 +82,5 @@ int	map_check(t_data *data, char **map)
 			return (1);
 		i++;
 	}
-	// map_size(data->parser);
-	// printf("Map height: %d\n", data->parser->h);
-	// printf("Map width: %d\n", data->parser->w);
 	return (0);
 }

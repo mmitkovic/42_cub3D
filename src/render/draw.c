@@ -3,14 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:17:49 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/11 16:27:46 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/14 13:34:04 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// put pixel/column, ceiling/floor fill
 
 #include "../../includes/cub3d.h"
 
@@ -24,7 +22,7 @@ void	put_pixel(t_data *data, int x, int y, unsigned int color)
 	*(unsigned int *)pixel = color;
 }
 
-static void	draw_floor_ceiling(t_data *data)
+void	draw_floor_ceiling(t_data *data)
 {
 	int	x;
 	int	y;
@@ -54,16 +52,16 @@ int	render_frame(void *param)
 	data = (t_data *)param;
 	if (!data->mlx_ptr)
 		return (1);
-	draw_floor_ceiling(data);
-	move_forward(data);
-	move_back(data);
-	move_left(data);
-	move_right(data);
-	distribute_raycast(data); //everything starts here from raycast in a loop
-	// TODO:
-	// rotation
-	// map objects
-	// raycating(data); H
+	calc_timeframe(data);
+	if (data->pl_mv_f || data->pl_mv_b || data->pl_mv_l || data->pl_mv_r)
+		handle_movement(data);
+	if (data->pl_rot_l || data->pl_rot_r)
+		handle_rotation(data);
+	mlx_destroy_image(data->mlx_ptr, data->img.mlx_img);
+	data->img.mlx_img = mlx_new_image(data->mlx_ptr, WIN_W, WIN_H);
+	data->img.addr = mlx_get_data_addr(data->img.mlx_img, &data->img.bpp,
+			&data->img.line_len, &data->img.endian);
+	distribute_raycast(data);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.mlx_img, 0,
 		0);
 	return (0);

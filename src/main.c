@@ -3,21 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/11 15:34:42 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/14 14:00:14 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//TO_DO
-
-// Conditional jump in clean_exit when the texture is bad !!
-//	!!! NORMINETTE !!!
-//MLX ----fix exit-button-click and clean_memory alongside
-
-//RAYCAST
-//	--fucking sefault in dda
 
 #include "../includes/cub3d.h"
 
@@ -62,14 +53,15 @@ int	main(int ac, char **av)
 	data->parser = parser;
 	data->fd = open(av[1], O_RDONLY);
 	if (data->fd < 0)
-		return (printf("Error: cannot open the file\n"), free_parser(parser), free(data->raycast),
-			free(data), 1);
+		return (printf("Error: cannot open the file\n"), free_parser(parser),
+			free(data->raycast), free(data), 1);
 	if (read_map(parser, data))
-		return (close(data->fd), free_parser(parser), free(data->raycast), free(data), 1);
+		return (close(data->fd), free_parser(parser), free(data->raycast),
+			free(data), 1);
 	if (map_check(data, parser->map))
-		return (printf("Error\nMap is not valid!\n"), free_parser(parser), free(data->raycast), free(data), 1);   //i think closing fd is missing
+		return (printf("Error\nMap is not valid!\n"), close(data->fd),
+			free_parser(parser), free(data->raycast), free(data), 1);
 	start_window(data);
-	//distribute_raycast(data);
 	clean_exit(data);
 	close(data->fd);
 	return (0);

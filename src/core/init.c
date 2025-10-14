@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/11 16:08:25 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/14 13:26:08 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,15 @@ void	init_data(t_data *data)
 	data->player_letter = 'x';
 	data->dir_x = 0;
 	data->dir_y = 0;
-	data->pl_mv_f = 0; // init separately
+	data->pl_mv_f = 0;
 	data->pl_mv_b = 0;
 	data->pl_mv_l = 0;
 	data->pl_mv_r = 0;
 	data->pl_rot_l = 0;
 	data->pl_rot_r = 0;
-	data->raycast = malloc(sizeof(t_ray));
-	if (!data->raycast)
-		return ;
-	init_raycast(data->raycast);
+	data->delta_time = 0.0;
+	data->last_time = 0;
+	data->cant_move_forward = 0;
 }
 
 void	init_parser(t_parser *parser)
@@ -86,11 +85,18 @@ void	init(t_parser *parser, t_data *data)
 	int 	i;
 
 	i = 0;
-	init_parser(parser);
 	init_data(data);
+	data->mlx_ptr = mlx_init();
+	if (!data->mlx_ptr)
+		return ;
+	init_parser(parser);
 	while (i < 4)
 	{
 		init_img(&data->texture[i]);
 		i++;
 	}
+	data->raycast = malloc(sizeof(t_ray));
+	if (!data->raycast)
+		return ;
+	init_raycast(data->raycast);
 }

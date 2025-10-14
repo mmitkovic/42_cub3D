@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_setup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:16:32 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/11 15:00:22 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/14 13:52:33 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-//Should send for example 60 rays in my FOV, and each ray should have its own raycast sruct
-//to hold the information
-//Should update each time in the loop the player position (play vector)
-
-
-void find_ray_position(t_data *data, int *x, double *camera_x)
+void	setup_ray(t_data *data, int x)
 {
-	*camera_x = 2 * *x / (double)(WIN_W) - 1;   //i only look for x. thats enough for each column, always betwen -1 and 1.
-	data->raycast->raydir_x = data->dir_x + data->plane_x * *camera_x;
-	data->raycast->raydir_y = data->dir_y + data->plane_y * *camera_x;
-	return ;
+	t_ray	*ray;
+
+	ray = data->raycast;
+	// calculate ray position and direction
+	ray->camera_x = 2 * x / (double)WIN_W - 1;
+	ray->raydir_x = data->dir_x + data->plane_x * ray->camera_x;
+	ray->raydir_y = data->dir_y + data->plane_y * ray->camera_x;
+	// which box of the map we're in
+	ray->map_x = (int)data->pos_x;
+	ray->map_y = (int)data->pos_y;
 }
 
-void init_camera_plane(t_data *data)
+void	init_camera_plane(t_data *data)
 {
 	if (data->player_letter == 'N')
 	{
@@ -50,7 +51,7 @@ void init_camera_plane(t_data *data)
 	return ;
 }
 
-void init_direction_vector(t_data *data)   			//how it gets updates when it already started?
+void	init_direction_vector(t_data *data)
 {
 	if (data->player_letter == 'N')
 	{
@@ -75,31 +76,7 @@ void init_direction_vector(t_data *data)   			//how it gets updates when it alre
 	return ;
 }
 
-void distribute_raycast(t_data *data)
-{
-	int		x;
-	
-	x = 0;
-	//player starting position is pos_x, pos_y in data.	
-	while (x < WIN_W)
-	{
-		find_ray_position(data, &x, &data->raycast->camera_x);
-		data->raycast->map_x = (int)data->pos_x;	//cast to make a whole number from double type (flooring)
-		data->raycast->map_y = (int)data->pos_y;
-		set_delta_dist(data);
-		set_step(data);
-		set_side_dist(data);
-		apply_dda(data);
-		calculate_perpdist(data);
-		draw_wall(data);
-		set_wall_pixel_x(data);
-		set_texture_x(data);
-		draw_texture_slice(data, x);
-		x++;
-	}
-}
-
-void init_raycast(t_ray *raycast)
+void	init_raycast(t_ray *raycast)
 {
 	raycast->raydir_x = 0.00;
 	raycast->raydir_y = 0.00;
@@ -108,14 +85,12 @@ void init_raycast(t_ray *raycast)
 	raycast->delta_distx = 0.00;
 	raycast->delta_disty = 0.00;
 	raycast->map_x = 0;
-	raycast->map_x = 0;
+	raycast->map_y = 0;
 	raycast->step_x = 0;
 	raycast->step_y = 0;
 	raycast->side_distx = 0;
 	raycast->side_disty = 0;
 	raycast->hit = 0;
-	raycast->horizontal = 0;
-	raycast->vertical = 0;
 	raycast->perp_dist = 0;
 	raycast->line_height = 0;
 	raycast->draw_start = 0;
@@ -123,4 +98,35 @@ void init_raycast(t_ray *raycast)
 	raycast->wall_x = 0;
 	raycast->tex_x = 0;
 	raycast->tex_y = 0;
+	raycast->side = 0;
+}
+
+void	distribute_raycast(t_data *data)
+{
+	int	x;
+
+	x = 0;
+	draw_floor_ceiling(data);
+	while (x < WIN_W)
+	{
+		// calculate ray position and directio
+		// which box of the map we're in
+		setup_ray(data, x);
+		// length of ray from one x or y-side to next x or y-side
+		set_delta_dist(data);
+		// data->raycast->hit = 0;
+		// calculate step and initial sideDist
+		set_step(data);
+		// perform DDA
+		apply_dda(data);
+		// Calculate distance projected on camera direction
+		calculate_perpdist(data);
+		// calculate lowest and highest pixel to fill in current stripe
+		draw_wall(data);        // Y-axis: where to draw
+		set_wall_pixel_x(data); // X-axis: which column of texture to use
+		// texturing calculations
+		set_texture_x(data);
+		draw_texture_slice(data, x);
+		x++;
+	}
 }

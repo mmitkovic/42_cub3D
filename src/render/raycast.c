@@ -3,105 +3,106 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:38:10 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/11 12:11:14 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/14 14:07:21 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-void calculate_perpdist(t_data *data)
+void	calculate_perpdist(t_data *data)
 {
-	t_ray *ray;
-
-	ray = data->raycast;
-	if (ray->vertical)
-		ray->perp_dist = ray->side_distx - ray->delta_distx;	
-	else if (ray->horizontal)
-		ray->perp_dist = ray->side_disty - ray->delta_disty;
-}
-
-void apply_dda(t_data *data)
-{
-	int		hit;
 	t_ray	*ray;
 
 	ray = data->raycast;
-	hit = 0;
-	while (hit == 0)
+	if (ray->side == 0)
+		ray->perp_dist = ray->side_distx - ray->delta_distx;
+	else
+		ray->perp_dist = ray->side_disty - ray->delta_disty;
+	if (ray->perp_dist <= 0.1)
+		data->cant_move_forward = 1;
+	else
+		data->cant_move_forward = 0;
+}
+
+void	apply_dda(t_data *data)
+{
+	t_ray	*ray;
+	int max_depth;
+	
+	ray = data->raycast;
+	max_depth = 0;
+	ray->hit = 0;
+	while (ray->hit == 0 && max_depth < 100)
 	{
+		// jump to next map square, either in x-direction, or in y-direction
 		if (ray->side_distx < ray->side_disty)
 		{
-			ray->side_distx = ray->side_distx + ray->delta_distx;
-			ray->map_x = ray->map_x + ray->step_x;
-			ray->vertical = 1; //x-axis was hit first, means that horizontal wall was hit (direction N-S). the hit itself is vertical.
-			ray->horizontal = 0;
+			ray->side_distx += ray->delta_distx;
+			ray->map_x += ray->step_x;
+			ray->side = 0;
 		}
 		else
 		{
-			ray->side_disty = ray->side_disty + ray->delta_disty;
-			ray->map_y = ray->map_y + ray->step_y;
-			ray->horizontal = 1; //y-axis was hit first, i means that vertical wall was hit (direction W-E). the hit itself is horizontal.
-			ray->vertical = 0;
+			ray->side_disty += ray->delta_disty;
+			ray->map_y += ray->step_y;
+			ray->side = 1;
 		}
-		if (ray->map_y < 0 || data->parser->map[ray->map_y] == NULL)
-		{
-			hit = 1;
-			continue;
-		}
-		if (ray->map_x < 0 || ray->map_x >= (int)(ft_strlen(data->parser->map[ray->map_y])))
-		{
-			hit = 1;
-			continue;
-		}
+		// if (ray->map_y < 0 || ray->map_y >= data->parser->h || data->parser->map[ray->map_y] == NULL)
+		// {
+		// 	ray->hit = 1;
+		// 	continue ;
+		// }
+		// if (ray->map_x < 0 || ray->map_x >= (int)(ft_strlen(data->parser->map[ray->map_y])))
+		// {
+		// 	ray->hit = 1;
+		// 	continue ;
+		// }
 		if (data->parser->map[ray->map_y][ray->map_x] == '1')
-		{
-			hit = 1;
-			//data->raycast->hit = 1;
-		}
+			ray->hit = 1;
+		max_depth++;
 	}
 }
 
-void set_side_dist(t_data *data)
-{
-	t_ray *ray;
-	
-	ray = data->raycast;
-	if (ray->step_x < 0) 
-		ray->side_distx = (data->pos_x - ray->map_x) * ray->delta_distx; //looking to the left, pos (x,x) its always less than map_x (a whole number) so we can substract and not get negative value.
-	else
-		ray->side_distx = (ray->map_x + 1 - data->pos_x) * ray->delta_distx; //map_x is an integer (whole value), we look for the next the to the right. so we add 1 and substract acutal 0,x position. (with a decimal point) so we get positive value
-	if (ray->step_y < 0)
-		ray->side_disty = (data->pos_y - ray->map_y) * ray->delta_disty; //same
-	else
-		ray->side_disty = (ray->map_y + 1 - data->pos_y) * ray->delta_disty; //same
-	return ;
-}
-
-void set_step(t_data *data)
+void	set_step(t_data *data)
 {
 	if (data->raycast->raydir_x < 0)
+	{
 		data->raycast->step_x = -1;
+		data->raycast->side_distx = (data->pos_x - data->raycast->map_x)
+			* data->raycast->delta_distx;
+	}
 	else
+	{
 		data->raycast->step_x = 1;
+		data->raycast->side_distx = (data->raycast->map_x + 1.0 - data->pos_x)
+			* data->raycast->delta_distx;
+	}
 	if (data->raycast->raydir_y < 0)
+	{
 		data->raycast->step_y = -1;
+		data->raycast->side_disty = (data->pos_y - data->raycast->map_y)
+			* data->raycast->delta_disty;
+	}
 	else
+	{
 		data->raycast->step_y = 1;
-	return ;
+		data->raycast->side_disty = (data->raycast->map_y + 1.0 - data->pos_y)
+			* data->raycast->delta_disty;
+	}
 }
 
-void set_delta_dist(t_data *data)
+void	set_delta_dist(t_data *data)
 {
+	// length of ray from one x or y-side to next x or y-side
 	if (data->raycast->raydir_x == 0)
-		data->raycast->delta_distx = INFINITY;
+		data->raycast->delta_distx = 1e30;
 	else
 		data->raycast->delta_distx = fabs(1 / data->raycast->raydir_x);
 	if (data->raycast->raydir_y == 0)
-		data->raycast->delta_disty = INFINITY;
+		data->raycast->delta_disty = 1e30;
 	else
 		data->raycast->delta_disty = fabs(1 / data->raycast->raydir_y);
-	return ;
 }
