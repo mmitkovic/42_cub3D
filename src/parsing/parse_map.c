@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 09:36:47 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/14 14:11:12 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/14 17:19:37 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ int	parse_n_s(t_data *data, t_parser *pars, char *trim)
 {
 	char	*skipped;
 
-	if (!data || !pars || !*trim)
-		return (1);
 	skipped = NULL;
 	if (*trim == 'N')
 	{
@@ -27,8 +25,7 @@ int	parse_n_s(t_data *data, t_parser *pars, char *trim)
 			return (1);
 		pars->n_path = trim_newline(ft_strdup(skipped));
 		if (!pars->n_path)
-			return (free_parser(pars),
-				printf("Missing North texture or color\n"), 1);
+			return (free_parser(pars), 1);
 	}
 	else if (*trim == 'S')
 	{
@@ -38,8 +35,7 @@ int	parse_n_s(t_data *data, t_parser *pars, char *trim)
 			return (1);
 		pars->s_path = trim_newline(ft_strdup(skipped));
 		if (!pars->s_path)
-			return (free_parser(pars),
-				printf("Missing South texture or color\n"), 1);
+			return (free_parser(pars), 1);
 	}
 	return (0);
 }
@@ -57,7 +53,7 @@ int	parse_w_e(t_data *data, t_parser *parser, char *trim)
 			return (1);
 		parser->w_path = trim_newline(ft_strdup(skipped));
 		if (!parser->w_path)
-			return (free_parser(parser), printf("Missing texture/color\n"), 1);
+			return (free_parser(parser), 1);
 	}
 	else if (*trim == 'E')
 	{
@@ -67,7 +63,7 @@ int	parse_w_e(t_data *data, t_parser *parser, char *trim)
 			return (1);
 		parser->e_path = trim_newline(ft_strdup(skipped));
 		if (!parser->e_path)
-			return (free_parser(parser), printf("Missing texture/color\n"), 1);
+			return (free_parser(parser), 1);
 	}
 	return (0);
 }
@@ -131,10 +127,7 @@ int	add_another_line(t_parser *parser, char *line)
 			return (1);
 		new_map[0] = ft_strdup(line);
 		if (!new_map[0])
-		{
-			free(new_map);
-			return (1);
-		}
+			return (free(new_map), 1);
 		parser->map = new_map;
 	}
 	else if (old_map)
@@ -150,24 +143,20 @@ int	add_another_line(t_parser *parser, char *line)
 int	parse_map(t_parser *parser, t_data *data)
 {
 	char	*line;
-	int		i;
 
-	i = 0;
 	line = NULL;
 	line = get_next_line(data->fd);
 	while (line != NULL)
 	{
-		if (add_another_line(parser, line)) // Check return value
+		if (add_another_line(parser, line))
 		{
 			free(line);
-			return (1); // Return error if add_another_line fails
+			return (1);
 		}
 		free(line);
 		line = get_next_line(data->fd);
 	}
-	if (!parser->map) // Make sure we got some map data
+	if (!parser->map)
 		return (1);
 	return (0);
 }
-
-// map grid, normalize rows

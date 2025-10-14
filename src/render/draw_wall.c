@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:50:15 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/14 14:09:19 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/14 19:00:54 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,19 @@ t_img	*get_correct_texture(t_data *data)
 	t_ray	*ray;
 
 	ray = data->raycast;
-	if (ray->side == 0) // hit vertical wall (N-S)
+	if (ray->side == 0)
 	{
 		if (ray->raydir_x > 0)
-			return (&data->texture[3]); // east
+			return (&data->texture[3]);
 		else
-			return (&data->texture[2]); // west
+			return (&data->texture[2]);
 	}
 	else
 	{
 		if (ray->raydir_y > 0)
-			return (&data->texture[1]); // south
+			return (&data->texture[1]);
 		else
-			return (&data->texture[0]); // north
+			return (&data->texture[0]);
 	}
 	return (NULL);
 }
@@ -39,34 +39,32 @@ void	draw_texture_slice(t_data *data, int x)
 {
 	t_ray			*ray;
 	t_img			*texture;
-	int				y;
 	double			step;
 	double			texture_pos;
 	unsigned int	color;
 
 	ray = data->raycast;
-	y = ray->draw_start;
 	texture = get_correct_texture(data);
 	if (!texture || !texture->addr || !texture->mlx_img)
 		return ;
 	step = 1.0 * (double)texture->h / (double)ray->line_height;
 	// Starting texture coordinate
-	texture_pos = (ray->draw_start - (WIN_H / 2.0) + ray->line_height / 2.0)
+	texture_pos = (ray->draw_start - (WIN_H / 2.0) + ray->line_height / 2) //remember what actually is texture_pos
 		* step;
-	if (ray->draw_start == 0)
-		texture_pos = (WIN_H / 2.0 - ray->line_height / 2.0) * -step;
-	while (y < ray->draw_end)
+	// if (ray->draw_start == 0)  //ask GEMINI why we may need it
+	// 	texture_pos = (WIN_H / 2.0 - ray->line_height / 2.0) * -step;
+	while (ray->draw_start < ray->draw_end)
 	{
 		ray->tex_y = (int)(texture_pos) & (texture->h - 1);
 		// get pixel from texture
-		if (ray->tex_y >= 0 && ray->tex_y < texture->h)
-		{
+		// if (ray->tex_y >= 0 && ray->tex_y < texture->h)  //do we need it????
+		// {
 			color = *(unsigned int *)(texture->addr + (ray->tex_y
-						* texture->line_len + ray->tex_x * (texture->bpp / 8)));
-			put_pixel(data, x, y, color);
-		}
+					* texture->line_len + ray->tex_x * (texture->bpp / 8)));
+			put_pixel(data, x, ray->draw_start, color);
+		//}
 		texture_pos += step;
-		y++;
+		ray->draw_start++;
 	}
 }
 
@@ -80,14 +78,11 @@ void	set_texture_x(t_data *data)
 	texture = get_correct_texture(data);
 	if (!texture)
 		return ;
-	// Use actual texture width
 	ray->tex_x = (int)(ray->wall_x * texture->w);
-	// Mirror texture based on wall orientation
 	if (ray->side == 0 && ray->raydir_x > 0)
 		ray->tex_x = texture->w - ray->tex_x - 1;
 	if (ray->side == 1 && ray->raydir_y < 0)
 		ray->tex_x = texture->w - ray->tex_x - 1;
-	// Clamp to valid range
 	if (ray->tex_x < 0)
 		ray->tex_x = 0;
 	if (ray->tex_x >= texture->w)
