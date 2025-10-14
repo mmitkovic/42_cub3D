@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/14 14:39:17 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:48:59 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "../get_next_line/get_next_line.h"
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
-// # include "raycast.h"
 # include <fcntl.h>
 # include <inttypes.h>
 # include <math.h>
@@ -45,7 +44,7 @@
 # define MASK_KEYRELEASE (1L << 1)
 // Walk
 # define WALK_SPEED 5
-# define ROT_SPEED 0.01
+# define ROT_SPEED 0.02
 
 typedef struct s_parser
 {
@@ -149,7 +148,6 @@ char			*trim_newline(char *str);
 char			*skip_white(char *line);
 int				is_it_whitespace(t_parser *parser);
 char			*skip_white_after(char *line);
-long			get_time(void);
 
 /* --- INPUT --- */
 // src/input/hooks.c
@@ -200,6 +198,10 @@ int				is_line_nul(char *trim, char **line, t_data *data);
 char			**split_c(char *ceil, char *trim, t_parser *pars, char **array);
 
 // src/parsing/validate_walls.c
+int				check_hole_ver(char **map, int i, int j);
+int				check_hole_hor(char *line);
+int				validate_hor(char **map);
+int				validate_ver(char **map);
 int				check_walls(char **map);
 
 // src/parsing/validate.c
@@ -219,16 +221,14 @@ void			draw_wall(t_data *data);
 // src/render/draw.c
 int				render_frame(void *parm);
 void			put_pixel(t_data *data, int x, int y, unsigned int color);
-
 void			draw_floor_ceiling(t_data *data);
 
 // src/render/frames.c
-long			get_time(void);
-float			calc_timeframe(t_data *data);
+double			get_time(void);
+double			calc_timeframe(t_data *data);
 
 // src/render/raycast_setup.c
 void			setup_ray(t_data *data, int x);
-// void			find_ray_position(t_data *data, int *x, double *camera_x);
 void			init_camera_plane(t_data *data);
 void			init_direction_vector(t_data *data);
 void			distribute_raycast(t_data *data);

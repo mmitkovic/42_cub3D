@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_header.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:32:29 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/14 14:10:47 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/14 16:54:26 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ int	parse_colours(t_data *data, t_parser *pars, char *trim)
 
 int	parse_textures(t_data *data, t_parser *pars, char *trim)
 {
-	char	*skipped;
-
-	skipped = NULL;
 	if (*trim == 'N' || *trim == 'S')
 	{
 		if (parse_n_s(data, pars, trim))

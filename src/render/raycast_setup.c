@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_setup.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:16:32 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/14 13:52:33 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:55:02 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,6 @@ void	distribute_raycast(t_data *data)
 		// calculate lowest and highest pixel to fill in current stripe
 		draw_wall(data);        // Y-axis: where to draw
 		set_wall_pixel_x(data); // X-axis: which column of texture to use
-		// texturing calculations
 		set_texture_x(data);
 		draw_texture_slice(data, x);
 		x++;

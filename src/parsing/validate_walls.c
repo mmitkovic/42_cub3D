@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   validate_walls.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 11:07:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/11 13:29:15 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/14 18:45:17 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-static int	check_hole_ver(char **map, int i, int j)
+int	check_hole_ver(char **map, int i, int j)
 {
 	if (!map[i])
 		return (1);
@@ -44,7 +44,7 @@ static int	check_hole_ver(char **map, int i, int j)
 	return (0);
 }
 
-static int	check_hole_hor(char *line)
+int	check_hole_hor(char *line)
 {
 	int	i;
 
@@ -63,7 +63,7 @@ static int	check_hole_hor(char *line)
 	return (0);
 }
 
-static int	validate_hor(char **map)
+int	validate_hor(char **map)
 {
 	int	i;
 	int	j;
@@ -85,7 +85,7 @@ static int	validate_hor(char **map)
 	return (0);
 }
 
-static int	validate_ver(char **map)
+int	validate_ver(char **map)
 {
 	int	i;
 	int	j;

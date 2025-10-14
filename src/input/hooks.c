@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:20:51 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/11 14:30:46 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/14 15:26:59 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ int handle_mouse_press(int button, int x, int y, void *param)
 
 int	handle_close_win(int keycode, t_data *data)
 {
-	int i;
+	// int i;
 
-	i = 0;
+	// i = 0;
 	if (keycode == KEY_ESC)
 	{
 		// while (i < 4)

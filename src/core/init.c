@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/14 13:26:08 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/14 17:03:58 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../includes/cub3d.h"
 
@@ -35,8 +34,8 @@ void	init_img(t_img *img)
 	img->bpp = 0;
 	img->line_len = 0;
 	img->endian = -1;
-	img->w = 128;
-	img->h = 128;
+	img->w = 0;
+	img->h = 0;
 }
 
 void	init_data(t_data *data)
@@ -80,6 +79,7 @@ void	init_parser(t_parser *parser)
 	parser->h = 0;
 	parser->w = 0;
 }
+
 void	init(t_parser *parser, t_data *data)
 {
 	int 	i;

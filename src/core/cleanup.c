@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:14:31 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/11 12:51:40 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/14 17:24:52 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	clean_exit(t_data *data)
 	if (data->parser)
 		free_parser(data->parser);
 	free(data->raycast);
+	close(data->fd);
 	free(data);
 	exit (0);
 }
