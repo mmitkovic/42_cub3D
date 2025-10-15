@@ -6,22 +6,21 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:16:32 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/14 18:55:02 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/15 15:54:10 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
+/*calculate ray position and direction and which box of the map we're in*/
 void	setup_ray(t_data *data, int x)
 {
 	t_ray	*ray;
 
 	ray = data->raycast;
-	// calculate ray position and direction
 	ray->camera_x = 2 * x / (double)WIN_W - 1;
 	ray->raydir_x = data->dir_x + data->plane_x * ray->camera_x;
 	ray->raydir_y = data->dir_y + data->plane_y * ray->camera_x;
-	// which box of the map we're in
 	ray->map_x = (int)data->pos_x;
 	ray->map_y = (int)data->pos_y;
 }
@@ -109,21 +108,13 @@ void	distribute_raycast(t_data *data)
 	draw_floor_ceiling(data);
 	while (x < WIN_W)
 	{
-		// calculate ray position and directio
-		// which box of the map we're in
 		setup_ray(data, x);
-		// length of ray from one x or y-side to next x or y-side
 		set_delta_dist(data);
-		// data->raycast->hit = 0;
-		// calculate step and initial sideDist
 		set_step(data);
-		// perform DDA
 		apply_dda(data);
-		// Calculate distance projected on camera direction
 		calculate_perpdist(data);
-		// calculate lowest and highest pixel to fill in current stripe
-		draw_wall(data);        // Y-axis: where to draw
-		set_wall_pixel_x(data); // X-axis: which column of texture to use
+		draw_wall(data);
+		set_wall_pixel_x(data);
 		set_texture_x(data);
 		draw_texture_slice(data, x);
 		x++;
