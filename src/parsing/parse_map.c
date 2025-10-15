@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 09:36:47 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/14 17:19:37 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/15 19:38:00 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ int	parse_w_e(t_data *data, t_parser *parser, char *trim)
 	return (0);
 }
 
-char	**extend_the_map(char **old_map, char *line) // fix the lines
+char	**extend_the_map(char **old_map, char *line)
 {
 	char **new_map;
 	int size;
@@ -84,31 +84,14 @@ char	**extend_the_map(char **old_map, char *line) // fix the lines
 		return (NULL);
 	while (i < size)
 	{
-		new_map[i] = ft_strdup(old_map[i]); // Create new copies of strings
-		if (!new_map[i])
-		{
-			while (--i >= 0)
-				free(new_map[i]);
-			free(new_map);
-			return (NULL);
-		}
+		new_map[i] = old_map[i]; // Create new shallow copies of strings
 		i++;
 	}
 	new_map[size] = ft_strdup(line);
 	if (!new_map[size])
-	{
-		while (--i >= 0)
-			free(new_map[i]);
-		free(new_map);
-		return (NULL);
-	}
-	if (old_map)
-	{
-		i = 0;
-		while (old_map[i])
-			free(old_map[i++]);
-		free(old_map);
-	}
+		return (free(new_map), NULL);
+	if (old_map)				//im not freeing strings, imt just freeing container, the string point to new_map already
+	 	free(old_map);
 	return (new_map);
 }
 
@@ -122,7 +105,6 @@ int	add_another_line(t_parser *parser, char *line)
 	if (old_map == NULL)
 	{
 		new_map = ft_calloc(2, sizeof(char *));
-			// calloc 2 position for 1 line to make it NULL at the end.
 		if (!new_map)
 			return (1);
 		new_map[0] = ft_strdup(line);

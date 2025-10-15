@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:38:10 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/14 14:07:21 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:09:17 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,34 @@ void	calculate_perpdist(t_data *data)
 		data->cant_move_forward = 0;
 }
 
+int check_guards(t_data *data)
+{
+	t_ray *ray;
+
+	ray = data->raycast;
+	if (ray->map_y < 0 || data->parser->map[ray->map_y] == NULL)
+	{
+		ray->hit = 1;
+		return (1);
+	}
+	if (ray->map_x < 0 || ray->map_x
+					>= (int)(ft_strlen(data->parser->map[ray->map_y])))
+	{
+		ray->hit = 1;
+		return (1);
+	}
+	return (0);
+}
+
+/*deleted max_depth and took guards outside*/
 void	apply_dda(t_data *data)
 {
 	t_ray	*ray;
-	int max_depth;
 	
 	ray = data->raycast;
-	max_depth = 0;
 	ray->hit = 0;
-	while (ray->hit == 0 && max_depth < 100)
+	while (ray->hit == 0)
 	{
-		// jump to next map square, either in x-direction, or in y-direction
 		if (ray->side_distx < ray->side_disty)
 		{
 			ray->side_distx += ray->delta_distx;
@@ -50,19 +67,10 @@ void	apply_dda(t_data *data)
 			ray->map_y += ray->step_y;
 			ray->side = 1;
 		}
-		// if (ray->map_y < 0 || ray->map_y >= data->parser->h || data->parser->map[ray->map_y] == NULL)
-		// {
-		// 	ray->hit = 1;
-		// 	continue ;
-		// }
-		// if (ray->map_x < 0 || ray->map_x >= (int)(ft_strlen(data->parser->map[ray->map_y])))
-		// {
-		// 	ray->hit = 1;
-		// 	continue ;
-		// }
+		if (check_guards(data))
+			continue;
 		if (data->parser->map[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
-		max_depth++;
 	}
 }
 
@@ -96,7 +104,6 @@ void	set_step(t_data *data)
 
 void	set_delta_dist(t_data *data)
 {
-	// length of ray from one x or y-side to next x or y-side
 	if (data->raycast->raydir_x == 0)
 		data->raycast->delta_distx = 1e30;
 	else
