@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:50:15 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/14 19:00:54 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/15 11:43:26 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,9 @@ void	draw_texture_slice(t_data *data, int x)
 	{
 		ray->tex_y = (int)(texture_pos) & (texture->h - 1);
 		// get pixel from texture
-		// if (ray->tex_y >= 0 && ray->tex_y < texture->h)  //do we need it????
-		// {
-			color = *(unsigned int *)(texture->addr + (ray->tex_y
-					* texture->line_len + ray->tex_x * (texture->bpp / 8)));
-			put_pixel(data, x, ray->draw_start, color);
-		//}
+		color = *(unsigned int *)(texture->addr + (ray->tex_y
+				* texture->line_len + ray->tex_x * (texture->bpp / 8)));
+		put_pixel(data, x, ray->draw_start, color);
 		texture_pos += step;
 		ray->draw_start++;
 	}
