@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:50:15 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/15 11:43:26 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/17 11:26:46 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_img	*get_correct_texture(t_data *data)
 	return (NULL);
 }
 
-/* --- refactoring needed --- */
+/* --- TO_DO -- UNDERSTAND IT BETTER --- */
 void	draw_texture_slice(t_data *data, int x)
 {
 	t_ray			*ray;
@@ -48,15 +48,11 @@ void	draw_texture_slice(t_data *data, int x)
 	if (!texture || !texture->addr || !texture->mlx_img)
 		return ;
 	step = 1.0 * (double)texture->h / (double)ray->line_height;
-	// Starting texture coordinate
-	texture_pos = (ray->draw_start - (WIN_H / 2.0) + ray->line_height / 2) //remember what actually is texture_pos
+	texture_pos = (ray->draw_start - (WIN_H / 2) + ray->line_height / 2)
 		* step;
-	// if (ray->draw_start == 0)  //ask GEMINI why we may need it
-	// 	texture_pos = (WIN_H / 2.0 - ray->line_height / 2.0) * -step;
 	while (ray->draw_start < ray->draw_end)
 	{
 		ray->tex_y = (int)(texture_pos) & (texture->h - 1);
-		// get pixel from texture
 		color = *(unsigned int *)(texture->addr + (ray->tex_y
 				* texture->line_len + ray->tex_x * (texture->bpp / 8)));
 		put_pixel(data, x, ray->draw_start, color);
@@ -65,7 +61,8 @@ void	draw_texture_slice(t_data *data, int x)
 	}
 }
 
-// Update set_texture_x to use actual texture width
+/* Update set_texture_x to use actual texture width*/
+/*Here lays the reason of inverting letters from different perspective of looking (from left to right)*/
 void	set_texture_x(t_data *data)
 {
 	t_ray	*ray;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:17:18 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/14 14:45:09 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:58:30 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,8 @@
 /* -- MY CHECK --*/
 int	load_texture(t_data *data, t_img *tex_img, char *path)
 {
-	// Add debug print to verify path
 	if (!path || !data || !tex_img)
 		return (printf("Error: NULL parameter in load_texture\n"), 1);
-	// Initialize width and height
 	tex_img->w = 0;
 	tex_img->h = 0;
 	tex_img->mlx_img = mlx_xpm_file_to_image(data->mlx_ptr, path, &tex_img->w,
@@ -40,7 +38,6 @@ int	load_textures(t_data *data)
 {
 	if (!data || !data->parser)
 		return (printf("Error: NULL data or parser\n"), 1);
-	// Load each texture individually for better error tracking
 	if (load_texture(data, &data->texture[0], data->parser->n_path))
 		return (printf("Error: Failed to load North texture\n"), 1);
 	if (load_texture(data, &data->texture[1], data->parser->s_path))

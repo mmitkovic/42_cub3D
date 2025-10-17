@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/14 18:48:59 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:10:41 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@
 # include <sys/time.h>
 # include <unistd.h>
 
-# define WIN_W 800
-# define WIN_H 600
+# define WIN_W 1000
+# define WIN_H 800
 # define TEX_SIZE 128
-// keycodes
 # define KEY_ESC 65307
 # define KEY_W 119
 # define KEY_A 97
@@ -35,15 +34,12 @@
 # define KEY_D 100
 # define R_ARW 65363
 # define L_ARW 65361
-// Events
 # define EVT_KEYPRESS 2
 # define EVT_KEYRELEASE 3
 # define EVT_DESTROY 17
-// Masks
 # define MASK_KEYPRESS (1L << 0)
 # define MASK_KEYRELEASE (1L << 1)
-// Walk
-# define WALK_SPEED 5
+# define WALK_SPEED 4
 # define ROT_SPEED 0.02
 
 typedef struct s_parser
@@ -238,6 +234,7 @@ void			init_raycast(t_ray *raycast);
 void			calculate_perpdist(t_data *data);
 void			set_delta_dist(t_data *data);
 void			set_step(t_data *data);
+int				check_guards(t_data *data);
 void			apply_dda(t_data *data);
 
 // src/render/textures.c
