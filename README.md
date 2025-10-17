@@ -10,5 +10,11 @@ considered the first FPS ever created. Its main goal is to introduce developer t
 # Compile & run
 ```bash
 To build files, type "make" in root directory.
-Next start the executable file with path to particular map as an argument. (examples loaded in assets)
+```bash
+make
+```
+# Next start the executable file with path to particular map as an argument. (examples loaded in assets)
+```bash
 ./cub3d [assets/maps/map.cub]
+```
+# Navigate through maze using WSAD and left/right arrows to rotate.
