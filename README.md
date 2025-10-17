@@ -16,4 +16,4 @@ make
 ```bash
 ./cub3d [assets/maps/map.cub]
 ```
-## Navgiate through maze using WSAD and left/right arrows to rotate.
+## Navigate through maze using WSAD and left/right arrows to rotate.
