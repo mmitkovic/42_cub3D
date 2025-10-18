@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:10:46 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/14 18:32:20 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/18 17:49:55 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ int	start_window(t_data *data)
 	mlx_hook(data->win_ptr, EVT_KEYPRESS, MASK_KEYPRESS, &handle_keypress,
 		data);
 	mlx_hook(data->win_ptr, EVT_KEYRELEASE, MASK_KEYRELEASE, &handle_keyrelease,
-		data);
-	mlx_hook(data->win_ptr, EVT_DESTROY, 0, &handle_close_win, data);
+			data);
+	mlx_hook(data->win_ptr, EVT_DESTROY, 0, &clean_exit, data);
 	mlx_loop(data->mlx_ptr);
-	return (1);
+	return (0);
 }

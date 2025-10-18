@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 13:07:28 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/15 12:27:34 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/18 18:50:04 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,10 @@ double calc_timeframe(t_data *data)
 	
 	now = get_time();
 	frame_time = (now - data->last_time) / 1000.0;
-	// clamp delta time to prevent huge jumps     //probably to uncomment
 	if (frame_time > 0.05f)
 		frame_time = 0.05f;
     if (frame_time < 0.001f)
-	{
-		// Minimum 1ms
-    	frame_time = 0.001f;
-	}
+		frame_time = 0.001f;
 	data->last_time = now;
 	data->delta_time = frame_time;
 	return (frame_time); 

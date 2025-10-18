@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/14 14:00:14 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/18 18:02:30 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,5 @@ int	main(int ac, char **av)
 			free_parser(parser), free(data->raycast), free(data), 1);
 	start_window(data);
 	clean_exit(data);
-	close(data->fd);
 	return (0);
 }

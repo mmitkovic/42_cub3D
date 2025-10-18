@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/15 16:10:41 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/18 18:03:29 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ typedef struct s_data
 
 /* --- CORE --- */
 // src/core/cleanup.c
-void			clean_exit(t_data *data);
+int				clean_exit(t_data *data);
 void			drain_out_gnl(int fd);
 void			free_split(char **array);
 void			free_parser(t_parser *parser);
@@ -149,9 +149,6 @@ char			*skip_white_after(char *line);
 // src/input/hooks.c
 int				handle_keypress(int keycode, void *param);
 int				handle_keyrelease(int keycode, void *param);
-int				handle_close_win(int keycode, t_data *data);
-int				handle_mouse_move(int x, int y, void *param);
-int				handle_mouse_press(int keycode, int x, int y, void *param);
 
 // src/input/movement_rotate.c
 void			handle_rotation(t_data *data);
