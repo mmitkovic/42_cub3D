@@ -13,6 +13,6 @@ make
 ```
 Next start the executable file with path to particular map as an argument. (examples loaded in assets)
 ```bash
-./cub3d [assets/maps/map.cub]
+./cub3d assets/maps/short.cub
 ```
 Navigate through maze using WSAD and left/right arrows to rotate.
