@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 10:53:36 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/15 19:47:16 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/19 20:28:16 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,8 @@ void	init(t_parser *parser, t_data *data)
 	int 	i;
 
 	i = 0;
+	init_img(&data->img);
 	init_data(data);
-	data->mlx_ptr = mlx_init();
-	if (!data->mlx_ptr)
-		return ;
 	init_parser(parser);
 	while (i < 4)
 	{
@@ -91,6 +89,6 @@ void	init(t_parser *parser, t_data *data)
 	}
 	data->raycast = malloc(sizeof(t_ray));
 	if (!data->raycast)
-		return ;
+		clean_exit(data);
 	init_raycast(data->raycast);
 }

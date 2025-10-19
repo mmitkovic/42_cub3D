@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:32:29 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/14 16:54:26 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/19 19:08:27 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	dispatch_colour_parser(t_data *data, char *trim, int *elements)
 		elements++;
 		if (parse_textures(data, data->parser, trim))
 			return (drain_out_gnl(data->fd),
-				printf("Error\nElem. missing/typo"), 1);
+				printf("Error\nElem. missing/typo\n"), 1);
 	}
 	else if ((!ft_strncmp(trim, "F", 1) && trim[1] == ' ' && data->elem_f != 1)
 		|| (!ft_strncmp(trim, "C", 1) && trim[1] == ' ' && data->elem_c != 1))
@@ -77,7 +77,7 @@ int	dispatch_colour_parser(t_data *data, char *trim, int *elements)
 	}
 	else
 		return (drain_out_gnl(data->fd),
-			printf("Error\nMissing/extra elem. or duplicate"), 1);
+			printf("Error\nMissing/extra elem. or duplicate\n"), 1);
 	return (0);
 }
 
