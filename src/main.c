@@ -6,24 +6,24 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/18 18:02:30 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/19 20:14:21 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-static int	malloc_structs(t_parser **parser, t_data **data)
+int	malloc_structs(t_parser **parser, t_data **data)
 {
 	*parser = malloc(sizeof(t_parser));
 	if (!*parser)
-		return (free(parser), 1);
+		return (free(*parser), 1);
 	*data = malloc(sizeof(t_data));
 	if (!*data)
-		return (free(parser), free(data), 1);
+		return (free(*parser), free(*data), 1);
 	return (0);
 }
 
-static int	input_check(int ac, char **av)
+int	input_check(int ac, char **av)
 {
 	char	*map_name;
 
@@ -61,7 +61,8 @@ int	main(int ac, char **av)
 	if (map_check(data, parser->map))
 		return (printf("Error\nMap is not valid!\n"), close(data->fd),
 			free_parser(parser), free(data->raycast), free(data), 1);
-	start_window(data);
+	if (start_window(data))
+		clean_exit(data);
 	clean_exit(data);
 	return (0);
 }

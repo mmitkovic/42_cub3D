@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/18 18:03:29 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/19 19:40:51 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,5 +240,10 @@ int				load_textures(t_data *data);
 
 // src/render/window.c
 int				start_window(t_data *data);
+
+// src/main.c
+int				malloc_structs(t_parser **parser, t_data **data);
+int				input_check(int ac, char **av);
+int				main(int ac, char **av);
 
 #endif

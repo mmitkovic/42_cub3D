@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 09:36:47 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/15 19:38:00 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/19 18:16:45 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	parse_n_s(t_data *data, t_parser *pars, char *trim)
 			return (1);
 		pars->n_path = trim_newline(ft_strdup(skipped));
 		if (!pars->n_path)
-			return (free_parser(pars), 1);
+			return (1);
 	}
 	else if (*trim == 'S')
 	{
@@ -35,7 +35,7 @@ int	parse_n_s(t_data *data, t_parser *pars, char *trim)
 			return (1);
 		pars->s_path = trim_newline(ft_strdup(skipped));
 		if (!pars->s_path)
-			return (free_parser(pars), 1);
+			return (1);
 	}
 	return (0);
 }
@@ -53,7 +53,7 @@ int	parse_w_e(t_data *data, t_parser *parser, char *trim)
 			return (1);
 		parser->w_path = trim_newline(ft_strdup(skipped));
 		if (!parser->w_path)
-			return (free_parser(parser), 1);
+			return (1);
 	}
 	else if (*trim == 'E')
 	{
@@ -63,7 +63,7 @@ int	parse_w_e(t_data *data, t_parser *parser, char *trim)
 			return (1);
 		parser->e_path = trim_newline(ft_strdup(skipped));
 		if (!parser->e_path)
-			return (free_parser(parser), 1);
+			return (1);
 	}
 	return (0);
 }
