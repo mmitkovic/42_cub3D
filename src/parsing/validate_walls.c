@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 11:07:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/17 12:33:11 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/20 13:47:17 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,14 +116,8 @@ int	validate_ver(char **map)
 int	check_walls(char **map)
 {
 	if (validate_hor(map))
-	{
-		printf("Horizontal wall validation failed.\n");
 		return (1);
-	}
 	if (validate_ver(map))
-	{
-		printf("Vertical wall validation failed.\n");
 		return (1);
-	}
 	return (0);
 }

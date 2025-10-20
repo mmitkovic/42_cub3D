@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/17 11:54:55 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/20 13:46:57 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ typedef struct s_data
 
 /* --- CORE --- */
 // src/core/cleanup.c
-void			clean_exit(t_data *data);
+int				clean_exit(t_data *data);
 void			drain_out_gnl(int fd);
 void			free_split(char **array);
 void			free_parser(t_parser *parser);
@@ -149,7 +149,6 @@ char			*skip_white_after(char *line);
 // src/input/hooks.c
 int				handle_keypress(int keycode, void *param);
 int				handle_keyrelease(int keycode, void *param);
-int				handle_close_win(int keycode, t_data *data);
 
 // src/input/movement_rotate.c
 void			handle_rotation(t_data *data);
@@ -241,5 +240,10 @@ int				load_textures(t_data *data);
 
 // src/render/window.c
 int				start_window(t_data *data);
+
+// src/main.c
+int				malloc_structs(t_parser **parser, t_data **data);
+int				input_check(int ac, char **av);
+int				main(int ac, char **av);
 
 #endif
