@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 11:07:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/20 13:47:17 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/20 13:54:30 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,6 @@ int	check_hole_ver(char **map, int i, int j)
 			}
 			else
 				return (1);
-			// if (map[i + 1])
-			// {
-			// 	if (!map[i + 1][j] || !map[i + 1] || map[i + 1][j] == ' '
-			// 		|| map[i + 1][j] == '\n')
-			// 		return (1);
-			// }
-			// else
-			// 	return (1);
 		}
 		j++;
 	}
