@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 10:38:10 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/15 16:09:17 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/17 12:08:10 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	calculate_perpdist(t_data *data)
 		data->cant_move_forward = 0;
 }
 
-int check_guards(t_data *data)
+int	check_guards(t_data *data)
 {
-	t_ray *ray;
+	t_ray	*ray;
 
 	ray = data->raycast;
 	if (ray->map_y < 0 || data->parser->map[ray->map_y] == NULL)
@@ -37,8 +37,8 @@ int check_guards(t_data *data)
 		ray->hit = 1;
 		return (1);
 	}
-	if (ray->map_x < 0 || ray->map_x
-					>= (int)(ft_strlen(data->parser->map[ray->map_y])))
+	if (ray->map_x < 0
+		|| ray->map_x >= (int)(ft_strlen(data->parser->map[ray->map_y])))
 	{
 		ray->hit = 1;
 		return (1);
@@ -50,7 +50,7 @@ int check_guards(t_data *data)
 void	apply_dda(t_data *data)
 {
 	t_ray	*ray;
-	
+
 	ray = data->raycast;
 	ray->hit = 0;
 	while (ray->hit == 0)
@@ -68,7 +68,7 @@ void	apply_dda(t_data *data)
 			ray->side = 1;
 		}
 		if (check_guards(data))
-			continue;
+			continue ;
 		if (data->parser->map[ray->map_y][ray->map_x] == '1')
 			ray->hit = 1;
 	}

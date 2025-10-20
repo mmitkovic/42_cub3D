@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 13:07:28 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/17 11:26:54 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/17 12:09:53 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ double	calc_timeframe(t_data *data)
 
 	now = get_time();
 	frame_time = (now - data->last_time) / 1000.0;
-	// clamp delta time to prevent huge jumps
 	if (frame_time > 0.05f)
 		frame_time = 0.05f;
 	if (frame_time < 0.001f)

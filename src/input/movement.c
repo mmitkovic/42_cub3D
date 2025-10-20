@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:21:20 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/14 13:28:12 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/17 12:00:45 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	move_forward(t_data *data)
 	nx = data->pos_x + data->dir_x * speed;
 	ny = data->pos_y + data->dir_y * speed;
 	dest_char = data->parser->map[(int)ny][(int)nx];
-	if (dest_char == '0' || dest_char == 'N' || dest_char == 'S' 
+	if (dest_char == '0' || dest_char == 'N' || dest_char == 'S'
 		|| dest_char == 'W' || dest_char == 'E')
 	{
 		data->pos_x = nx;
@@ -39,18 +39,18 @@ void	move_back(t_data *data)
 	double	ny;
 	float	speed;
 	char	dest_char;
-	
+
 	if (data->delta_time <= 0.0f)
 		return ;
 	speed = WALK_SPEED * data->delta_time;
 	ny = data->pos_y - data->dir_y * speed;
 	nx = data->pos_x - data->dir_x * speed;
-	dest_char = data->parser->map[(int)ny][(int)nx];;
-	if (dest_char == '0' || dest_char == 'N' || dest_char == 'S' 
+	dest_char = data->parser->map[(int)ny][(int)nx];
+	if (dest_char == '0' || dest_char == 'N' || dest_char == 'S'
 		|| dest_char == 'W' || dest_char == 'E')
 	{
 		data->pos_x = nx;
-		data->pos_y = ny;	
+		data->pos_y = ny;
 	}
 }
 
@@ -67,7 +67,7 @@ void	move_right(t_data *data)
 	nx = data->pos_x + data->plane_x * speed;
 	ny = data->pos_y + data->plane_y * speed;
 	dest_char = data->parser->map[(int)ny][(int)nx];
-	if (dest_char == '0' || dest_char == 'N' || dest_char == 'S' 
+	if (dest_char == '0' || dest_char == 'N' || dest_char == 'S'
 		|| dest_char == 'W' || dest_char == 'E')
 	{
 		data->pos_x = nx;
@@ -88,7 +88,7 @@ void	move_left(t_data *data)
 	nx = data->pos_x - data->plane_x * speed;
 	ny = data->pos_y - data->plane_y * speed;
 	dest_char = data->parser->map[(int)ny][(int)nx];
-	if (dest_char == '0' || dest_char == 'N' || dest_char == 'S' 
+	if (dest_char == '0' || dest_char == 'N' || dest_char == 'S'
 		|| dest_char == 'W' || dest_char == 'E')
 	{
 		data->pos_x = nx;

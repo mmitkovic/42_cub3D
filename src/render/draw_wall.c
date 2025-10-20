@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 10:50:15 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/17 11:26:46 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/17 12:09:29 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	draw_texture_slice(t_data *data, int x)
 	{
 		ray->tex_y = (int)(texture_pos) & (texture->h - 1);
 		color = *(unsigned int *)(texture->addr + (ray->tex_y
-				* texture->line_len + ray->tex_x * (texture->bpp / 8)));
+					* texture->line_len + ray->tex_x * (texture->bpp / 8)));
 		put_pixel(data, x, ray->draw_start, color);
 		texture_pos += step;
 		ray->draw_start++;
@@ -62,7 +62,6 @@ void	draw_texture_slice(t_data *data, int x)
 }
 
 /* Update set_texture_x to use actual texture width*/
-/*Here lays the reason of inverting letters from different perspective of looking (from left to right)*/
 void	set_texture_x(t_data *data)
 {
 	t_ray	*ray;

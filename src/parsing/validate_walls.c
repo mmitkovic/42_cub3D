@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_walls.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 11:07:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/15 20:12:01 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/17 12:33:11 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,22 +22,25 @@ int	check_hole_ver(char **map, int i, int j)
 	{
 		if (map[i][j] == '0')
 		{
-			if (i > 0)
+			if (i > 0 || map[i + 1])
 			{
 				if ((!map[i - 1][j] || map[i - 1][j] == ' ' || map[i
 						- 1][j] == '\n'))
 					return (1);
-			}
-			else
-				return (1);
-			if (map[i + 1])
-			{
 				if (!map[i + 1][j] || !map[i + 1] || map[i + 1][j] == ' '
 					|| map[i + 1][j] == '\n')
 					return (1);
 			}
 			else
 				return (1);
+			// if (map[i + 1])
+			// {
+			// 	if (!map[i + 1][j] || !map[i + 1] || map[i + 1][j] == ' '
+			// 		|| map[i + 1][j] == '\n')
+			// 		return (1);
+			// }
+			// else
+			// 	return (1);
 		}
 		j++;
 	}
@@ -56,7 +59,7 @@ int	check_hole_hor(char *line)
 		if (line[i + 1] == '\0')
 			break ;
 		if ((line[i] == '0' && line[i + 1] == ' ') || (line[i] == ' ' && line[i
-				+ 1] == '0') || (line[i] == '0' && line[i + 1] == '\n'))
+					+ 1] == '0') || (line[i] == '0' && line[i + 1] == '\n'))
 			return (1);
 		i++;
 	}

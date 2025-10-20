@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 09:36:47 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/15 19:38:00 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/17 12:02:51 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,9 @@ int	parse_w_e(t_data *data, t_parser *parser, char *trim)
 
 char	**extend_the_map(char **old_map, char *line)
 {
-	char **new_map;
-	int size;
-	int i;
+	char	**new_map;
+	int		size;
+	int		i;
 
 	new_map = NULL;
 	i = 0;
@@ -84,14 +84,14 @@ char	**extend_the_map(char **old_map, char *line)
 		return (NULL);
 	while (i < size)
 	{
-		new_map[i] = old_map[i]; // Create new shallow copies of strings
+		new_map[i] = old_map[i];
 		i++;
 	}
 	new_map[size] = ft_strdup(line);
 	if (!new_map[size])
 		return (free(new_map), NULL);
-	if (old_map)				//im not freeing strings, imt just freeing container, the string point to new_map already
-	 	free(old_map);
+	if (old_map)
+		free(old_map);
 	return (new_map);
 }
 

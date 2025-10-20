@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 13:14:31 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/14 17:24:52 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/17 11:51:43 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	free_split(char **array)
 	int	i;
 
 	if (!array)
-		return;
+		return ;
 	i = 0;
 	while (array[i])
 	{
@@ -86,5 +86,5 @@ void	clean_exit(t_data *data)
 	free(data->raycast);
 	close(data->fd);
 	free(data);
-	exit (0);
+	exit(0);
 }
