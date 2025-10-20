@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 13:07:28 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/20 13:51:23 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/20 14:04:20 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ double	calc_timeframe(t_data *data)
 	frame_time = (now - data->last_time) / 1000.0;
 	if (frame_time > 0.05f)
 		frame_time = 0.05f;
-    if (frame_time < 0.001f)
+	if (frame_time < 0.001f)
 		frame_time = 0.001f;
 	data->last_time = now;
 	data->delta_time = frame_time;
