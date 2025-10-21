@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:14:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/19 20:14:21 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/21 12:14:44 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	input_check(int ac, char **av)
 		return (1);
 	map_name = av[1];
 	if (check_ext(map_name))
-		return (printf("Error\nWrong extension!\n"), 1);
+		return (printf("Error\nWrong extension/file/path_to_file\n"), 1);
 	return (0);
 }
 
