@@ -6,7 +6,7 @@
 /*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/22 16:32:29 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/19 19:08:27 by hgatarek         ###   ########.fr       */
+/*   Updated: 2025/10/21 11:44:21 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,6 @@ int	check_textures_color(t_parser *parser, t_data *data)
 	if (line)
 		free(line);
 	if (elements != 6 || is_it_whitespace(parser))
-		return (1);
+		return (printf("Error\nWrong map"), 1);
 	return (0);
 }

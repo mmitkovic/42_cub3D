@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 09:36:47 by hgatarek          #+#    #+#             */
-/*   Updated: 2025/10/20 13:50:25 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/21 11:47:21 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,6 @@ int	parse_map(t_parser *parser, t_data *data)
 		line = get_next_line(data->fd);
 	}
 	if (!parser->map)
-		return (1);
+		return (printf("Error\nThere is no map to validate"), 1);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hgatarek <hgatarek@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 16:11:02 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/14 13:29:36 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/21 11:49:08 by hgatarek         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	check_num_player(t_data *data, char **map)
 		i++;
 	}
 	if (player != 1)
-		return (printf("Num of players: %d\n", player), 1);
+		return (1);
 	return (0);
 }
 
