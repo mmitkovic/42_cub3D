@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/16 12:03:16 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/20 13:46:57 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/21 11:29:55 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,10 @@ char			**split_by_colour(t_parser *parser, char *trim, char letter);
 int				convert_to_int(t_parser *pars, char **array, char lett);
 int				is_line_nul(char *trim, char **line, t_data *data);
 char			**split_c(char *ceil, char *trim, t_parser *pars, char **array);
+
+// src/parsing/validate_walls_utils.c
+int check_outer_wall(char **map);
+int	is_invalid_wall(char **map, int i, int j);
 
 // src/parsing/validate_walls.c
 int				check_hole_ver(char **map, int i, int j);

@@ -12,6 +12,7 @@ SRCS	= src/main.c \
 			src/parsing/map_info.c \
 			src/parsing/parse_header.c \
 			src/parsing/parse_file.c \
+			src/parsing/validate_walls_utils.c \
 			src/parsing/validate_walls.c \
 			src/parsing/validate.c \
 			src/render/draw.c \
