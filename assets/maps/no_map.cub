@@ -1,0 +1,7 @@
+NO  ./assets/textures/brick_128x128.xpm
+SO  ./assets/textures/blue_stone_64x64.xpm
+WE  ./assets/textures/grey_stone_64x64.xpm
+EA  ./assets/textures/wood_128x128.xpm
+
+C 255,255,255
+F 255,0,0

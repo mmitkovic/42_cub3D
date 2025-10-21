@@ -6,7 +6,7 @@
 /*   By: mmitkovi <mmitkovi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 11:07:37 by mmitkovi          #+#    #+#             */
-/*   Updated: 2025/10/20 13:54:30 by mmitkovi         ###   ########.fr       */
+/*   Updated: 2025/10/21 11:46:36 by mmitkovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,7 @@ int	check_hole_ver(char **map, int i, int j)
 	{
 		if (map[i][j] == '0')
 		{
-			if (i > 0 || map[i + 1])
-			{
-				if ((!map[i - 1][j] || map[i - 1][j] == ' ' || map[i
-						- 1][j] == '\n'))
-					return (1);
-				if (!map[i + 1][j] || !map[i + 1] || map[i + 1][j] == ' '
-					|| map[i + 1][j] == '\n')
-					return (1);
-			}
-			else
+			if (is_invalid_wall(map, i, j))
 				return (1);
 		}
 		j++;
@@ -107,6 +98,8 @@ int	validate_ver(char **map)
 
 int	check_walls(char **map)
 {
+	if (check_outer_wall(map))
+		return (1);
 	if (validate_hor(map))
 		return (1);
 	if (validate_ver(map))
